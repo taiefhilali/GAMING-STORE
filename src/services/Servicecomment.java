@@ -71,6 +71,9 @@ public class Servicecomment implements Icomment {
                 return true;
             return false;
         } catch (SQLException e) {
+            
+            
+            
             e.printStackTrace();
             return false;
         }
