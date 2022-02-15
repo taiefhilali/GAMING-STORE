@@ -5,48 +5,47 @@
  */
 package util;
 
-import java.sql.Connection;
+import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
 /**
  *
- * @author 21694
+ * @author ASUS
  */
 public class MaConnexion {
-   
-    final String URL="jdbc:mysql://127.0.0.1:3306/forum";
-    final String USERNAME="root";
-    final String PWD="";
     
+     //DB
+    final String URL = "jdbc:mysql://127.0.0.1:3306/levelup";
+    final String USR = "root";
+    final String PWD = "";
+    
+    //var
     private Connection cnx;
-    //1
     static MaConnexion instance = null;
     
-    //constructeur
-    //2
-    private MaConnexion() {
+    
+    //constructor
+    public MaConnexion(){
         try {
-            cnx = DriverManager.getConnection(URL, USERNAME, PWD);
-            System.out.println("CONNECTED!");
+            cnx = (Connection) DriverManager.getConnection(URL, USR, PWD);
+            System.out.println("connexion établi avec succés");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
-
+    
+    //getter
     public Connection getCnx() {
         return cnx;
     }
-    
-    //3
+
     public static MaConnexion getInstance() {
-        
         if(instance == null){
             instance = new MaConnexion();
         }
         return instance;
     }
-                
-            
+    
+    
 }

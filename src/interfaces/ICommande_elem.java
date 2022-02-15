@@ -1,0 +1,26 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package interfaces;
+
+import java.util.List;
+import model.Commande;
+import model.Commande_elem;
+
+/**
+ *
+ * @author ASUS
+ */
+public interface ICommande_elem {
+    
+    public void ajouterElementCommande(Commande_elem e);
+    
+    public void supprimerElementCommande(Commande_elem e);
+    
+    public void modifierElementCommande(Commande_elem e);
+    
+     public List<Commande_elem> AfficherCommande(int i);
+    
+}
