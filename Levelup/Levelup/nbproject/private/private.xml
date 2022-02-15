@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/interfaces/iProduit.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/interfaces/iCategorie.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/services/ServicePanier_elem.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/interfaces/Ifacture.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/models/Categorie.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/services/ServiceCategorie.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/services/ServiceCommande_elem.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/levelup/Levelup.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/services/Servicecomment.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/models/Client.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/models/Stock.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/interfaces/Istock.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/services/ServiceCommande.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/models/Administrateur.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/services/ServiceStock.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/models/User.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/models/Commande_elem.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/services/servicePanier.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/interfaces/IPanier_elem.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/services/ServiceAdministrateur.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/models/Fournisseur.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/utils/MaConnexion.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/services/ServiceUser.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/models/Panier.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/services/Servicepost.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/interfaces/ICommande_elem.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/models/Post.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/models/Panier_elem.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/interfaces/IPanier.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/services/ServiceFacture.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/interfaces/ICommande.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/models/Livreur.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/models/Produit.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/services/ServiceProduit.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/models/Commande.java</file>
+            <file>file:/C:/Users/beldi/Documents/NetBeansProjects/Levelup/src/models/Facture.java</file>
+        </group>
+    </open-files>
+</project-private>
