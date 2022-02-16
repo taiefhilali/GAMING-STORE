@@ -13,7 +13,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import models.Comment;
-import models.Post;
 import util.MaConnexion;
 
 /**
@@ -27,7 +26,7 @@ public class Servicecomment implements Icomment {
  
     @Override
     public boolean ajouterComment(Comment c) {
-         String request = "INSERT INTO `comment`(`contenu`, `label`, `resp`) VALUES ('"+c. getContenu()+"','"+c.getLabel()+"',"+c.getResp()+")";
+         String request = "INSERT INTO `comment`(`contenu`, `label`, `resp`,`id_user`) VALUES ('"+c. getContenu()+"','"+c.getLabel()+"',"+c.getResp()+","+c.getId_user()+")";
         try {
             Statement st = cnx.createStatement();
             if (st.executeUpdate(request) == 1)
@@ -51,7 +50,7 @@ public class Servicecomment implements Icomment {
 
             //SOB HEDHA FI HEDHA
             while(rs.next()){
-                comments.add(new Comment(rs.getInt("idc"),rs.getString(2),rs.getString(3),rs.getInt(4)));
+                comments.add(new Comment(rs.getInt("idc"),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5)));
             }
 
         } catch (SQLException e) {
@@ -64,7 +63,7 @@ public class Servicecomment implements Icomment {
 
     @Override
     public boolean modifierComment(Comment c) {
-           String req = "UPDATE `comment` SET `contenu`='"+c.getContenu()+"',`label`='"+c.getLabel()+"',`resp`='"+c.getResp()+"' WHERE `idc` = "+c.getIdc()+" ";
+           String req = "UPDATE `comment` SET `contenu`='"+c.getContenu()+"',`label`='"+c.getLabel()+"',`resp`='"+c.getResp()+"',`id_user`='"+c.getId_user()+"' WHERE `idc` = "+c.getIdc()+" ";
         try {
             Statement st = cnx.createStatement();
             if (st.executeUpdate(req) == 1)
