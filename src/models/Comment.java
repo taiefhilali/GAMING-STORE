@@ -14,6 +14,7 @@ package models;
 
 public class Comment {
     private int idc; 
+    private int id_user;
     private String contenu; 
     private String label;
     private int resp;
@@ -24,21 +25,31 @@ public class Comment {
     public Comment() {
     }
 
-        public Comment(int idc, String contenu, String label, int resp) {
+        public Comment(int idc, String contenu, String label, int resp,int id_user) {
         this.idc = idc;
+        this.id_user = id_user;
         this.contenu = contenu;
         this.label = label;
         this.resp = resp;
     }
 
-    public Comment(String contenu, String label, int resp) {
+    public Comment(String contenu, String label, int resp,int id_user) {
         this.contenu = contenu;
         this.label = label;
         this.resp = resp;
+        this.id_user = id_user;
     }
     
     
 //getters&setters
+
+    public int getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
     
     
    
@@ -81,8 +92,10 @@ public class Comment {
 
     @Override
     public String toString() {
-        return "Comment{" + "idc=" + idc + ", contenu=" + contenu + ", label=" + label + ", resp=" + resp + '}';
+        return "Comment{" + "idc=" + idc + ", id_user=" + id_user + ", contenu=" + contenu + ", label=" + label + ", resp=" + resp + '}';
     }
+
+   
     
     
 }
