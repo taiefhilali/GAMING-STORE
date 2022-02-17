@@ -18,14 +18,14 @@ public class Produit {
     private double prix;
     private String description;
     private String etat;  // présent ou non dans le stock
-    private int id_fournisseur;
+    private int id_user;
 
     // Constructeur vide
     public Produit() {
     }
 
     // Constructeur paramétrés
-    public Produit(int id, String nom, String reference, int id_categorie, double prix, String description, String etat, int id_fournisseur) {
+    public Produit(int id, String nom, String reference, int id_categorie, double prix, String description, String etat, int id_user) {
         this.id = id;
         this.nom = nom;
         this.reference = reference;
@@ -33,18 +33,18 @@ public class Produit {
         this.prix = prix;
         this.description = description;
         this.etat = etat;
-        this.id_fournisseur = id_fournisseur;
+        this.id_user = id_user;
     }
 
     // Constructeur sans l'attribut ID ( Doit-je enlever l'id fournisseur?)
-    public Produit(String nom, String reference, int id_categorie, double prix, String description, String etat, int id_fournisseur) {
+    public Produit(String nom, String reference, int id_categorie, double prix, String description, String etat, int id_user) {
         this.nom = nom;
         this.reference = reference;
         this.id_categorie = id_categorie;
         this.prix = prix;
         this.description = description;
         this.etat = etat;
-        this.id_fournisseur = id_fournisseur;
+        this.id_user = id_user;
     }
     // Création des getters et Setters
 
@@ -105,17 +105,17 @@ public class Produit {
     }
 
     public int getId_fournisseur() {
-        return id_fournisseur;
+        return id_user;
     }
 
     public void setId_fournisseur(int id_fournisseur) {
-        this.id_fournisseur = id_fournisseur;
+        this.id_user = id_fournisseur;
     }
 
     // To String
     @Override
     public String toString() {
-        return "Le produit est : {" + "id=" + id + ", nom=" + nom + ", reference=" + reference + ", id_categorie=" + id_categorie + ", prix=" + prix + ", description=" + description + ", etat=" + etat + ", id_fournisseur=" + id_fournisseur + '}';
+        return "Le produit est : {" + "id=" + id + ", nom=" + nom + ", reference=" + reference + ", id_categorie=" + id_categorie + ", prix=" + prix + ", description=" + description + ", etat=" + etat + ", id_fournisseur=" + id_user + '}';
     }
 
 }

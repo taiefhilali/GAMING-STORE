@@ -136,10 +136,12 @@ public class User {
         this.dns = dns;
     }
 
-     //affichage
     @Override
     public String toString() {
-        return "User{" + "id=" + id_user + ", email=" + email + ", password=" + password + ", role=" + role + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", tel=" + tel + ", dns=" + dns + '}';
+        return "User {" + "id_user=" + id_user + ", email=" + email + ", password=" + password + ", role=" + role + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", tel=" + tel + ", dns=" + dns + '}';
     }
+
+
+   
 
 }

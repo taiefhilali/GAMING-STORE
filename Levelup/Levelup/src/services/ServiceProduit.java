@@ -22,7 +22,7 @@ public class ServiceProduit implements iProduit {
     @Override
     public void ajouterProduit(Produit p) {
 
-        String request = "INSERT INTO `produit`(`nom`, `reference`, `id_categorie`, `prix`, `description`, `etat`, `id_fournisseur`) VALUES ('" + p.getNom() + "','" + p.getReference() + "','" + p.getId_categorie() + "','" + p.getPrix() + "','" + p.getDescription() + "','" + p.getEtat() + "','" + p.getId_fournisseur() + "')";
+        String request = "INSERT INTO `produit`(`nom`, `reference`, `id_categorie`, `prix`, `description`, `etat`, `id_user`) VALUES ('" + p.getNom() + "','" + p.getReference() + "','" + p.getId_categorie() + "','" + p.getPrix() + "','" + p.getDescription() + "','" + p.getEtat() + "','" + p.getId_fournisseur() + "')";
         try {
             // Définier une var Statement responsable de la connexion
             Statement st = cnx.createStatement();
@@ -38,7 +38,7 @@ public class ServiceProduit implements iProduit {
     // Modification 
     @Override
     public void modifierProduit(Produit p) {
-        String request = "UPDATE `produit` SET `nom`='" + p.getNom() + "',`reference`='" + p.getReference() + "',`id_categorie`=" + p.getId_categorie() + ",`prix`=" + p.getPrix() + ",`description`='" + p.getDescription() + "',`etat`='" + p.getEtat() + "',`id_fournisseur`=" + p.getId_fournisseur() + " WHERE id =" + p.getId() + " ";
+        String request = "UPDATE `produit` SET `nom`='" + p.getNom() + "',`reference`='" + p.getReference() + "',`id_categorie`=" + p.getId_categorie() + ",`prix`=" + p.getPrix() + ",`description`='" + p.getDescription() + "',`etat`='" + p.getEtat() + "',`id_user`=" + p.getId_fournisseur() + " WHERE id =" + p.getId() + " ";
         try {
             Statement st = cnx.createStatement();
             st.executeUpdate(request);

@@ -34,5 +34,12 @@ public class Administrateur extends User {
     public void setCin(String cin) {
         this.cin = cin;
     }
+ @Override
+    public String toString() {
+        return "Administrateur {" + "id=" + getId() + ", email=" + getEmail() + ", password=" + getPassword() + ", role=" + getRole() + ", nom=" + getNom() + ", prenom=" + getPrenom() + ", adresse=" + getAdresse() + ", tel=" + getTel() + ", dns=" + getDns()+" ,cin=" + cin + " }";
+    }
+    
+    
+  
 
 }

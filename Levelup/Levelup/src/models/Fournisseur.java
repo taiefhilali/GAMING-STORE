@@ -47,5 +47,9 @@ public class Fournisseur extends User {
     public void setNomMarque(String nomMarque) {
         this.nom_marque = nomMarque;
     }
+      @Override
+    public String toString() {
+        return "Fournisseur {" + "id=" + getId() + ", email=" + getEmail() + ", password=" + getPassword() + ", role=" + getRole() + ", nom=" + getNom() + ", prenom=" + getPrenom() + ", adresse=" + getAdresse() + ", tel=" + getTel() + ", dns=" + getDns()+" ,cin=" + cin + " ,nom marque=" + nom_marque + ", }";
+    }
 
 }
