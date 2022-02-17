@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2022 at 11:00 PM
+-- Generation Time: Feb 17, 2022 at 12:33 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -182,6 +182,14 @@ CREATE TABLE `livraison` (
   `etat_livraison` varchar(254) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `livraison`
+--
+
+INSERT INTO `livraison` (`id_livraison`, `id_commande`, `id_livreur`, `date`, `etat_livraison`) VALUES
+(7, 3, 4, '2015-03-31', 'livré'),
+(8, 3, 4, '2015-03-31', 'livré');
+
 -- --------------------------------------------------------
 
 --
@@ -260,14 +268,14 @@ CREATE TABLE `produit` (
   `prix` double NOT NULL,
   `description` text NOT NULL,
   `etat` varchar(254) NOT NULL,
-  `id_fournisseur` int(11) NOT NULL
+  `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `produit`
 --
 
-INSERT INTO `produit` (`id`, `nom`, `reference`, `id_categorie`, `prix`, `description`, `etat`, `id_fournisseur`) VALUES
+INSERT INTO `produit` (`id`, `nom`, `reference`, `id_categorie`, `prix`, `description`, `etat`, `id_user`) VALUES
 (38, 'Razer Krake Pro v7', '0x001', 2, 500, ' Un casque pour les Gamers pro.', ' En Stock ', 2),
 (39, 'HyperX Cloud II', '0x001', 1, 0, ' Un casque pour les Gamers pro.', ' En Stock ', 365);
 
@@ -494,7 +502,7 @@ ALTER TABLE `fournisseur`
 -- AUTO_INCREMENT for table `livraison`
 --
 ALTER TABLE `livraison`
-  MODIFY `id_livraison` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_livraison` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `livreur`
@@ -524,13 +532,13 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT for table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `reclamation`
 --
 ALTER TABLE `reclamation`
-  MODIFY `id_reclamation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_reclamation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `stock`
