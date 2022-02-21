@@ -13,7 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import models.Post;
-import util.MaConnexion;
+import utils.MaConnexion;
 
 /**
  *
@@ -92,8 +92,65 @@ public class Servicepost implements Ipost {
         }
     }
 
+   
     
+  
+    public List<Post> afficherTrie()
+    {
+      List<Post> posts =  new ArrayList<>();
+      String sqll="select * from `post` order by datep desc";
+      
+      try
+      {
+        Statement st=cnx.prepareStatement(sqll);
+          
+          ResultSet rs=st.executeQuery(sqll);
+                  while(rs.next()){
+                      Post a = new Post();
+                      a.setId(rs.getInt("id"));
+                      a.setTitle(rs.getString("title"));
+                      a.setContent(rs.getString("content"));
+                      a.setDatep(rs.getDate("datep"));
+                      a.setId_user(rs.getInt("id_user"));
+                      a.setIdc(rs.getInt("idc"));
+                      posts.add(a);
+                      System.out.println("ID : "+a.getId()+"\n content : "+a.getContent()+"\n Title : "+a.getTitle()+"\n Date : "+a.getDatep()+"\n id_user: "+a.getId_user()+"Id idc: "+a.getIdc());
+                      //System.out.println("Afficher avec succés !");
+                  }
+      }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+      return posts;  
 
+    }
+
+    @Override
+    public ArrayList<Post> AfficherTrie() {
+        List<Post> posts =  new ArrayList<>();
+      String sqll="select * from `post` order by content asc";
+      
+      try
+      {
+        Statement st=cnx.prepareStatement(sqll);
+          
+          ResultSet rs=st.executeQuery(sqll);
+                  while(rs.next()){
+                      Post a = new Post();
+                      a.setId(rs.getInt("id"));
+                      a.setTitle(rs.getString("title"));
+                      a.setContent(rs.getString("content"));
+                      a.setDatep(rs.getDate("datep"));
+                      a.setId_user(rs.getInt("id_user"));
+                      a.setIdc(rs.getInt("idc"));
+                      posts.add(a);
+                      System.out.println("ID : "+a.getId()+"\n content : "+a.getContent()+"\n Title : "+a.getTitle()+"\n Date : "+a.getDatep()+"\n id_user: "+a.getId_user()+"Id idc: "+a.getIdc());
+                      //System.out.println("Afficher avec succés !");
+                  }
+      }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+      return (ArrayList<Post>) posts;  
+    }
 
     }
     
