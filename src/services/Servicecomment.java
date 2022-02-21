@@ -14,7 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import models.Comment;
 import models.Post;
-import util.MaConnexion;
+import models.User;
+
+
+import utils.MaConnexion;
 
 /**
  *
@@ -27,8 +30,10 @@ public class Servicecomment implements Icomment {
  
     @Override
     public boolean ajouterComment(Comment c) {
-         String request = "INSERT INTO `comment`(`contenu`, `label`, `resp`) VALUES ('"+c. getContenu()+"','"+c.getLabel()+"',"+c.getResp()+")";
-        try {
+        System.out.println(c);
+         String request = "INSERT INTO `comment`(`contenu`,`label`,`resp`,`id_user`,`id_post`) VALUES ('"+c.getContenu()+"','"+c.getLabel()+"',"+c.getResp()+","+c.getId_user().getId()+","+c.getId_post().getId()+")";
+        System.out.println(request);
+         try {
             Statement st = cnx.createStatement();
             if (st.executeUpdate(request) == 1)
                 return true;
@@ -43,15 +48,23 @@ public class Servicecomment implements Icomment {
     public List<Comment> afficherComment() {
            List<Comment> comments = new ArrayList<Comment>();
 
-        String req="SELECT * FROM Comment";
+        String req="SELECT * FROM `comment`";
+        User u=null;
         Statement st = null;
         try {
             st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
 
-            //SOB HEDHA FI HEDHA
+            
             while(rs.next()){
-                comments.add(new Comment(rs.getInt("idc"),rs.getString(2),rs.getString(3),rs.getInt(4)));
+                String req1="SELECT * FROM `user` where`id_user`="+rs.getInt("id_user")+"";
+                 ResultSet rs1 = st.executeQuery(req1);
+                 while(rs1.next()){
+                 u=new User(rs1.getInt("id_user"), rs1.getString("email"), rs1.getString("password"),
+                    rs1.getString("role"), rs1.getString("nom"), rs1.getString("prenom"), rs1.getString("adresse"), rs1.getString("tel"), rs1.getDate("dns"));
+                 
+                 }
+                comments.add(new Comment(rs.getInt("idc"),rs.getString(2),rs.getString(3),rs.getInt(4),u,new Post()));
             }
 
         } catch (SQLException e) {
@@ -64,7 +77,7 @@ public class Servicecomment implements Icomment {
 
     @Override
     public boolean modifierComment(Comment c) {
-           String req = "UPDATE `comment` SET `contenu`='"+c.getContenu()+"',`label`='"+c.getLabel()+"',`resp`='"+c.getResp()+"' WHERE `idc` = "+c.getIdc()+" ";
+           String req = "UPDATE `comment` SET `contenu`='"+c.getContenu()+"',`label`='"+c.getLabel()+"',`resp`='"+c.getResp()+"',`id_user`='"+c.getId_user()+"',`id_post`='"+c.getId_post()+"' WHERE `idc` = "+c.getIdc()+" ";
         try {
             Statement st = cnx.createStatement();
             if (st.executeUpdate(req) == 1)
@@ -93,5 +106,6 @@ public class Servicecomment implements Icomment {
             return false;
         }
     }
-    
+   
+
 }

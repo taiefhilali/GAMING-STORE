@@ -14,9 +14,11 @@ package models;
 
 public class Comment {
     private int idc; 
+    private User id_user;
     private String contenu; 
     private String label;
     private int resp;
+    private Post id_post;
     
     
     
@@ -24,21 +26,48 @@ public class Comment {
     public Comment() {
     }
 
-        public Comment(int idc, String contenu, String label, int resp) {
+        public Comment(int idc, String contenu, String label, int resp,User id_user,Post id_post) {
+            System.out.println("post_id"+id_post);
         this.idc = idc;
+        this.id_user = id_user;
         this.contenu = contenu;
         this.label = label;
         this.resp = resp;
+        this.id_post=id_post;
     }
 
-    public Comment(String contenu, String label, int resp) {
+    public Comment(String contenu, String label, int resp,User id_user,Post id_post) {
         this.contenu = contenu;
         this.label = label;
         this.resp = resp;
+        this.id_user = id_user;
+        this.id_post=id_post;
+        
     }
     
     
 //getters&setters
+
+    public User getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(User id_user) {
+        this.id_user = id_user;
+    }
+
+   
+
+    public Post getId_post() {
+        System.out.println("id_post"+id_post);
+        
+        return this.id_post;
+        
+    }
+
+    public void setId_post(Post id_post) {
+        this.id_post = id_post;
+    }
     
     
    
@@ -81,8 +110,12 @@ public class Comment {
 
     @Override
     public String toString() {
-        return "Comment{" + "idc=" + idc + ", contenu=" + contenu + ", label=" + label + ", resp=" + resp + '}';
+        return "Comment{" + "idc=" + idc + ", id_user=" + id_user + ", contenu=" + contenu + ", label=" + label + ", resp=" + resp + ", id_post=" + id_post + '}';
     }
+
+    
+
+   
     
     
 }
