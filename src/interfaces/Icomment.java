@@ -5,12 +5,10 @@
  */
 package interfaces;
 
-import java.sql.SQLException;
-import java.sql.Statement;
+
+
 import java.util.List;
 import models.Comment;
-import models.Post;
-
 
 /**
  *
@@ -24,6 +22,6 @@ public interface Icomment {
     //update
       public boolean modifierComment(Comment c);
   //delete
-          public boolean supprimerComment(Comment c);
+      public boolean supprimerComment(Comment c);
 }
      

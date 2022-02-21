@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import java.util.ArrayList;
 import java.util.List;
 import models.Post;
 
@@ -22,4 +23,8 @@ public interface Ipost {
       public boolean modifierPost(Post p);
       //delete
           public boolean supprimerPost(Post p);
+      
+
+    public ArrayList<Post> AfficherTrie();
+          
 }
