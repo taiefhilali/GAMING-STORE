@@ -20,6 +20,7 @@ public interface Iadministrateur {
     //lister
     public List<Administrateur> afficherPersonnes();
     
+   
     public boolean modifierPersonne(Administrateur p);
     
     public boolean supprimerPersonne(Administrateur p);

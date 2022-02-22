@@ -37,5 +37,8 @@ public class Client extends User {
     public void setSexe(String sexe) {
         this.sexe = sexe;
     }
-
+ @Override
+    public String toString() {
+        return "Client {" + "id=" + getId() + ", email=" + getEmail() + ", password=" + getPassword() + ", role=" + getRole() + ", nom=" + getNom() + ", prenom=" + getPrenom() + ", adresse=" + getAdresse() + ", tel=" + getTel() + ", dns=" + getDns()+" ,sexe=" + sexe + " }";
+    }
 }

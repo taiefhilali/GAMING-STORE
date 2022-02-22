@@ -6,12 +6,20 @@
 package services;
 
 import interfaces.Iuser;
+import java.awt.image.DataBufferFloat;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.util.converter.LocalDateTimeStringConverter;
+import models.Administrateur;
 import models.User;
 import utils.MaConnexion;
 
@@ -49,6 +57,84 @@ public class ServiceUser implements Iuser {
     }
 
     @Override
+    public User getByEmail(String email) {
+        String req = "SELECT * from user WHERE  user.email= '" + email + "' ";
+        User ad = new User();
+        Statement st = null;
+        try {
+            st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+//                String[] adr= rs.getString("adresse").split("/"); ;
+//                Adresse adresse=new Adresse(adr[0], adr[1], adr[2], adr[3]);
+                ad = new User(rs.getInt("id_user"), rs.getString("email"), rs.getString("password"),
+                        rs.getString("role"), rs.getString("nom"), rs.getString("prenom"), rs.getString("adresse"), rs.getString("tel"), rs.getDate("dns"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ad;
+
+    }
+
+    @Override
+    public String authentification(String email, String password) {
+        String req = "SELECT * from user WHERE  user.email= '" + email + "' ";
+
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            //email correcte
+            LocalDateTime time = LocalDateTime.now();
+            if (rs.next()) {
+
+                // System.out.println( rs.getTimestamp("limite").getHours()-time.getHour()  );
+                //compte locked
+                if (rs.getBoolean("locked")) {
+                    if (rs.getTimestamp("limite").getHours() - time.getHour() > 1) {
+                        return "Votre compte est verrouillé ";
+                    } else {
+                        st.executeUpdate("UPDATE `user` SET `tentative`=0, `locked`=false WHERE `email`= '" + email + "' ;");
+                        if (rs.getString("password").equals(password)) {
+                            return "mot de passe correcte";
+                        } else {
+                            //modification de l'attribut tentative
+                            if (rs.getInt("tentative") == 2) {
+                                st.executeUpdate("UPDATE `user` SET `tentative`=0, `locked`=true ,`limite`= '" + LocalDateTime.now() + "' WHERE `email`= '" + email + "' ;");
+                            } else {
+                                st.executeUpdate("UPDATE `user` SET `tentative`=`tentative`+1  WHERE `email`= '" + email + "' ;");
+                            }
+                            return "mot de passe incorrecte";
+                        }
+                    }
+                } else {
+
+                    if (rs.getString("password").equals(password)) {
+                        return "mot de passe correcte";
+                    } else {
+                        //modification de l'attribut tentative
+                        if (rs.getInt("tentative") == 2) {
+                            st.executeUpdate("UPDATE `user` SET `tentative`=0, `locked`=true ,`limite`= '" + LocalDateTime.now() + "' WHERE `email`= '" + email + "' ;");
+                        } else {
+                            st.executeUpdate("UPDATE `user` SET `tentative`=`tentative`+1  WHERE `email`= '" + email + "' ;");
+                        }
+                        return "mot de passe incorrecte";
+                    }
+
+                }
+            } else {
+                return "email incorrecte";
+            }
+            //email inccorrecte
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "true";
+
+    }
+
+    @Override
     public boolean modifierPersonne(User p) {
 
         String req = "UPDATE `user` SET `email`= '" + p.getEmail() + "' , `password`='" + p.getPassword() + "' ,`role`='" + p.getRole() + "', `nom`='" + p.getNom() + "', `prenom`='" + p.getPrenom() + "',`adresse`='" + p.getAdresse() + "',`tel`='" + p.getTel() + "',`dns`='" + p.getDns() + "' WHERE `id_user` = " + p.getId() + " ";
@@ -65,7 +151,7 @@ public class ServiceUser implements Iuser {
         }
 
     }
-    
+
     @Override
     public boolean supprimerPersonne(User p) {
         String req = "DELETE FROM `user` WHERE `id_user` = " + p.getId() + " ";

@@ -14,6 +14,7 @@ import java.sql.Date;
 public class Administrateur extends User {
 
     private String cin;
+    
     //Constructeur
 
     public Administrateur(String cin, int id, String email, String password, String role, String nom, String prenom, String adresse, String tel, Date dns) {
@@ -26,6 +27,9 @@ public class Administrateur extends User {
         this.cin = cin;
     }
 
+    public Administrateur() {
+    }
+
     //Getters and Setters
     public String getCin() {
         return cin;
@@ -34,5 +38,12 @@ public class Administrateur extends User {
     public void setCin(String cin) {
         this.cin = cin;
     }
+ @Override
+    public String toString() {
+        return "Administrateur {" + "id=" + getId() + ", email=" + getEmail() + ", password=" + getPassword() + ", role=" + getRole() + ", nom=" + getNom() + ", prenom=" + getPrenom() + ", adresse=" + getAdresse() + ", tel=" + getTel() + ", dns=" + getDns()+" ,cin=" + cin + " }";
+    }
+    
+    
+  
 
 }
