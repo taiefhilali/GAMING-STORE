@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package models;
 
 /**
  *
@@ -12,13 +12,13 @@ package model;
 public class Categorie {
 
     private int id_categorie;
-    private String nom_categorie; // Seuelement???
+    private String nom_categorie;
 
-    // Constructor vide
+    // Constructeurr vide
     public Categorie() {
     }
 
-    // Constructor paramétre
+    // Constructeur paramétré
     public Categorie(int id_categorie, String nom_categorie) {
         this.id_categorie = id_categorie;
         this.nom_categorie = nom_categorie;
@@ -44,6 +44,16 @@ public class Categorie {
 
     public void setNom_categorie(String nom_categorie) {
         this.nom_categorie = nom_categorie;
+    }
+
+    // Affichage catégories
+    @Override
+    public String toString() {
+        return "La catégorie est : {" + "id_categorie=" + id_categorie + ", nom_categorie=" + nom_categorie + '}';
+    }
+
+    public void add(Categorie categorie) {
+
     }
 
 }

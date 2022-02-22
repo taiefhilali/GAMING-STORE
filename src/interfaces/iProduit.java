@@ -1,13 +1,13 @@
 package interfaces;
 
 import java.util.List;
-import model.Produit;
+import models.Produit;
 
 /**
  *
  * @author Iskander
  */
-public interface iProduit {
+public interface Iproduit {
 
     public void ajouterProduit(Produit p);
 

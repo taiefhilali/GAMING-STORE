@@ -1,20 +1,20 @@
-package service;
+package services;
 
-import interfaces.iCategorie;
+import interfaces.Icategorie;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import model.Categorie;
-import util.MaConnexion;
+import models.Categorie;
+import utils.MaConnexion;
 
 /**
  *
  * @author Iskander
  */
-public class ServiceCategorie implements iCategorie {
+public class ServiceCategorie implements Icategorie {
 
     // Variable 1
     Connection cnx = MaConnexion.getInstance().getCnx();
@@ -67,11 +67,28 @@ public class ServiceCategorie implements iCategorie {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                Categories.add(new Categorie(rs.getInt("id"), rs.getString(2)));
+                Categories.add(new Categorie(rs.getInt("id_categorie"), rs.getString(2)));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return Categories;
+    }
+
+    @Override
+    public Categorie retrieveCategorieById(int id) {
+        Categorie cat = new Categorie(); //rajaaha liste
+        String query = "SELECT * FROM `categorie` WHERE `id_categorie` = " + id + " ";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                cat.setId_categorie(rs.getInt(1));
+                cat.setNom_categorie(rs.getString(2));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return cat;
     }
 }
