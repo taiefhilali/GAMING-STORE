@@ -11,7 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import models.Post;
 import utils.MaConnexion;
 
@@ -151,7 +153,28 @@ public class Servicepost implements Ipost {
         }
       return (ArrayList<Post>) posts;  
     }
+   
+ 
+   
+///*******************recherche with stream**********************//
+   
 
+    public ArrayList<Post> findBytitle(String title) {
+          List<Post> posts=afficherPost();
+        List<Post> resultat=posts.stream().filter(post->title.equals(post.getTitle())).collect(Collectors.toList());
+        return (ArrayList<Post>) resultat;
+    }
+
+    
+    
+    //************************trie with stream***********************//
+
+    @Override
+    public ArrayList<Post> sortByDate() {
+            List<Post> posts=afficherPost();
+         List<Post> resultat=posts.stream().sorted(Comparator.comparing(Post::getDatep)).collect(Collectors.toList());
+         return (ArrayList<Post>) resultat;
+    }
     }
     
 
