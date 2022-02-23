@@ -51,7 +51,7 @@ public class User {
     public User(String email, String password, String role, String nom, String prenom, String adresse, String tel,Date dns) {
 
         this.email = email;
-        this.password = password;
+        this.password = encrypt(password);
         this.role = role;
         this.nom = nom;
         this.prenom = prenom;
@@ -80,11 +80,11 @@ public class User {
     }
 
     public String getPassword() {
-        return password;
+        return encrypt(password);
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = encrypt(password);
     }
 
     public String getRole() {

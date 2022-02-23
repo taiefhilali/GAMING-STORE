@@ -5,7 +5,9 @@
  */
 package interfaces;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import models.Post;
 
 /**
@@ -22,4 +24,12 @@ public interface Ipost {
       public boolean modifierPost(Post p);
       //delete
           public boolean supprimerPost(Post p);
+      
+
+    public ArrayList<Post> AfficherTrie();
+public Map<Integer, List<String>> bestpost(int nblike);
+    public ArrayList<Post> findBytitle(String title);
+   public ArrayList<Post> sortBynblike();
+    public ArrayList<Post> sortByDate();
+          
 }

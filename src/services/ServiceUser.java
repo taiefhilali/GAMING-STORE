@@ -18,8 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javafx.util.converter.LocalDateTimeStringConverter;
 import models.Administrateur;
+import models.Client;
 import models.User;
 import utils.MaConnexion;
 
@@ -53,8 +55,44 @@ public class ServiceUser implements Iuser {
     @Override
     public List<User> afficherPersonnes() {
         List<User> personnes = new ArrayList<User>();
+        String req = "SELECT * from user";
+        Statement st = null;
+        try {
+            st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                personnes.add(new User(rs.getInt("id_user"), rs.getString("email"), rs.getString("password"),
+                        rs.getString("role"), rs.getString("nom"), rs.getString("prenom"), rs.getString("adresse"), rs.getString("tel"), rs.getDate("dns")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return personnes;
     }
+    @Override
+    public List<User> afficherParLettre(String lettre) {
+      List<User> u = afficherPersonnes().stream()
+                         .filter(x->x.getPrenom().startsWith(lettre.toUpperCase()))
+                         .collect(Collectors.toList());
+      return u;
+       
+    }
+     @Override
+    public List<User> afficherParPrenom(String prenom) {
+      List<User> u = afficherPersonnes().stream()
+                        .filter(x->x.getPrenom().toUpperCase().equals(prenom.toUpperCase()))
+                         .collect(Collectors.toList());
+      return u;
+       
+    }
+    @Override
+    public List<User> afficherParRole(String role) {
+      List<User> u = afficherPersonnes().stream()
+                        .filter(x->x.getRole().equals(role))
+                         .collect(Collectors.toList());
+      return u;
+    }
+    
 
     @Override
     public User getByEmail(String email) {
@@ -87,23 +125,19 @@ public class ServiceUser implements Iuser {
             //email correcte
             LocalDateTime time = LocalDateTime.now();
             if (rs.next()) {
-
                 // System.out.println( rs.getTimestamp("limite").getHours()-time.getHour()  );
                 //compte locked
                 if (rs.getBoolean("locked")) {
-                    if (rs.getTimestamp("limite").getHours() - time.getHour() > 1) {
-                        return "Votre compte est verrouillé ";
+                    
+                    if (Math.abs(time.getHour() - rs.getTimestamp("limite").getHours()) < 1) {
+                        return "Votre compte est bloqué" ;
                     } else {
-                        st.executeUpdate("UPDATE `user` SET `tentative`=0, `locked`=false WHERE `email`= '" + email + "' ;");
+
                         if (rs.getString("password").equals(password)) {
+                            st.executeUpdate("UPDATE `user` SET `tentative`=0, `locked`=false WHERE `email`= '" + email + "' ;");
                             return "mot de passe correcte";
                         } else {
-                            //modification de l'attribut tentative
-                            if (rs.getInt("tentative") == 2) {
-                                st.executeUpdate("UPDATE `user` SET `tentative`=0, `locked`=true ,`limite`= '" + LocalDateTime.now() + "' WHERE `email`= '" + email + "' ;");
-                            } else {
-                                st.executeUpdate("UPDATE `user` SET `tentative`=`tentative`+1  WHERE `email`= '" + email + "' ;");
-                            }
+                            st.executeUpdate("UPDATE `user` SET `tentative`=`tentative`+1 , `locked`=false WHERE `email`= '" + email + "' ;");
                             return "mot de passe incorrecte";
                         }
                     }
@@ -115,18 +149,16 @@ public class ServiceUser implements Iuser {
                         //modification de l'attribut tentative
                         if (rs.getInt("tentative") == 2) {
                             st.executeUpdate("UPDATE `user` SET `tentative`=0, `locked`=true ,`limite`= '" + LocalDateTime.now() + "' WHERE `email`= '" + email + "' ;");
+                            return "Vous avez depassez le nombre de tentatives , votre compte est bloqué";
                         } else {
                             st.executeUpdate("UPDATE `user` SET `tentative`=`tentative`+1  WHERE `email`= '" + email + "' ;");
+                            return "mot de passe incorrecte";
                         }
-                        return "mot de passe incorrecte";
                     }
-
                 }
-            } else {
+            } else {//email inccorrecte
                 return "email incorrecte";
             }
-            //email inccorrecte
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

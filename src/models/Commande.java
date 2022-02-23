@@ -24,6 +24,10 @@ public class Commande {
     public Commande() {
     }
 
+    public Commande(int id_commande) {
+        this.id_commande = id_commande;
+    }
+
     public Commande(int id_commande, int id_client, float prix_livraison, Date date_commande) {
         this.id_commande = id_commande;
         this.id_client = id_client;

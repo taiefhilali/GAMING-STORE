@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import models.Facture;
 
@@ -26,7 +27,7 @@ public class ServiceFacture implements Ifacture {
 
     @Override
     public void ajouterFacture(Facture f) {
-        String request= "INSERT INTO `facture`( `date`, `prix_total`) VALUES( '"+f.getDate()+"','"+f.getPrix_total()+"')";
+        String request= "INSERT INTO `facture`( `date`, `prix_total`,`id_user`) VALUES( '"+f.getDate()+"','"+f.getPrix_total()+"',"+f.getUser().getId()+")";
              
          try {
               Statement st = cnx.createStatement();
@@ -46,7 +47,7 @@ public class ServiceFacture implements Ifacture {
              st=cnx.createStatement();
               ResultSet rs= st.executeQuery(query);
              while (rs.next()){
-             factures.add(new models.Facture(rs.getInt("id_facture"), rs.getDate(2), rs.getString(3)));
+          //   factures.add(new models.Facture(rs.getInt("id_facture"), rs.getDate(2), rs.getString(3)));
          }
          } catch (SQLException ex) {
                ex.printStackTrace();
@@ -56,7 +57,7 @@ public class ServiceFacture implements Ifacture {
 
     @Override
     public boolean modifierFacture(Facture f) {
-                 String req = "UPDATE `facture` SET `date`='"+f.getDate()+"',`prix_total`='"+f.getPrix_total()+"' WHERE `id_facture` = "+f.getId_facture()+" ";
+                 String req = "UPDATE `facture` SET `date`='"+f.getDate()+"',`prix_total`='"+f.getPrix_total()+"',`id_user`="+f.getUser().getId()+" WHERE `id_facture` = "+f.getId_facture()+" ";
                 
          try {
            Statement  st = cnx.createStatement();
@@ -82,6 +83,30 @@ public class ServiceFacture implements Ifacture {
              ex.printStackTrace();
             return false;
          }
+    }
+
+    @Override
+    public void prix() {
+       Scanner clavier = new Scanner (System.in);
+       double HT=0,tva=0,ttc=0,r=0,netc=0;
+        System.out.println("Entrer nombre article");
+        int n =clavier.nextInt();
+        for (int i=0;i<n;i++){
+            System.out.println("Entrer prix ");
+            double prix=clavier.nextDouble();
+            HT+=prix;
+        }
+        if (HT>5000){
+            r=HT*0.1;
+            netc=HT-r;
+        }
+        tva=netc*0.2;
+        ttc=netc+tva;
+        System.out.println("le Montant est "+HT+"DT");
+         System.out.println("la remise est 1% "+r+"DT");
+          System.out.println("net commercial est "+netc+"DT");
+           System.out.println("TVA est "+tva+"DT");
+            System.out.println("TTC est "+ttc+"DT");
     }
      
 }

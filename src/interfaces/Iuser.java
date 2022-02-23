@@ -20,6 +20,9 @@ public interface Iuser {
     
     //lister
     public List<User> afficherPersonnes();
+    public List<User> afficherParRole(String role);
+    public List<User> afficherParLettre(String lettre);
+    public List<User> afficherParPrenom(String prenom);
     public User getByEmail(String email);
     public String authentification(String e, String p);
     
