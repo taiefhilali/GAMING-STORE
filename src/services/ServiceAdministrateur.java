@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import models.Administrateur;
+import models.User;
 import utils.MaConnexion;
 
 /**
@@ -58,7 +59,8 @@ public class ServiceAdministrateur implements Iadministrateur {
 //                String[] adr= rs.getString("adresse").split("/"); ;
 //                Adresse adresse=new Adresse(adr[0], adr[1], adr[2], adr[3]);
                 personnes.add(new Administrateur(rs.getString("cin"), rs.getInt("id_user"), rs.getString("email"), rs.getString("password"),
-                    rs.getString("role"), rs.getString("nom"), rs.getString("prenom"), rs.getString("adresse"), rs.getString("tel"), rs.getDate("dns")));
+      
+              rs.getString("role"), rs.getString("nom"), rs.getString("prenom"), rs.getString("adresse"), rs.getString("tel"), rs.getDate("dns")));
             }
 
         } 

@@ -17,4 +17,10 @@ public interface Iproduit {
 
     public List<Produit> afficherProduit();
 
+    public List<Produit> chercherProduitDynamiquement(String s, List<Produit> l);
+
+    public void TrierProduitParPrix();
+
+//  Pour calculer la promotion :   
+    public Produit calculerPromotion(Produit p);
 }

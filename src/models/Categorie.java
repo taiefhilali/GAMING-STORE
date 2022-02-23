@@ -23,6 +23,11 @@ public class Categorie {
         this.id_categorie = id_categorie;
         this.nom_categorie = nom_categorie;
     }
+    // Constructeur avec id seuelemnt
+
+    public Categorie(int id_categorie) {
+        this.id_categorie = id_categorie;
+    }
 
     // Constructor sans id
     public Categorie(String nom_categorie) {
@@ -49,7 +54,7 @@ public class Categorie {
     // Affichage catégories
     @Override
     public String toString() {
-        return "La catégorie est : {" + "id_categorie=" + id_categorie + ", nom_categorie=" + nom_categorie + '}';
+        return " {" + "id_categorie=" + id_categorie + ", nom_categorie=" + nom_categorie + '}';
     }
 
     public void add(Categorie categorie) {

@@ -19,13 +19,14 @@ public class Produit {
     private String description;
     // private String etat ? // présent ou non dans le stock // Stock  // id du stock
     private User user; // = Fid_fournisseur
+    private double promotion = 0;
 
     // Constructeur vide
     public Produit() {
     }
 
-    // Constructeur paramétrés
-    public Produit(int id_produit, String nom, String reference, Categorie categorie, double prix, String description, User user) {
+    // Constructeur paramétrés (tout les attributs)
+    public Produit(int id_produit, String nom, String reference, Categorie categorie, double prix, String description, User user, double promotion) {
         this.id_produit = id_produit;
         this.nom = nom;
         this.reference = reference;
@@ -33,16 +34,18 @@ public class Produit {
         this.prix = prix;
         this.description = description;
         this.user = user;
+        this.promotion = promotion;
     }
 
-    // Constructeur sans l'attribut ID ( Doit-je enlever l'id fournisseur?)
-    public Produit(String nom, String reference, Categorie categorie, double prix, String description, User user) {
+    // Constructeur sans l'attribut ID
+    public Produit(String nom, String reference, Categorie categorie, double prix, String description, User user, double promotion) {
         this.nom = nom;
         this.reference = reference;
         this.categorie = categorie;
         this.prix = prix;
         this.description = description;
         this.user = user;
+        this.promotion = promotion;
     }
 
     // Création des getters et Setters
@@ -102,14 +105,22 @@ public class Produit {
         this.user = user;
     }
 
-    public String concat() {
-        return reference + ".@." + id_produit + ".@." + nom + ".@." + reference + ".@." + categorie + ".@." + prix + ".@." + description + ".@." + user;
+    public double getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(double promotion) {
+        this.promotion = promotion;
     }
 
     // To String
     @Override
     public String toString() {
-        return "Le produit est : {" + "id_produit=" + id_produit + ", nom=" + nom + ", reference=" + reference + ", categorie=" + categorie + ", prix=" + prix + ", description=" + description + ", user=" + user + '}';
+        return " ** Les produits sont : {" + "id_produit=" + id_produit + ", nom=" + nom + ", reference=" + reference + ", categorie=" + categorie + ", prix=" + prix + ", description=" + description + ", user=" + user + ", promotion=" + promotion + '}';
     }
 
+    // La méthode de concaténation pour le 1ér métier
+    public String concat() {
+        return id_produit + "-" + nom + "-" + reference + "-" + categorie.getId_categorie() + "-" + prix + "-" + description + "-" + user.getId() + "-" + promotion + "-";
+    }
 }
