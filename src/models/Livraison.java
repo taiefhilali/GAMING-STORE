@@ -7,24 +7,12 @@ package models;
 
 import java.util.Date;
 
-
-/**
- *
- * @author User
- */
-
- 
-
-/**
- *
- * @author 21694
- */
 public class Livraison {
     
     //var
     private int id_livraison;
-    private int id_commande;
-    private int id_livreur;
+    private Commande commande;
+    private User user;
     private Date date;
     private String etat_livraison;
     
@@ -33,20 +21,28 @@ public class Livraison {
     public Livraison() {
     }
 
-    public Livraison(int id_livraison, int id_commande, int id_livreur, Date date, String etat_livraison) {
+    public Livraison(int id_livraison, Commande commande, User user, Date date, String etat_livraison) {
         this.id_livraison = id_livraison;
-        this.id_commande = id_commande;
-        this.id_livreur = id_livreur;
+        this.commande = commande;
+        this.user = user;
         this.date = date;
         this.etat_livraison = etat_livraison;
     }
 
-    public Livraison(int id_commande, int id_livreur, Date date, String etat_livraison) {
-        this.id_commande = id_commande;
-        this.id_livreur = id_livreur;
+    public Livraison(Commande commande, User user, Date date, String etat_livraison) {
+        this.commande = commande;
+        this.user = user;
         this.date = date;
         this.etat_livraison = etat_livraison;
     }
+
+    public Livraison(int id_livraison) {
+        this.id_livraison = id_livraison;
+    }
+
+   
+
+  
 
   
 
@@ -57,15 +53,13 @@ public class Livraison {
         return id_livraison;
     }
 
-    public int getId_commande() {
-        return id_commande;
+    public Commande getCommande() {
+        return commande;
     }
 
-    public int getId_livreur() {
-        return id_livreur;
+    public User getUser() {
+        return user;
     }
-
-   
 
     public Date getDate() {
         return date;
@@ -79,17 +73,13 @@ public class Livraison {
         this.id_livraison = id_livraison;
     }
 
-    public void setId_commande(int id_commande) {
-        this.id_commande = id_commande;
+    public void setCommande(Commande commande) {
+        this.commande = commande;
     }
 
-    public void setId_livreur(int id_livreur) {
-        this.id_livreur = id_livreur;
+    public void setUser(User user) {
+        this.user = user;
     }
-
-   
-
-  
 
     public void setDate(Date date) {
         this.date = date;
@@ -101,8 +91,11 @@ public class Livraison {
 
     @Override
     public String toString() {
-        return "livraison{" + "id_livraison=" + id_livraison + ", id_commande=" + id_commande + ", id_livreur=" + id_livreur + ", date=" + date + ", etat_livraison=" + etat_livraison + '}';
+        return "Livraison{" + "id_livraison=" + id_livraison + ", commande=" + commande + ", user=" + user + ", date=" + date + ", etat_livraison=" + etat_livraison + '}';
     }
+
+
+ 
 
    
     
