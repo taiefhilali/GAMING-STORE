@@ -5,7 +5,7 @@
  */
 package interfaces;
 
-import model.Panier;
+import models.Panier;
 
 /**
  *

@@ -7,8 +7,8 @@ package interfaces;
 
 
 import java.util.List;
-import model.Panier;
-import model.Panier_elem;
+import models.Panier;
+import models.Panier_elem;
 
 /**
  *

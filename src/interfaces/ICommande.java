@@ -6,7 +6,8 @@
 package interfaces;
 
 import java.util.List;
-import model.Commande;
+import models.Commande;
+import models.Commande_elem;
 
 /**
  *
@@ -21,4 +22,10 @@ public interface ICommande {
     public void modifierCommande(Commande c);
     
     public List<Commande> AfficherCommande();
+    
+    public List<Commande> AfficherCommandeId(int id);
+    
+    public List<Commande> Tri(List<Commande> l);
+    
+    public List<Commande> TrierCommandesParDate();
 }
