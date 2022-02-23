@@ -96,7 +96,7 @@ public class Levelup {
         Ireclamation sr = new ServiceReclamation();
 
         //  ******************************************* USERS ******************************************* //
-         User u = new User();
+         //User u = new User();
 //        //Authentification
     //     System.out.println(sp.authentification("beldi.mariem@gmail.com",u.encrypt("password")));
 ////        System.out.println(sp.authentification("nouira.amal@gmail.com",u.encrypt("password")));
@@ -206,7 +206,7 @@ public class Levelup {
 //        Produit p3 = new Produit(50, "Produit x promotion", "0x0006", c1, 700, " test promo", user1, 80);
 //         Produit p4 = new Produit(50, "Produit x promotion v2 ", "0x0006", c1, 700, " test promo", user1, 40);
 
-        System.out.println(" **** Ajout des Produits **** ");
+       // System.out.println(" **** Ajout des Produits **** ");
         Produit p1 = new Produit(48, "Razer Kraken Pro v7", "0x005", c1, 900, "Casque que pour les gamers", user1, 20);
 //        sproduit.ajouterProduit(p1);
         Produit p2 = new Produit("HyperX Cloud II", "0x001", c1, 350, "Casque que pour les gamers", user1, 50);
