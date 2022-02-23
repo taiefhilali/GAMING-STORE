@@ -5,25 +5,31 @@
  */
 package interfaces;
 
+import java.sql.Date;
 import java.util.List;
 import models.Reclamation;
+import models.User;
 
 /**
  *
  * @author User
  */
 public interface Ireclamation {
-    public interface IReclamation{
+   
     
    //ajouter
-    public boolean ajouterLivraison(Reclamation r);
+    public boolean ajouterReclamation(Reclamation r);
     
     //lister
-    public List<Reclamation> afficherLivraison(Reclamation r);
+    public List<Reclamation> afficherReclamation();
     
-    public boolean modifierLivraison(Reclamation r);
+    public boolean modifierReclamation(Reclamation r);
     
-    public boolean supprimerPersonne(Reclamation r);
-    }
+    public boolean supprimerReclamation(Reclamation r);
+ 
+    //recherhce
+     public List<Reclamation> rechercheReclamationParUser(User u);
+      public List<Reclamation> triReclamationParUser();
+    
 }
 
