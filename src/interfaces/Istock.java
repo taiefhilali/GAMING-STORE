@@ -6,7 +6,7 @@
 package interfaces;
 
 import java.util.List;
-import model.Stock;
+import models.Stock;
 
 /**
  *

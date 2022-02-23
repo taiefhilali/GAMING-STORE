@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user/Documents/PiDev/src/service/ServiceFacture.java</file>
-            <file>file:/C:/Users/user/Documents/PiDev/src/service/ServiceStock.java</file>
-            <file>file:/C:/Users/user/Documents/PiDev/src/model/Facture.java</file>
-            <file>file:/C:/Users/user/Documents/PiDev/src/pidev/PiDev.java</file>
-            <file>file:/C:/Users/user/Documents/PiDev/src/model/Stock.java</file>
+            <file>file:/C:/Users/user/Desktop/Levelup/src/models/Facture.java</file>
+            <file>file:/C:/Users/user/Desktop/Levelup/src/levelup/Levelup.java</file>
+            <file>file:/C:/Users/user/Desktop/Levelup/src/services/ServiceFacture.java</file>
+            <file>file:/C:/Users/user/Desktop/Levelup/src/interfaces/Ifacture.java</file>
         </group>
     </open-files>
 </project-private>

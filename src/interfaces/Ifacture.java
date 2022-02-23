@@ -6,7 +6,7 @@
 package interfaces;
 
 import java.util.List;
-import model.Facture;
+import models.Facture;
 
 
 /**
@@ -22,4 +22,5 @@ public interface Ifacture {
      public boolean modifierFacture(Facture f);
     
     public boolean supprimerFacture(Facture f);
+    public void prix ();
 }
