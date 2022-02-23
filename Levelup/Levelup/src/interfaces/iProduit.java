@@ -7,7 +7,7 @@ import models.Produit;
  *
  * @author Iskander
  */
-public interface iProduit {
+public interface Iproduit {
 
     public void ajouterProduit(Produit p);
 
@@ -17,4 +17,10 @@ public interface iProduit {
 
     public List<Produit> afficherProduit();
 
+    public List<Produit> chercherProduitDynamiquement(String s, List<Produit> l);
+
+    public void TrierProduitParPrix();
+
+//  Pour calculer la promotion :   
+    public Produit calculerPromotion(Produit p);
 }

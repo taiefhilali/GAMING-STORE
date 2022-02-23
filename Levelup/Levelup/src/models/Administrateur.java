@@ -14,6 +14,7 @@ import java.sql.Date;
 public class Administrateur extends User {
 
     private String cin;
+    
     //Constructeur
 
     public Administrateur(String cin, int id, String email, String password, String role, String nom, String prenom, String adresse, String tel, Date dns) {
@@ -24,6 +25,9 @@ public class Administrateur extends User {
     public Administrateur(String cin, int id_user) {
         super(id_user);
         this.cin = cin;
+    }
+
+    public Administrateur() {
     }
 
     //Getters and Setters

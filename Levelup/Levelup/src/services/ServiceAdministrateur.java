@@ -70,6 +70,11 @@ public class ServiceAdministrateur implements Iadministrateur {
         return personnes;
     }
     
+    
+    
+    
+    
+    
     @Override
     public boolean modifierPersonne(Administrateur p) {
         String req = "UPDATE `administrateur` SET `cin`='"+p.getCin()+"' WHERE `id_user` = "+p.getId()+" ";

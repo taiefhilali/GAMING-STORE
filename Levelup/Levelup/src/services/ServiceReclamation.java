@@ -7,12 +7,15 @@ package services;
 
 import interfaces.Ireclamation;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import models.Livraison;
 import models.Reclamation;
+import models.User;
 import utils.MaConnexion;
 
 /**
@@ -25,7 +28,7 @@ public class ServiceReclamation implements Ireclamation{
     Connection cnx = MaConnexion.getInstance().getCnx();
 
     public boolean ajouterReclamation(Reclamation r) {
-        String request = "INSERT INTO `Reclamation`(`id_user`, `id_livraison`, `description`) VALUES ('"+r.getId_user()+"','"+r.getId_livraison()+"','"+r.getDescription()+"')";
+        String request = "INSERT INTO `Reclamation`(`id_user`, `id_livraison`, `description`) VALUES ('"+r.getUser().getId()+"','"+r.getLivraison().getId_livraison()+"','"+r.getDescription()+"')";
         try {
             Statement st = cnx.createStatement();
             if (st.executeUpdate(request) == 1 )
@@ -40,7 +43,7 @@ public class ServiceReclamation implements Ireclamation{
     public List<Reclamation> afficherReclamation() {
         List<Reclamation> reclamation = new ArrayList<Reclamation>();
 
-        String req="SELECT * FROM reclamation";
+        String req="SELECT * FROM `reclamation`";
         Statement st = null;
         try {
             st = cnx.createStatement();
@@ -48,7 +51,7 @@ public class ServiceReclamation implements Ireclamation{
 
             //SOB HEDHA FI HEDHA
             while(rs.next()){
-                reclamation.add(new Reclamation(rs.getInt("id_reclamation"),rs.getInt("id_user"),rs.getInt("id_livraison"),rs.getString("Description")));
+                reclamation.add(new Reclamation(rs.getInt("id_reclamation"),new User(rs.getInt("id_user")),new Livraison (rs.getInt("id_livraison")),rs.getString("Description")));
             }
 
         } catch (SQLException e) {
@@ -60,7 +63,7 @@ public class ServiceReclamation implements Ireclamation{
     }
     
     public boolean modifierReclamation(Reclamation r) {
-        String req = "UPDATE `reclamation` SET `id_user`='"+r.getId_user()+"',`id_livraison`='"+r.getId_livraison()+"',`description`='"+r.getDescription()+"' WHERE `id_reclamation` = "+r.getId_reclamation()+" ";
+        String req = "UPDATE `reclamation` SET `id_user`='"+r.getUser().getId()+"',`id_livraison`='"+r.getLivraison().getId_livraison()+"',`description`='"+r.getDescription()+"' WHERE `id_reclamation` = "+r.getId_reclamation()+" ";
         try {
             Statement st = cnx.createStatement();
             if (st.executeUpdate(req) == 1)
@@ -84,6 +87,54 @@ public class ServiceReclamation implements Ireclamation{
             e.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public List<Reclamation> rechercheReclamationParUser(User u) {
+            List<Reclamation> reclamation = new ArrayList<Reclamation>();
+
+        String req="SELECT * FROM `reclamation` where `id_user`="+u.getId()+" ";
+        Statement st = null;
+        try {
+            st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            //SOB HEDHA FI HEDHA
+            while(rs.next()){
+                reclamation.add(new Reclamation(rs.getInt("id_reclamation"),new User(rs.getInt("id_user")),new Livraison (rs.getInt("id_livraison")),rs.getString("Description")));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return reclamation;
+    
+    }
+
+    @Override
+    public List<Reclamation> triReclamationParUser() {
+        List<Reclamation> reclamation = new ArrayList<Reclamation>();
+
+        String req="SELECT * FROM `reclamation` order by `id_user` desc ";
+        Statement st = null;
+        try {
+            st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            //
+            while(rs.next()){
+                reclamation.add(new Reclamation(rs.getInt("id_reclamation"),new User(rs.getInt("id_user")),new Livraison (rs.getInt("id_livraison")),rs.getString("Description")));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return reclamation;
+        
     }
 
     

@@ -15,21 +15,31 @@ public class Facture {
    private int id_facture;  
    private Date date;
    private String prix_total;
+   private User user ;
 
     public Facture() {
     }
 
-    public Facture(int id_facture, Date date, String prix_total) {
+    public Facture(int id_facture, Date date, String prix_total, User user) {
         this.id_facture = id_facture;
         this.date = date;
         this.prix_total = prix_total;
+        this.user = user;
     }
 
-    public Facture(Date date, String prix_total) {
+    public Facture(Date date, String prix_total, User user) {
         this.date = date;
         this.prix_total = prix_total;
+        this.user = user;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
 
     public int getId_facture() {
@@ -58,8 +68,10 @@ public class Facture {
 
     @Override
     public String toString() {
-        return "Facture{" + "id_facture=" + id_facture + ", date=" + date + ", prix_total=" + prix_total + '}';
+        return "Facture{" + "id_facture=" + id_facture + ", date=" + date + ", prix_total=" + prix_total + ", user=" + user + '}';
     }
+
+   
    
    
 }

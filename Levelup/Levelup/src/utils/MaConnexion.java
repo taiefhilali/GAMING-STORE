@@ -29,7 +29,7 @@ public class MaConnexion {
     private MaConnexion() {
         try {
             cnx = DriverManager.getConnection(URL, USERNAME, PWD);
-            System.out.println("succès");
+            //System.out.println("succès");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

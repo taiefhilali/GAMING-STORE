@@ -8,6 +8,7 @@ package interfaces;
 import java.util.List;
 import models.Commande;
 import models.Commande_elem;
+import models.TopProduits;
 
 /**
  *
@@ -23,4 +24,5 @@ public interface ICommande_elem {
     
      public List<Commande_elem> AfficherCommande(int i);
     
+     public List<TopProduits> TopProduits(int n);
 }

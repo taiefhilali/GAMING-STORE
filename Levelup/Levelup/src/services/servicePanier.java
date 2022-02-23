@@ -24,7 +24,7 @@ public class servicePanier implements IPanier{
     //Ajouter Panier
     @Override
     public void ajouterPanier(Panier p) {
-        String request ="INSERT INTO `panier`(`id_client`) VALUES ("+p.getId_client()+")";
+        String request ="INSERT INTO `panier`(`id_user`) VALUES ("+p.getClient().getId()+")";
          try {
             Statement st = cnx.createStatement();
             st.executeUpdate(request);
