@@ -96,54 +96,69 @@ public class Levelup {
         Ireclamation sr = new ServiceReclamation();
 
         //  ******************************************* USERS ******************************************* //
-        //Affichage des utilisateurs
-        //Ajout des utilisateurs
-        // Client   
-        User user1 = new User(1, "Amalouira@gmail.com", "test", "client", "beldi", "mariem", adr, "26386558", date);
-        // Client c = new Client("femme", (int)sp.ajouterPersonne(user1));
-        // sc.ajouterPersonne(c);
-        // AFFICHER Client
-        //  System.out.println(sc.afficherPersonnes());
-
-        // Fournisseur   
-//        User user2 = new User("beldi.mohamed@gmail.com", "test", "fournisseur", "beldi", "mariem", adr, "26386558",date);
-//        Fournisseur f =new Fournisseur("07227308","Arvea", (int)sp.ajouterPersonne(user2));
-//        sf.ajouterPersonne(f);
-        // AFFICHER Fournisseur
-        // System.out.println(sf.afficherPersonnes());
-        // Livreur   
-//        User user3 = new User("beldi.mariem@gmail.com", "test", "livreur", "beldi", "mariem", adr, "26386558",date);
-//        Livreur l =new Livreur("00000","07227308", (int)sp.ajouterPersonne(user3));
-//        sl.ajouterPersonne(l);
-        // AFFICHER Livreur
-        //System.out.println(sl.afficherPersonnes());
-        // Administrateur   
-//        User user4 = new User("beldi.mariem@gmail.com", "test", "administrateur", "beldi", "mariem", adr, "26386558", date);
-//        Administrateur a = new Administrateur("07227308", (int) sp.ajouterPersonne(user4));
-//        sa.ajouterPersonne(a);
-        //AFFICHER Administrateur
-        //System.out.println(sa.afficherPersonnes());
-        //Modification des utilisateurs
-        // Client 
-        Client cu = new Client("homme", 6, "beldi.mariem@gmail.com", "test", "client", "beldi", "amal", adr, "26386558", date);
-        // System.out.println(sp.modifierPersonne(cu));
-        //System.out.println(sc.modifierPersonne(cu));
-        //System.out.println(sc.afficherPersonnes());
-        //Fournisseur
-        Fournisseur fu = new Fournisseur("08227308", "Arvea", 40, "beldi.mariem@gmail.com", "test", "fournissuer", "beldi", "mariem", adr, "26386558", date);
-//        System.out.println(sp.modifierPersonne(f));
-//        System.out.println(sf.modifierPersonne(f));
-        // System.out.println(sf.afficherPersonnes());
-        //Livreur
-//        Livreur lu = new Livreur("0234", "09227308", 41, "beldi.mariem@gmail.com", "test", "livreur", "beldi", "mariem", adr, "26386558", date);
+//        User u = new User();
+//        //Authentification
+////        System.out.println(sp.authentification("beldi.mariem@gmail.com",u.encrypt("password")));
+////        System.out.println(sp.authentification("nouira.amal@gmail.com",u.encrypt("password")));
+////        System.out.println(sp.authentification("bayoudh.hazem@gmail.com",u.encrypt("test"))); 
+////        System.out.println(sp.authentification("iskander.bargaoui@gmail.com",u.encrypt("password")));
+//        //getByEmail
+//        //System.out.println(sp.getByEmail("beldi.mariem@gmail.com"));
+//        //Recherche par role 
+//        //System.out.println(sp.afficherParRole("administrateur"));
+//        //Recherche par lettre nom
+//        //System.out.println(sp.afficherParLettre("I"));
+//        //Rechercher par prenom
+//        //System.out.println(sp.afficherParPrenom("Mariem"));
+//        //System.out.println(u.encrypt("password"));
+//        //Affichage des utilisateurs
+//        //Ajout des utilisateurs
+//        // Client   
+//        //User user1 = new User("labyedh.slimen@gmail.com", u.encrypt("test"), "client", "labyedh", "slimen", adr, "26386558",date);
+//        // Client c = new Client("femme", (int)sp.ajouterPersonne(user1));
+//        //   sc.ajouterPersonne(c);
+//        // AFFICHER Client
+//        //  System.out.println(sc.afficherPersonnes());
+//        // Fournisseur   
+////        User user2 = new User("beldi.mohamed@gmail.com", u.encrypt("test"), "fournisseur", "beldi", "mohamed", adr, "26386558",date);
+////        Fournisseur f =new Fournisseur("07227308","Arvea", (int)sp.ajouterPersonne(user2));
+////        sf.ajouterPersonne(f);
+//        // AFFICHER Fournisseur
+//        // System.out.println(sf.afficherPersonnes());
+//        // Livreur   
+////        User user3 = new User("amara.manel@gmail.com", u.encrypt("test"), "livreur", "beldi", "mariem", adr, "26386558",date);
+////        Livreur l =new Livreur("00000","07227308", (int)sp.ajouterPersonne(user3));
+////        sl.ajouterPersonne(l);
+//        // AFFICHER Livreur
+//        //System.out.println(sl.afficherPersonnes());
+//        // Administrateur   
+////        User user4 = new User("beldi.mariem@gmail.com", u.encrypt("test"), "administrateur", "beldi", "mariem", adr, "26386558", date);
+////        Administrateur a = new Administrateur("07227308", (int) sp.ajouterPersonne(user4));
+////        sa.ajouterPersonne(a);
+//        //AFFICHER Administrateur
+//        //System.out.println(sa.afficherPersonnes());
+//        //Modification des utilisateurs
+//        // Client 
+//        Client c = new Client("homme", 1, "beldi.mariem@gmail.com", u.encrypt("test"), "client", "beldi", "amal", adr, "26386558", date);
+//
+//        // System.out.println(sp.modifierPersonne(c));
+//        //System.out.println(sc.modifierPersonne(c));
+//        //System.out.println(sc.afficherPersonnes());
+//        //Fournisseur
+//        Fournisseur fu = new Fournisseur("08227308", "Arvea", 40, "beldi.mariem@gmail.com", u.encrypt("test"), "fournissuer", "beldi", "mariem", adr, "26386558", date);
+////        System.out.println(sp.modifierPersonne(f));
+////        System.out.println(sf.modifierPersonne(f));
+//        // System.out.println(sf.afficherPersonnes());
+//        //Livreur
+//        Livreur lu = new Livreur("0234", "09227308", 41, "beldi.mariem@gmail.com", u.encrypt("test"), "livreur", "beldi", "mariem", adr, "26386558", date);
 ////        System.out.println(sp.modifierPersonne(l));
 ////        System.out.println(sl.modifierPersonne(l));
 //        //System.out.println(sl.afficherPersonnes());
 //        //Administrateur
-//        Administrateur au = new Administrateur("06227308", 42, "beldi.mariem@gmail.com", "test", "administrateur", "beldi", "mariem", adr, "26386558", date);
-////        System.out.println(sp.modifierPersonne(a));
-////        System.out.println(sa.modifierPersonne(a));
-//        //System.out.println(sa.afficherPersonnes());
+//        Administrateur au = new Administrateur("06227308", 42, "beldi.mariem@gmail.com", u.encrypt("test"), "administrateur", "beldi", "mariem", adr, "26386558", date);
+//        System.out.println(sp.modifierPersonne(a));
+//        System.out.println(sa.modifierPersonne(a));
+        //System.out.println(sa.afficherPersonnes());
 
         //Supression des utilisateurs
         //Client
@@ -160,22 +175,26 @@ public class Levelup {
 //        System.out.println(sa.supprimerPersonne(au));
         // *******************************************  STOCKS *******************************************   //
 //        Stock s = new Stock("accessoire", 12, "en stock");
-//        Facture f = new Facture(date, "90.990dt");
+//        Facture f = new Facture(date, "90.990dt", fu);
 //        //Ajout  stock et facture
 //        //ss.ajouterStock(s);
 //        //sfacture.ajouterFacture(f);
 //        //Affichage stocks et factures
+//
 //        //System.out.println(ss.afficherStock());
 //        //System.out.println(sfacture.afficherFacture());
 //        //Modification stock et facture
 //        Stock s1 = new Stock(56, "pc", 220, "en stock");
 //        //System.out.println(ss.modifierStock(s1));
-//        Facture f1 = new Facture(26, date, "61.650dt");
+//        Facture f1 = new Facture(27, date, "61.650dt", fu);
 //        //System.out.println(sfacture.modifierFacture(f1));
+
         //Suppression stock et facture
         //System.out.println(ss.supprimerStock(s1));
-        // System.out.println(sfacture.supprimerFacture(f1));
+        //System.out.println(sfacture.supprimerFacture(f1));
+        //sfacture.prix();
         //  *******************************************  PRODUITS ET CATEGORIES *******************************************   //    
+        User user1 = new User(1, "Amalouira@gmail.com", "test", "client", "beldi", "mariem", adr, "26386558", date);
         // Test 2 : aprés jointure
         // Insertion d'apres phpmyadmin insert value vide id
         Categorie c1 = new Categorie(1, "Souris");
@@ -266,84 +285,29 @@ public class Levelup {
 //        //scactegorie.ajouterCategorie(c1);
 //        //scactegorie.modifierCategorie(c1);
 //        //scactegorie.supprimerCategorie(c1);
-//        //******************************************* LIVRAISON ET RECLAMATION *******************************************  //
-//        Livraison l = new Livraison(3, 4, date, "livrée");
-//        Reclamation r = new Reclamation(1, 3, "déçu");
-//
-//        // AJOUT et affichage livraison
-//        //System.out.println(slivraison.ajouterLivraison(l));
-//        //System.out.println("les livraison:" +slivraison.afficherLivraison());
-//        //AJOUT et affichage reclamation
-//        //System.out.println(sr.ajouterReclamation(r));
-//        //System.out.println(sr.afficherReclamation());
-//        // MODIFIER
-//        Livraison l1 = new Livraison(9, 3, 4, date, "en cours");
-//        //System.out.println(slivraison.modifierLivraison(l1));
-//        
-//        Reclamation r1 = new Reclamation(5, 1, 4, "satisfait");
-//        //System.out.println(sr.modifierReclamation(r1));
-//
-//        //SUPPRIMER
-//        //System.out.println(slivraison.supprimerLivraison(l1));
-//        System.out.println(sr.supprimerReclamation(r1));
-//
-//        //  *******************************************  Frorum *******************************************   //
-//        Post post1 = new Post("sujet3", "ACCESOIRES ET JEUX VIDEOS", date, 1, 2);
-//        Post post2 = new Post("Sujet2", " ETCETCETCJEUX VIDEOS", date, 3, 4);
-//        //Comment
-//        Comment comment1 = new Comment("firstcomment", "comm", 12, 1);
-//        Comment comment2 = new Comment("secondcomment", "commtwo", 10, 2);
-//
-//        // AJOUT post
-//        //   System.out.println("POST added!");
-//        // System.out.println(spost.ajouterPost(post1 ));
-//        // System.out.println(spost.ajouterPost(post2));
-//        //afficherpost
-//        //System.out.println(spost.afficherPost());
-//        //ajoutComment
-//        // System.out.println("COMMENT added!");
-//        //System.out.println(scomment.ajouterComment(comment1));
-//        //affichercomment
-//        // System.out.println(scomment.afficherComment());
-//        // MODIFIER
-//        Post post3 = new Post(35, "sujet2", "videogame", date, 2, 4);
-//        //System.out.println("POST Updated\n");
-//        //System.out.println(spost.modifierPost(post3));
-//        //updatecomment
-//
-//        Comment comment3 = new Comment(14, "THIRDcomment", "HAHAAHA", 13, 1);
-//        //System.out.println("COMMENT Updated\n");
-//        // System.out.println(scomment.modifierComment(comment3));
-//
-//        //deletepost
-//        // System.out.println("POST Deleted");
-//        //   System.out.println(spost.supprimerPost(post3));
-//        //deleteComment
-//        // System.out.println("COMMENT Deleted");
-//        //System.out.println(scomment.supprimerComment(comment3));
-//        //  *******************************************  COMMANDE ET PANIER *******************************************  //
-//        Commande commande1 = new Commande(2, 5, 20, date);
-//        Panier panier1 = new Panier(4, 7);
-//        Panier_elem e = new Panier_elem(1, 1, 4);
-//        Commande_elem e1 = new Commande_elem(2, 3, 3, 3);
-//
-//        //System.err.println(spanier2.afficherPanier(1));
-//        //System.err.println(spanier3.AfficherCommande(5));
-//        //System.err.println(scommande.AfficherCommande());
-//        //AJOUT
-//        //spanier.ajouterPanier(panier1);
-//        //spanier2.AjouterElementPanier(e);
-//        //spanier3.ajouterElementCommande(e1);
-//        //scommande.ajouterCommande(commande1);
-//        //spanier3.ajouterElementCommande(e1);
-//        ///Modification
-//        //spanier3.modifierElementCommande(e1);
-//        scommande.modifierCommande(commande1);
-//        //SUPPRESSION
-//        //spanier.supprimerPanier(panier1);
-//        // spanier3.supprimerElementCommande(e1);
-//        //  spanier2.supprimerElementPanier(e);
-//        scommande.SupprimerCommande(commande1);
+
+        //  *******************************************  COMMANDE ET PANIER *******************************************  //
+        //Commande commande1 = new Commande(2, 5, 20, date);
+        //Panier panier1 = new Panier(4, 7);
+        //Panier_elem e = new Panier_elem(1, 1, 4);
+        //Commande_elem e1 = new Commande_elem(2, 3, 3, 3);
+        //System.err.println(spanier2.afficherPanier(1));
+        //System.err.println(spanier3.AfficherCommande(5));
+        //System.err.println(scommande.AfficherCommande());
+        //AJOUT
+        //spanier.ajouterPanier(panier1);
+        //spanier2.AjouterElementPanier(e);
+        //spanier3.ajouterElementCommande(e1);
+        //scommande.ajouterCommande(commande1);
+        //spanier3.ajouterElementCommande(e1);
+        ///Modification
+        //spanier3.modifierElementCommande(e1);
+        // scommande.modifierCommande(commande1);
+        //SUPPRESSION
+        //spanier.supprimerPanier(panier1);
+        // spanier3.supprimerElementCommande(e1);
+        //  spanier2.supprimerElementPanier(e);
+        // scommande.SupprimerCommande(commande1);
     }
 
 }

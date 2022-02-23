@@ -10,7 +10,7 @@ package models;
  * @author user
  */
 public class Stock {
-    private int id;
+     private int id;
     private String  nom;
     private int quantite;
     private String  etat;

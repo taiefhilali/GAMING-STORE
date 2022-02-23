@@ -164,11 +164,11 @@ public class ServiceProduit implements Iproduit {
                 Integer.parseInt(pt.split("-")[0]),
                 pt.split("-")[1],
                 pt.split("-")[2],
-                new Categorie(Integer.parseInt(pt.split("-")[3])),
-                Double.parseDouble(pt.split("-")[4]),
-                pt.split("-")[5],
-                new User(Integer.parseInt(pt.split("-")[6])),
-                Double.parseDouble(pt.split("-")[7])
+                new Categorie(Integer.parseInt(pt.split("-")[3]), pt.split("-")[4]),
+                Double.parseDouble(pt.split("-")[5]),
+                pt.split("-")[6],
+                new User(Integer.parseInt(pt.split("-")[7])),
+                Double.parseDouble(pt.split("-")[8])
         ))
                 //Dans le cas ou je veut limiter le nombre des produits affichés         .limit(5)
                 .collect(Collectors.toList());

@@ -19,18 +19,18 @@ import utils.MaConnexion;
  *
  * @author ASUS
  */
-public class ServiceCommande implements ICommande {
+public class ServiceCommande implements ICommande{
 
-    //var
+      //var
     Connection cnx = MaConnexion.getInstance().getCnx();
-
+    
     //Ajouter Commande
     @Override
     public void ajouterCommande(Commande c) {
-        String request = "INSERT INTO `commande`(`id_client`, `prix_livraison`, `date_commande`) VALUES (" + c.getId_client() + "," + c.getPrix_livraison() + ",'" + c.getDate_commande() + "')";
+         String request = "INSERT INTO `commande`(`id_client`, `prix_livraison`, `date_commande`) VALUES ("+c.getId_client()+","+c.getPrix_livraison()+",'"+c.getDate_commande()+"')";
         try {
             Statement st = cnx.createStatement();
-            st.executeUpdate(request);
+           st.executeUpdate(request);
             System.out.println("Commande Ajouté avec succés");
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -40,10 +40,10 @@ public class ServiceCommande implements ICommande {
     //Supprimer Commande
     @Override
     public void SupprimerCommande(Commande c) {
-        String request = "DELETE FROM `commande` WHERE id_commande =" + c.getId_commande() + "";
-        try {
+        String request ="DELETE FROM `commande` WHERE id_commande ="+c.getId_commande()+"";
+         try {
             Statement st = cnx.createStatement();
-            st.executeUpdate(request);
+           st.executeUpdate(request);
             System.out.println("Commande Supprimé avec succés");
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -53,16 +53,12 @@ public class ServiceCommande implements ICommande {
     //Modifier Commande
     @Override
     public void modifierCommande(Commande c) {
-        String request = "UPDATE `commande` SET `id_commande`=" + c.getId_commande() + ",`id_client`=" + c.getId_client() + ",`prix_livraison`=" + c.getPrix_livraison() + ",`date_commande`='" + c.getDate_commande() + "' WHERE id_commande =" + c.getId_commande() + "";
-        try {
-            Statement st = cnx.createStatement(); // Test de modification avec if statement
-            if (st.executeUpdate(request) == 1) {
-                System.out.println(" Commande modifiée avec succés ");
-            }
-            {
-                System.out.println("Commande non modifiée ");
-            }
-        } catch (SQLException ex) { //ex: absence de la table
+        String request ="UPDATE `commande` SET `id_commande`="+c.getId_commande()+",`id_client`="+c.getId_client()+",`prix_livraison`="+c.getPrix_livraison()+",`date_commande`='"+c.getDate_commande()+"' WHERE id_commande ="+c.getId_commande()+"";
+      try {
+            Statement st = cnx.createStatement();
+           st.executeUpdate(request);
+            System.out.println("Commande Modifié avec succés");
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
@@ -71,15 +67,15 @@ public class ServiceCommande implements ICommande {
     @Override
     public List<Commande> AfficherCommande() {
         List<Commande> commandes = new ArrayList<Commande>();
-
-        String req = "SELECT * FROM commande";
-
+        
+         String req="SELECT * FROM commande";
+        
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
 
-            while (rs.next()) {
-                commandes.add(new Commande(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4)));
+            while(rs.next()){
+                commandes.add(new Commande(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getDate(4)));
             }
 
         } catch (SQLException e) {
@@ -87,5 +83,5 @@ public class ServiceCommande implements ICommande {
         }
         return commandes;
     }
-
+    
 }

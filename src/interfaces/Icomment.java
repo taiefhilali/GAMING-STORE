@@ -23,5 +23,7 @@ public interface Icomment {
       public boolean modifierComment(Comment c);
   //delete
       public boolean supprimerComment(Comment c);
+
+    public void Commentsum();
 }
      

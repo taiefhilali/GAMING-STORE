@@ -121,6 +121,6 @@ public class Produit {
 
     // La méthode de concaténation pour le 1ér métier
     public String concat() {
-        return id_produit + "-" + nom + "-" + reference + "-" + categorie.getId_categorie() + "-" + prix + "-" + description + "-" + user.getId() + "-" + promotion + "-";
+        return id_produit + "-" + nom + "-" + reference + "-" + categorie.getId_categorie() + "-" + categorie.getNom_categorie() + "-" + prix + "-" + description + "-" + user.getId() + "-" + promotion + "-";
     }
 }

@@ -12,26 +12,26 @@ package models;
 public class Categorie {
 
     private int id_categorie;
-    private String nom_categorie;
+    private String nom_categorie; // Seuelement???
 
-    // Constructeurr vide
+    // Constructor vide
     public Categorie() {
     }
 
-    // Constructeur paramétré
+    // Constructor paramétre
     public Categorie(int id_categorie, String nom_categorie) {
         this.id_categorie = id_categorie;
         this.nom_categorie = nom_categorie;
-    }
-    // Constructeur avec id seuelemnt
-
-    public Categorie(int id_categorie) {
-        this.id_categorie = id_categorie;
     }
 
     // Constructor sans id
     public Categorie(String nom_categorie) {
         this.nom_categorie = nom_categorie;
+    }
+
+    //Constructeur avec id seuelemnt
+    public Categorie(int id_categorie) {
+        this.id_categorie = id_categorie;
     }
 
     // Getters & Setters
@@ -51,14 +51,9 @@ public class Categorie {
         this.nom_categorie = nom_categorie;
     }
 
-    // Affichage catégories
     @Override
     public String toString() {
-        return " {" + "id_categorie=" + id_categorie + ", nom_categorie=" + nom_categorie + '}';
-    }
-
-    public void add(Categorie categorie) {
-
+        return "Categorie: {" + "id_categorie=" + id_categorie + ", nom_categorie=" + nom_categorie + '}';
     }
 
 }

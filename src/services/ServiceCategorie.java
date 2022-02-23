@@ -77,7 +77,7 @@ public class ServiceCategorie implements Icategorie {
 
     @Override
     public Categorie retrieveCategorieById(int id) {
-        Categorie cat = new Categorie(); //rajaaha liste
+        Categorie cat = new Categorie(); 
         String query = "SELECT * FROM `categorie` WHERE `id_categorie` = " + id + " ";
         try {
             Statement st = cnx.createStatement();

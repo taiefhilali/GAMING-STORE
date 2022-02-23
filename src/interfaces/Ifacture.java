@@ -22,4 +22,5 @@ public interface Ifacture {
      public boolean modifierFacture(Facture f);
     
     public boolean supprimerFacture(Facture f);
+    public void prix ();
 }

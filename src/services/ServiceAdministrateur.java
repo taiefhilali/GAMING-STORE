@@ -14,7 +14,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import models.Administrateur;
-import models.User;
 import utils.MaConnexion;
 
 /**
@@ -53,14 +52,13 @@ public class ServiceAdministrateur implements Iadministrateur {
         try {
             st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
-            //SELECT `id_categorie` FROM `categorie` JOIN categorie WHERE produit.id_produit=categorie.id_categorie;
+
             //SOB HEDHA FI HEDHA
             while(rs.next()){
 //                String[] adr= rs.getString("adresse").split("/"); ;
 //                Adresse adresse=new Adresse(adr[0], adr[1], adr[2], adr[3]);
                 personnes.add(new Administrateur(rs.getString("cin"), rs.getInt("id_user"), rs.getString("email"), rs.getString("password"),
-      
-              rs.getString("role"), rs.getString("nom"), rs.getString("prenom"), rs.getString("adresse"), rs.getString("tel"), rs.getDate("dns")));
+                    rs.getString("role"), rs.getString("nom"), rs.getString("prenom"), rs.getString("adresse"), rs.getString("tel"), rs.getDate("dns")));
             }
 
         } 
@@ -71,6 +69,11 @@ public class ServiceAdministrateur implements Iadministrateur {
 
         return personnes;
     }
+    
+    
+    
+    
+    
     
     @Override
     public boolean modifierPersonne(Administrateur p) {

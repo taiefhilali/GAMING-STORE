@@ -6,6 +6,7 @@
 package interfaces;
 
 import java.util.List;
+import models.Administrateur;
 import models.User;
 
 /**
@@ -15,12 +16,15 @@ import models.User;
 public interface Iuser {
     
    //ajouter
-
     public long ajouterPersonne(User p);
     
     //lister
-
     public List<User> afficherPersonnes();
+    public List<User> afficherParRole(String role);
+    public List<User> afficherParLettre(String lettre);
+    public List<User> afficherParPrenom(String prenom);
+    public User getByEmail(String email);
+    public String authentification(String e, String p);
     
     public boolean modifierPersonne(User p);
     

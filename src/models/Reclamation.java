@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,23 +17,23 @@ public class Reclamation {
     
     //var
     private int id_reclamation;
-    private int id_user;
-    private int id_livraison;
+    private User user;
+    private Livraison livraison;
     private String description;
 
         public Reclamation() {
         }
 
-    public Reclamation(int id_reclamation, int id_user, int id_livraison, String description) {
+    public Reclamation(int id_reclamation, User user, Livraison livraison, String description) {
         this.id_reclamation = id_reclamation;
-        this.id_user = id_user;
-        this.id_livraison = id_livraison;
+        this.user = user;
+        this.livraison = livraison;
         this.description = description;
     }
 
-    public Reclamation(int id_user, int id_livraison, String description) {
-        this.id_user = id_user;
-        this.id_livraison = id_livraison;
+    public Reclamation(User user, Livraison livraison, String description) {
+        this.user = user;
+        this.livraison = livraison;
         this.description = description;
     }
 
@@ -40,12 +41,12 @@ public class Reclamation {
         return id_reclamation;
     }
 
-    public int getId_user() {
-        return id_user;
+    public User getUser() {
+        return user;
     }
 
-    public int getId_livraison() {
-        return id_livraison;
+    public Livraison getLivraison() {
+        return livraison;
     }
 
     public String getDescription() {
@@ -56,12 +57,12 @@ public class Reclamation {
         this.id_reclamation = id_reclamation;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public void setId_livraison(int id_livraison) {
-        this.id_livraison = id_livraison;
+    public void setLivraison(Livraison livraison) {
+        this.livraison = livraison;
     }
 
     public void setDescription(String description) {
@@ -70,8 +71,8 @@ public class Reclamation {
 
     @Override
     public String toString() {
-        return "reclamation{" + "id_reclamation=" + id_reclamation + ", id_user=" + id_user + ", id_livraison=" + id_livraison + ", description=" + description + '}';
+        return "Reclamation{" + "id_reclamation=" + id_reclamation + ", user=" + user + ", livraison=" + livraison + ", description=" + description + '}';
     }
-  
-    
-}
+
+ 
+    }
