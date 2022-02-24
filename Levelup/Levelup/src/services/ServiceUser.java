@@ -24,7 +24,8 @@ import models.Administrateur;
 import models.Client;
 import models.User;
 import utils.MaConnexion;
-
+import java.sql.Date;
+import java.time.LocalDate;
 /**
  *
  * @author 21694
@@ -107,6 +108,9 @@ public class ServiceUser implements Iuser {
 //                Adresse adresse=new Adresse(adr[0], adr[1], adr[2], adr[3]);
                 ad = new User(rs.getInt("id_user"), rs.getString("email"), rs.getString("password"),
                         rs.getString("role"), rs.getString("nom"), rs.getString("prenom"), rs.getString("adresse"), rs.getString("tel"), rs.getDate("dns"));
+                
+                Date d =Date.valueOf(LocalDate.now());
+                System.out.println((d.getYear())-(rs.getDate("dns").getYear()));
             }
         } catch (SQLException e) {
             e.printStackTrace();

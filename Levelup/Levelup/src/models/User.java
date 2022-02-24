@@ -32,7 +32,7 @@ public class User {
     public User(int id_user, String email, String password, String role, String nom, String prenom, String adresse, String tel, Date dns) {
         this.id_user = id_user;
         this.email = email;
-        this.password = encrypt(password);
+        this.password =password;
         this.role = role;
         this.nom = nom;
         this.prenom = prenom;
@@ -51,7 +51,7 @@ public class User {
     public User(String email, String password, String role, String nom, String prenom, String adresse, String tel,Date dns) {
 
         this.email = email;
-        this.password = encrypt(password);
+        this.password = password;
         this.role = role;
         this.nom = nom;
         this.prenom = prenom;
@@ -84,7 +84,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = encrypt(password);
+        this.password = password;
     }
 
     public String getRole() {
