@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import models.Facture;
+import models.Post;
+import models.User;
 
 import utils.MaConnexion;
 
@@ -41,13 +43,16 @@ public class ServiceFacture implements Ifacture {
     @Override
     public List<Facture> afficherFacture() {
         List<models.Facture> factures =new ArrayList<models.Facture>();
-     String query = "SELECT * FROM facture";
+     String query = "SELECT * FROM facture f  inner JOIN user u  where f.id_user=u.id_user";
       Statement st = null;
          try {
              st=cnx.createStatement();
               ResultSet rs= st.executeQuery(query);
              while (rs.next()){
-          //   factures.add(new models.Facture(rs.getInt("id_facture"), rs.getDate(2), rs.getString(3)));
+            factures.add(new Facture(rs.getInt("id_facture"),
+                    rs.getDate("date"),
+                    rs.getString("prix_total"),
+              new User(rs.getInt("id_user"))));
          }
          } catch (SQLException ex) {
                ex.printStackTrace();
