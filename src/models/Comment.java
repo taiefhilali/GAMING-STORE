@@ -13,21 +13,28 @@ package models;
 
 
 public class Comment {
+
+    public static Object stream() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private int idc; 
     private User id_user;
     private String contenu; 
     private String label;
     private int resp;
     private Post id_post;
-    
+    int nblike;
+    int nbdislike;
     
     
 //constructors
     public Comment() {
     }
 
-        public Comment(int idc, String contenu, String label, int resp,User id_user,Post id_post) {
+        public Comment(int idc, String contenu, String label, int resp,User id_user,Post id_post,int nblike, int nbdislike) {
             System.out.println("post_id"+id_post);
+            this.nblike = nblike;
+          this.nbdislike = nbdislike;
         this.idc = idc;
         this.id_user = id_user;
         this.contenu = contenu;
@@ -36,9 +43,11 @@ public class Comment {
         this.id_post=id_post;
     }
 
-    public Comment(String contenu, String label, int resp,User id_user,Post id_post) {
+    public Comment(String contenu, String label, int resp,User id_user,Post id_post,int nblike, int nbdislike) {
         this.contenu = contenu;
         this.label = label;
+        this.nbdislike = nbdislike;
+          this.nblike = nblike;
         this.resp = resp;
         this.id_user = id_user;
         this.id_post=id_post;
@@ -47,7 +56,21 @@ public class Comment {
     
     
 //getters&setters
+ public int getNblike() {
+        return nblike;
+    }
 
+    public void setNblike(int nblike) {
+        this.nblike = nblike;
+    }
+
+    public int getNbdislike() {
+        return nbdislike;
+    }
+
+    public void setNbdislike(int nbdislike) {
+        this.nbdislike = nbdislike;
+    }
     public User getId_user() {
         return id_user;
     }
@@ -110,8 +133,10 @@ public class Comment {
 
     @Override
     public String toString() {
-        return "Comment{" + "idc=" + idc + ", id_user=" + id_user + ", contenu=" + contenu + ", label=" + label + ", resp=" + resp + ", id_post=" + id_post + '}';
+        return "Comment{" + "idc=" + idc + ", id_user=" + id_user + ", contenu=" + contenu + ", label=" + label + ", resp=" + resp + ", id_post=" + id_post + ", nblike=" + nblike + ", nbdislike=" + nbdislike + '}';
     }
+
+  
 
     
 
