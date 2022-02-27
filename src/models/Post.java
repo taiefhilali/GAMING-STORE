@@ -6,56 +6,51 @@
 package models;
 
 import java.sql.Date;
+import javafx.scene.control.TextField;
 
 /**
  *
  * @author msi
  */
 public class Post {
-    int id ; 
-    int id_user;
-    int idc;
-    String title; 
-    String content; 
+
+    int id;
+    User id_user;
+    String title;
+    String content;
     Date datep;
 
     public Post() {
     }
 
-    public Post(int id, String title, String content, Date datep,int id_user,int idc) {
+    public Post(int id, String title, String content, Date datep, User id_user) {
         this.id = id;
-         this.idc = idc;
         this.id_user = id_user;
         this.title = title;
         this.content = content;
         this.datep = datep;
     }
 
-    public Post(String title, String content, Date datep,int id_user,int idc) {
+    public Post(String title, String content, Date datep, User id_user) {
         this.id_user = id_user;
-          this.idc = idc;
         this.title = title;
         this.content = content;
         this.datep = datep;
     }
 
-    public Post(String gaming, String accesoires_et_jeux_videos, java.util.Date date) {
-        //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-   }
-
-    public int getIdc() {
-        return idc;
+    public Post(String text, String text0, User user, Date myDate) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setIdc(int idc) {
-        this.idc = idc;
-    }
+   
 
-    public int getId_user() {
+   
+
+    public User getId_user() {
         return id_user;
     }
 
-    public void setId_user(int id_user) {
+    public void setId_user(User id_user) {
         this.id_user = id_user;
     }
 
@@ -91,13 +86,18 @@ public class Post {
         this.datep = datep;
     }
 
+    //to sTRING//
+
     @Override
     public String toString() {
-        return "Post{" + "id=" + id + ", id_user=" + id_user + ", idc=" + idc + ", title=" + title + ", content=" + content + ", datep=" + datep + '}';
+        return "Post{" + "id=" + id + ", id_user=" + id_user + ", title=" + title + ", content=" + content + ", datep=" + datep + '}';
+    }
+
+    public void setId_user(TextField userTF) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
    
-  
-    
-    
+   
+
 }
