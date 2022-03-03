@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="532.0" prefWidth="850.0" stylesheets="@styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionPostCommentaireController">
+   <children>
+      <VBox layoutY="-5.0" prefHeight="539.0" prefWidth="266.0" style="-fx-background-color: GREY;">
+         <effect>
+            <InnerShadow color="#e6f573" />
+         </effect>
+         <children>
+            <ImageView fitHeight="132.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@IMG/icons8-yellow-file-64.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="273.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </VBox>
+      <Text fill="#91cfb6" layoutX="369.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GESTION FORUM" wrappingWidth="385.6708984375">
+         <font>
+            <Font name="Bodoni MT Black" size="38.0" />
+         </font>
+      </Text>
+      <Button fx:id="ajouterpub" layoutX="409.0" layoutY="165.0" mnemonicParsing="false" onAction="#addp" prefHeight="108.0" prefWidth="374.0" style="-fx-background-color: grey;" text="AJOUTER PUBLICATION">
+         <effect>
+            <ColorAdjust brightness="0.26" contrast="0.07" saturation="-0.28">
+               <input>
+                  <ColorAdjust />
+               </input>
+            </ColorAdjust>
+         </effect>
+         <font>
+            <Font name="Comic Sans MS Bold" size="19.0" />
+         </font>
+      </Button>
+      <Button fx:id="afficherPub" layoutX="409.0" layoutY="369.0" mnemonicParsing="false" onAction="#showp" prefHeight="93.0" prefWidth="386.0" style="-fx-background-color: grey;" text="AFFICHER LES PUBLICATIONS">
+         <font>
+            <Font name="Comic Sans MS Bold" size="17.0" />
+         </font>
+         <effect>
+            <ColorAdjust brightness="0.18" contrast="-0.07" hue="0.86" saturation="-0.32" />
+         </effect>
+      </Button>
+      <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="728.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@IMG/icons8-comment-60.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="76.0" fitWidth="60.0" layoutX="735.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@IMG/icons8-post-64.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
