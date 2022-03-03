@@ -43,6 +43,19 @@ public class Produit {
         this.description = description;
     }
 
+    public Produit(int id, String nom, String reference, double prix, String description) {
+        this.id = id;
+        this.nom = nom;
+        this.reference = reference;
+        this.prix = prix;
+        this.description = description;
+    }
+
+     public Produit(int id, String nom, double prix){
+        this.id= id;
+        this.nom = nom;
+        this.prix = prix;
+    }
     
     // Constructeur sans l'attribut ID ( Doit-je enlever l'id fournisseur?)
     public Produit(String nom, String reference, int id_categorie, double prix, String description, String etat, User user) {

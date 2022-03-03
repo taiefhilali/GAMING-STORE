@@ -7,6 +7,7 @@ package services;
 
 import interfaces.ICommande;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,7 +30,7 @@ public class ServiceCommande implements ICommande{
     //Ajouter Commande
     @Override
     public void ajouterCommande(Commande c) {
-         String request = "INSERT INTO `commande`(`id_user`, `prix_livraison`, `date_commande`) VALUES ("+c.getClient().getId()+","+c.getPrix_livraison()+",'"+c.getDate_commande()+"')";
+         String request = "INSERT INTO `commande`(`id_user`, `prix_livraison`, `date_commande` , `prix_produits` , `prix_total`) VALUES ("+c.getClient().getId()+","+c.getPrix_livraison()+",'"+c.getDate_commande()+"',"+c.getPrix_produits()+","+c.getPrix_total()+")";
         try {
             Statement st = cnx.createStatement();
            st.executeUpdate(request);
@@ -54,8 +55,8 @@ public class ServiceCommande implements ICommande{
 
     //Modifier Commande
     @Override
-    public void modifierCommande(Commande c) {
-        String request ="UPDATE `commande` SET `id_commande`="+c.getId_commande()+",`id_user`="+c.getClient().getId()+",`prix_livraison`="+c.getPrix_livraison()+",`date_commande`='"+c.getDate_commande()+"' WHERE id_commande ="+c.getId_commande()+"";
+    public void modifierCommande(int id ,double prix_produits , double prix_Livraison , double prix_total) {
+        String request ="UPDATE `commande` SET `prix_livraison`="+prix_Livraison+" ,`prix_produits`="+prix_produits+", `prix_total`= "+prix_total+"  WHERE id_commande ="+id+"";
       try {
             Statement st = cnx.createStatement();
            st.executeUpdate(request);
@@ -77,7 +78,7 @@ public class ServiceCommande implements ICommande{
             while(rs.next()){
          
                commandes.add(new Commande(rs.getInt("c.id_commande"),new Client(rs.getString("cl.sexe"),rs.getInt("u.id_user"),rs.getString("u.email"),rs.getString("u.password"),rs.getString("u.role"),
-                 rs.getString("u.nom"),rs.getString("u.prenom"),rs.getString("u.adresse"),rs.getString("u.tel"),rs.getDate("u.dns")),rs.getInt("c.prix_livraison"),rs.getDate("c.date_commande")));
+                 rs.getString("u.nom"),rs.getString("u.prenom"),rs.getString("u.adresse"),rs.getString("u.tel"),rs.getDate("u.dns")),rs.getDouble("c.prix_livraison"),rs.getDouble("c.prix_produits"),rs.getDouble("c.prix_total"),rs.getDate("c.date_commande")));
             }
 
         } catch (SQLException e) {
@@ -99,7 +100,7 @@ public class ServiceCommande implements ICommande{
             while(rs.next()){
          
                commandes.add(new Commande(rs.getInt("c.id_commande"),new Client(rs.getString("cl.sexe"),rs.getInt("u.id_user"),rs.getString("u.email"),rs.getString("u.password"),rs.getString("u.role"),
-                 rs.getString("u.nom"),rs.getString("u.prenom"),rs.getString("u.adresse"),rs.getString("u.tel"),rs.getDate("u.dns")),rs.getInt("c.prix_livraison"),rs.getDate("c.date_commande")));
+                 rs.getString("u.nom"),rs.getString("u.prenom"),rs.getString("u.adresse"),rs.getString("u.tel"),rs.getDate("u.dns")),rs.getInt("c.prix_livraison"),rs.getDouble("c.prix_produits"),rs.getDouble("c.prix_total"),rs.getDate("c.date_commande")));
             }
 
         } catch (SQLException e) {
@@ -108,6 +109,24 @@ public class ServiceCommande implements ICommande{
         return commandes;
     }
 
+    
+     @Override
+    public Commande GetCommande(int id , Date d) {
+        Commande commande = new Commande();
+         String req="SELECT * FROM commande c inner join user u on c.id_user = u.id_user inner join client cl on u.id_user = cl.id_user where c.id_user ="+id+" And c.date_commande = '"+d+"'";        
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            while(rs.next()){
+                commande.setId_commande(rs.getInt(1));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return commande;
+    }
     
     /************Tri par date*********/
     @Override
@@ -121,7 +140,7 @@ public class ServiceCommande implements ICommande{
             while(rs.next()){
          
                commandes.add(new Commande(rs.getInt("c.id_commande"),new Client(rs.getString("cl.sexe"),rs.getInt("u.id_user"),rs.getString("u.email"),rs.getString("u.password"),rs.getString("u.role"),
-                 rs.getString("u.nom"),rs.getString("u.prenom"),rs.getString("u.adresse"),rs.getString("u.tel"),rs.getDate("u.dns")),rs.getInt("c.prix_livraison"),rs.getDate("c.date_commande")));
+                 rs.getString("u.nom"),rs.getString("u.prenom"),rs.getString("u.adresse"),rs.getString("u.tel"),rs.getDate("u.dns")),rs.getInt("c.prix_livraison"),rs.getDouble("c.prix_produits"),rs.getDouble("c.prix_total"),rs.getDate("c.date_commande")));
             }
 
         } catch (SQLException e) {

@@ -57,11 +57,24 @@ public class ServiceCommande_elem implements ICommande_elem{
             ex.printStackTrace();
         }
     }
+    
+    @Override
+    public void supprimerElementByID(int id) {
+            String req = "DELETE FROM `detail_commande` WHERE id_elemC = "+id+" ";
+
+        try {
+            Statement st = cnx.createStatement();
+           st.executeUpdate(req); 
+           System.out.println("Element de Commande Supprimé avec succés");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     //Modifier element de panier
     @Override
-    public void modifierElementCommande(Commande_elem e) {
-        String req = "UPDATE `detail_commande` SET `id_elemC`="+e.getId_elemC()+",`id_produit`="+e.getProduit().getId()+",`id_commande`="+e.getCmd().getId_commande()+",`Quantite`="+e.getQuantite()+" WHERE id_commande ="+e.getCmd().getId_commande()+" And id_produit ="+e.getProduit().getId()+"";
+    public void modifierElementCommande(Integer e , int id) {
+        String req = "UPDATE `detail_commande` SET `Quantite`="+ e +" WHERE id_elemC ="+id+"";
         try {
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
@@ -78,14 +91,14 @@ public class ServiceCommande_elem implements ICommande_elem{
         
         List<Commande_elem> commandes_elem = new ArrayList<Commande_elem>();
         
-         String req="SELECT * FROM detail_commande dc inner join produit p on dc.id = p.id inner join commande c on dc.id_commande = c.id_commande WHERE dc.id_commande ="+id+"";
+         String req="SELECT * FROM detail_commande dc inner join produit p on dc.id = p.id_produit inner join commande c on dc.id_commande = c.id_commande WHERE dc.id_commande ="+id+"";
         
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
 
             while(rs.next()){
-                commandes_elem.add(new Commande_elem(rs.getInt("dc.id_elemC"),new Produit(rs.getInt("p.id"),rs.getString("p.nom"),rs.getDouble("p.prix"),rs.getString("p.description"))
+                commandes_elem.add(new Commande_elem(rs.getInt("dc.id_elemC"),new Produit(rs.getInt("p.id_produit"),rs.getString("p.nom"),rs.getDouble("p.prix"),rs.getString("p.description"))
                         ,new Commande(rs.getInt("c.id_commande"),rs.getFloat("c.prix_livraison"),rs.getDate("c.date_commande")),rs.getInt("dc.Quantite")));
             }
 

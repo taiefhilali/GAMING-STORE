@@ -27,7 +27,11 @@ public class Commande_elem {
         this.cmd = cmd;
         this.Quantite = Quantite;
     }
-    
+      public Commande_elem( Produit produit, Commande cmd, int Quantite) {
+        this.produit = produit;
+        this.cmd = cmd;
+        this.Quantite = Quantite;
+    }
     //getters and setters
 
     public int getId_elemC() {

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="478.0" prefWidth="745.0" style="-fx-background-color: #F3F8B8;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ClientCommandesController">
+   <children>
+      <Label layoutX="265.0" layoutY="30.0" prefHeight="23.0" prefWidth="205.0" text="Mes Commandes">
+         <font>
+            <Font name="Elephant" size="24.0" />
+         </font>
+      </Label>
+      <Hyperlink fx:id="retour" layoutX="24.0" layoutY="32.0" onAction="#Back" prefHeight="23.0" prefWidth="181.0" text="Acceuil">
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/return.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Hyperlink>
+      <TableView fx:id="tableCmd" layoutX="9.0" layoutY="98.0" prefHeight="351.0" prefWidth="719.0">
+        <columns>
+          <TableColumn fx:id="datecmd" prefWidth="137.0" text="Date_Commande" />
+          <TableColumn fx:id="prLiv" minWidth="0.0" prefWidth="126.0" text="Prix_Livraison" />
+            <TableColumn fx:id="TotPr" minWidth="0.0" prefWidth="129.0" text="Total des produits" />
+            <TableColumn fx:id="PrTot" minWidth="0.0" prefWidth="119.0" text="Prix_Total" />
+            <TableColumn fx:id="Action" minWidth="0.0" prefWidth="207.0" text="Action" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

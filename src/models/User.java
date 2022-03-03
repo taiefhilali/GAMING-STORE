@@ -40,6 +40,16 @@ public class User {
         this.tel = tel;
         this.dns = dns;
     }
+    public User(int id_user, String email, String password, String role, String nom, String prenom, String adresse, String tel) {
+        this.id_user = id_user;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.tel = tel;
+    }
       //constructeur id
     
     public User(int id_user) {

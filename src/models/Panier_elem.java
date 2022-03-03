@@ -26,6 +26,11 @@ public class Panier_elem {
         this.pan = pan;
         this.produit = produit;
     }
+
+    public Panier_elem(Panier pan, Produit produit) {
+        this.pan = pan;
+        this.produit = produit;
+    }
     
     //getters and setters
 

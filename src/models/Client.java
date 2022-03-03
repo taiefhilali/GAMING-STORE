@@ -27,6 +27,11 @@ public class Client extends User {
         this.sexe = sexe;
     }
 
+     public Client(String sexe, int id_user, String email, String password, String role, String nom, String prenom, String adresse, String tel) {
+        super(id_user, email, password, role, nom, prenom, adresse, tel);
+        this.sexe = sexe;
+    }
+     
     public Client(int id_user, String email, String password, String role, String nom, String prenom, String adresse, String tel, Date dns) {
         super(email, password, role, nom, prenom, adresse, tel, dns);
     }
