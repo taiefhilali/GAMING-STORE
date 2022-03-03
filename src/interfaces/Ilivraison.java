@@ -23,4 +23,7 @@ public interface Ilivraison {
     
     public boolean supprimerLivraison(Livraison l);
     
+     public List<Livraison> rechercheLivraisonparEtat_Livraison(String etat_livraison);
+      public List<Livraison> triLivraisonparEtat_Livraison();
+    
 }

@@ -32,4 +32,3 @@ public interface Ireclamation {
       public List<Reclamation> triReclamationParUser();
     
 }
-

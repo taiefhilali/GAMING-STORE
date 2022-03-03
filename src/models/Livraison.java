@@ -13,7 +13,7 @@ public class Livraison {
     private int id_livraison;
     private Commande commande;
     private User user;
-    private Date date;
+    private String date;
     private String etat_livraison;
     
     //constructeur
@@ -21,7 +21,7 @@ public class Livraison {
     public Livraison() {
     }
 
-    public Livraison(int id_livraison, Commande commande, User user, Date date, String etat_livraison) {
+    public Livraison(int id_livraison, Commande commande, User user, String date, String etat_livraison) {
         this.id_livraison = id_livraison;
         this.commande = commande;
         this.user = user;
@@ -29,7 +29,7 @@ public class Livraison {
         this.etat_livraison = etat_livraison;
     }
 
-    public Livraison(Commande commande, User user, Date date, String etat_livraison) {
+    public Livraison(Commande commande, User user, String date, String etat_livraison) {
         this.commande = commande;
         this.user = user;
         this.date = date;
@@ -61,7 +61,7 @@ public class Livraison {
         return user;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -81,7 +81,7 @@ public class Livraison {
         this.user = user;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -91,7 +91,7 @@ public class Livraison {
 
     @Override
     public String toString() {
-        return "Livraison{" + "id_livraison=" + id_livraison + ", commande=" + commande + ", user=" + user + ", date=" + date + ", etat_livraison=" + etat_livraison + '}';
+        return "Livraison{" + "id_livraison=" + id_livraison +  '}';
     }
 
 
@@ -100,5 +100,3 @@ public class Livraison {
    
     
 }
-
-

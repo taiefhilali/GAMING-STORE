@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="487.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LivadminController">
+   <children>
+      <Button fx:id="affecterBtn" layoutX="420.0" layoutY="75.0" mnemonicParsing="false" onAction="#affecterAction" prefHeight="25.0" prefWidth="110.0" text="Affecter" />
+      <Button fx:id="supprimerbtn" layoutX="617.0" layoutY="75.0" mnemonicParsing="false" onAction="#SupprimerLiv" text="Supprimer" />
+      <TextField fx:id="recherche" layoutX="14.0" layoutY="75.0" onAction="#Chercher" prefHeight="25.0" prefWidth="293.0" />
+      <TableView fx:id="livTableau" layoutX="14.0" layoutY="113.0" prefHeight="210.0" prefWidth="293.0">
+        <columns>
+          <TableColumn fx:id="Date_liv" prefWidth="75.0" text="Date " />
+          <TableColumn fx:id="etat_livraison" prefWidth="130.0" text="Etat livraison" />
+        </columns>
+      </TableView>
+      <ComboBox fx:id="liste_livreur" layoutX="14.0" layoutY="329.0" onAction="#AffecterLivreurLivraison" prefHeight="25.0" prefWidth="293.0" />
+      <Button fx:id="ajouterbtn" layoutX="331.0" layoutY="75.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="25.0" prefWidth="72.0" text="Ajouter" />
+      <AnchorPane fx:id="formLivraison" layoutX="331.0" layoutY="118.0" prefHeight="240.0" prefWidth="359.0">
+         <children>
+            <TextField fx:id="idlivForm" layoutX="91.0" layoutY="14.0" prefHeight="25.0" prefWidth="224.0" />
+            <ComboBox fx:id="idcommandeform" layoutX="91.0" layoutY="52.0" prefHeight="25.0" prefWidth="224.0" />
+            <ComboBox fx:id="idlivreurform" layoutX="92.0" layoutY="90.0" prefHeight="25.0" prefWidth="224.0" />
+            <Button fx:id="enregistrer" layoutX="27.0" layoutY="201.0" mnemonicParsing="false" onAction="#enregistrer" prefHeight="25.0" prefWidth="306.0" text="Enregistrer" />
+            <Text layoutX="9.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="id livraison" />
+            <Text layoutX="9.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id commande" />
+            <Text layoutX="9.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mail livreur" />
+            <ComboBox fx:id="etatLivraison" layoutX="92.0" layoutY="126.0" prefHeight="25.0" prefWidth="224.0" />
+            <Label fx:id="etatLivraisonlabel" layoutX="11.0" layoutY="130.0" text="Etat Livraison" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="modifierbtn" layoutX="538.0" layoutY="75.0" mnemonicParsing="false" onAction="#Modifier" text="Modifier" />
+      <Button fx:id="gestionRecBTN" layoutX="564.0" layoutY="30.0" mnemonicParsing="false" onAction="#gotToREC" text="Gestion Reclamation" />
+   </children>
+</AnchorPane>

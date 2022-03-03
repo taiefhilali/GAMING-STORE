@@ -14,7 +14,7 @@ import java.sql.SQLException;
  *
  * @author 21694
  */
-public class Maconnexion {
+public class MaConnexion {
    
     final String URL="jdbc:mysql://127.0.0.1:3306/levelup";
     final String USERNAME="root";
@@ -22,14 +22,14 @@ public class Maconnexion {
     
     private Connection cnx;
     //1
-    static Maconnexion instance = null;
+    static MaConnexion instance = null;
     
     //constructeur
     //2
-    private Maconnexion() {
+    private MaConnexion() {
         try {
             cnx = DriverManager.getConnection(URL, USERNAME, PWD);
-            System.out.println("succès");
+            //System.out.println("succès");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -40,15 +40,13 @@ public class Maconnexion {
     }
     
     //3
-    public static Maconnexion getInstance() {
+    public static MaConnexion getInstance() {
         
         if(instance == null){
-            instance = new Maconnexion();
+            instance = new MaConnexion();
         }
         return instance;
     }
                 
             
 }
-
-
