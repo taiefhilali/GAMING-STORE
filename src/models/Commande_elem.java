@@ -13,18 +13,18 @@ public class Commande_elem {
     
     //var 
     private int id_elemC;
-    private int id_produit;
-    private int id_commande;
+    private Produit produit;
+    private Commande cmd;
     private int Quantite;
 
     //constructeur
     public Commande_elem() {
     }
 
-    public Commande_elem(int id_elemC, int id_produit, int id_commande, int Quantite) {
+    public Commande_elem(int id_elemC, Produit produit, Commande cmd, int Quantite) {
         this.id_elemC = id_elemC;
-        this.id_produit = id_produit;
-        this.id_commande = id_commande;
+        this.produit = produit;
+        this.cmd = cmd;
         this.Quantite = Quantite;
     }
     
@@ -38,20 +38,22 @@ public class Commande_elem {
         this.id_elemC = id_elemC;
     }
 
-    public int getId_produit() {
-        return id_produit;
+    public Produit getProduit() {
+        return produit;
     }
 
-    public void setId_produit(int id_produit) {
-        this.id_produit = id_produit;
+    public void setProduit(Produit produit) {
+        this.produit = produit;
     }
 
-    public int getId_commande() {
-        return id_commande;
+
+
+  public Commande getCmd() {
+        return cmd;
     }
 
-    public void setId_commande(int id_commande) {
-        this.id_commande = id_commande;
+    public void setCmd(Commande cmd) {
+        this.cmd = cmd;
     }
 
     public int getQuantite() {
@@ -64,8 +66,10 @@ public class Commande_elem {
 
     @Override
     public String toString() {
-        return "Commande_elem{" + "id_elemC=" + id_elemC + ", id_produit=" + id_produit + ", id_commande=" + id_commande + ", Quantite=" + Quantite + '}';
+        return "Commande_elem{" + "id_elemC=" + id_elemC + ", id_produit=" +  produit + ", id_commande=" + cmd + ", Quantite=" + Quantite + '}';
     }
+
+  
     
     
     

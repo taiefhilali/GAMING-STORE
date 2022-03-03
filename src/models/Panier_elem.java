@@ -13,18 +13,18 @@ public class Panier_elem {
     
     //var
     private int id_elem;
-    private int id_panier;
-    private int id_produit;
+    private Panier pan;
+    private Produit produit;
     
     //constructeur
 
     public Panier_elem() {
     }
 
-    public Panier_elem(int id_elem, int id_panier, int id_produit) {
+    public Panier_elem(int id_elem, Panier pan, Produit produit) {
         this.id_elem = id_elem;
-        this.id_panier = id_panier;
-        this.id_produit = id_produit;
+        this.pan = pan;
+        this.produit = produit;
     }
     
     //getters and setters
@@ -37,25 +37,26 @@ public class Panier_elem {
         this.id_elem = id_elem;
     }
 
-    public int getId_panier() {
-        return id_panier;
+    public Panier getPan() {
+        return pan;
     }
 
-    public void setId_panier(int id_panier) {
-        this.id_panier = id_panier;
+    public void setPan(Panier pan) {
+        this.pan = pan;
     }
 
-    public int getId_produit() {
-        return id_produit;
+    public Produit getProduit() {
+        return produit;
     }
 
-    public void setId_produit(int id_produit) {
-        this.id_produit = id_produit;
+    public void setProduit(Produit produit) {
+        this.produit = produit;
     }
+
 
     @Override
     public String toString() {
-        return "Panier_elem{" + "id_elem=" + id_elem + ", id_panier=" + id_panier + ", id_produit=" + id_produit + '}';
+        return "Panier_elem{" + "id_elem=" + id_elem + ", id_panier=" + pan + ", id_produit=" + produit +'\n'+ '}';
     }
     
     

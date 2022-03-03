@@ -78,7 +78,7 @@ public class ServiceLivraison implements Ilivraison{
     }
 
     public boolean supprimerLivraison(Livraison l) {
-        String req = "DELETE FROM `livraison` WHERE id_livraison` = "+l.getId_livraison()+" ";
+        String req = "DELETE FROM `livraison` WHERE `id_livraison` = "+l.getId_livraison()+" ";
 
         try {
             Statement st = cnx.createStatement();

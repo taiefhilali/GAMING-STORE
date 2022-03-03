@@ -29,6 +29,11 @@ public class Categorie {
         this.nom_categorie = nom_categorie;
     }
 
+    //Constructeur avec id seuelemnt
+    public Categorie(int id_categorie) {
+        this.id_categorie = id_categorie;
+    }
+
     // Getters & Setters
     public int getId_categorie() {
         return id_categorie;
@@ -44,6 +49,11 @@ public class Categorie {
 
     public void setNom_categorie(String nom_categorie) {
         this.nom_categorie = nom_categorie;
+    }
+
+    @Override
+    public String toString() {
+        return "Categorie: {" + "id_categorie=" + id_categorie + ", nom_categorie=" + nom_categorie + '}';
     }
 
 }

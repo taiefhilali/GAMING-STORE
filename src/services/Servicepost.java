@@ -209,7 +209,7 @@ public class Servicepost implements Ipost {
     public Map<Integer, List<String>> bestpost(int nblike) {
         List<Post> posts=afficherPost();
        Map<Integer, List<String>> Postss =  posts.stream()
-                .filter(Post -> Post.getNblike()>= 20)
+                .filter(Post -> Post.getNblike()>=Integer.max(nblike, nblike))
                 .sorted((a,b)->a.getNblike()- b.getNblike())
                 .collect(Collectors.groupingBy(Post::getNblike,
                     Collectors.mapping(

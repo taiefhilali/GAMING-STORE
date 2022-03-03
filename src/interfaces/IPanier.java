@@ -19,3 +19,4 @@ public interface IPanier {
     public void supprimerPanier(Panier p);
     
 }
+

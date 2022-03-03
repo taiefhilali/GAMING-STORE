@@ -17,4 +17,6 @@ public interface Icategorie {
 
     public List<Categorie> afficherCategorie();
 
+    public Categorie retrieveCategorieById(int id);
+
 }

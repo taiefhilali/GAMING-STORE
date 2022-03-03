@@ -13,17 +13,20 @@ public class Panier {
     
     //var
     private int id_panier;
-    private int id_client;
+    private Client client;
 
     //constructeur
 
     public Panier() {
     }
     
-    
-    public Panier(int id_panier, int id_client) {
+    public Panier(int id_panier) {
         this.id_panier = id_panier;
-        this.id_client = id_client;
+    }
+    
+    public Panier(int id_panier, Client client) {
+        this.id_panier = id_panier;
+        this.client = client;
     }
 
     public int getId_panier() {
@@ -34,17 +37,19 @@ public class Panier {
         this.id_panier = id_panier;
     }
 
-    public int getId_client() {
-        return id_client;
+    public Client getClient() {
+        return client;
     }
 
-    public void setId_client(int id_client) {
-        this.id_client = id_client;
+    public void setClient(Client client) {
+        this.client = client;
     }
+
+
 
     @Override
     public String toString() {
-        return "Panier{" + "id_panier=" + id_panier + ", id_client=" + id_client + '}';
+        return "Panier{" + "id_panier=" + id_panier + ", client=" + client + '}';
     }
     
     

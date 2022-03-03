@@ -15,6 +15,7 @@ import java.util.List;
 import models.Commande_elem;
 import models.Panier;
 import models.Panier_elem;
+import models.Produit;
 import utils.MaConnexion;
 
 /**
@@ -30,13 +31,13 @@ public class ServicePanier_elem implements IPanier_elem{
     //Ajouter element de panier
     @Override
     public void AjouterElementPanier(Panier_elem p) {
-        String request ="INSERT INTO `panier_elem`(`id_panier`, `id_produit`) VALUES ("+p.getId_panier()+","+p.getId_produit()+")";
+        String request ="INSERT INTO `panier_elem`(`id_panier`, `id`) VALUES ("+p.getPan().getId_panier()+","+p.getProduit().getId_produit()+")";
         try {
             Statement st = cnx.createStatement();
             st.executeUpdate(request);
             System.out.println("Element de Panier Ajouter avec succés");
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.out.println("L'ajout est echouer");      
         }
         
     }
@@ -44,7 +45,7 @@ public class ServicePanier_elem implements IPanier_elem{
     //Supprimer element de panier 
     @Override
     public void supprimerElementPanier(Panier_elem p) {
-        String request ="DELETE FROM `panier_elem` WHERE id_produit ="+p.getId_produit()+"";
+        String request ="DELETE FROM `panier_elem` WHERE id ="+p.getProduit().getId_produit()+"";
         try {
             Statement st = cnx.createStatement();
             st.executeUpdate(request);
@@ -60,14 +61,15 @@ public class ServicePanier_elem implements IPanier_elem{
     public List<Panier_elem> afficherPanier(int id_panier) {
          
        List<Panier_elem> Panier_elems = new ArrayList<Panier_elem>();
-       String req="SELECT * FROM panier_elem WHERE id_panier ="+id_panier+"";
+       String req="SELECT * FROM panier_elem pe inner join panier p on pe.id_panier = p.id_panier inner join produit p1 on pe.id = p1.id_produit WHERE pe.id_panier ="+id_panier+"";
         
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
 
             while(rs.next()){
-                Panier_elems.add(new Panier_elem(rs.getInt(1),rs.getInt(2),rs.getInt(3)));
+             Panier_elems.add(new Panier_elem(rs.getInt("pe.id_elem"),new Panier(rs.getInt("p.id_panier"))
+             ,new Produit(rs.getInt("p1.id_produit"),rs.getString("p1.nom"),rs.getDouble("p1.prix"),rs.getString("p1.description"))));
             }
 
         } catch (SQLException ex) {
