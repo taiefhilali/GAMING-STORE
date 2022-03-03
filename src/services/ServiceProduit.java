@@ -27,14 +27,15 @@ public class ServiceProduit implements Iproduit {
 
     public void ajouterProduit(Produit p) {
 
-        String request = "INSERT INTO `produit`(`nom`, `reference`, `id_categorie`, `prix`, `description`,`id_user`,`promotion`) "
+        String request = "INSERT INTO `produit`(`nom`, `reference`, `id_categorie`, `prix`, `description`,`id_user`,`promotion`,`image`) "
                 + "VALUES ('" + p.getNom() + "','"
                 + p.getReference() + "','"
                 + p.getCategorie().getId_categorie() + "','"
                 + p.getPrix() + "','"
                 + p.getDescription() + "','"
                 + p.getUser().getId() + "','"
-                + p.getPromotion() + "')";
+                + p.getPromotion() + "','"
+                + p.getImage() + "')";
         try {
             // Définier une var Statement responsable de la connexion
             Statement st = cnx.createStatement();
@@ -50,6 +51,7 @@ public class ServiceProduit implements Iproduit {
     // Crud: Modification d'un produit existant selon son objet p et non l'id
     @Override
     public void modifierProduit(Produit p) {
+        String s = "";
         String request = "UPDATE `produit` SET `nom`='" + p.getNom()
                 + "',`reference`='" + p.getReference()
                 + "',`id_categorie`=" + p.getCategorie().getId_categorie()
@@ -57,7 +59,7 @@ public class ServiceProduit implements Iproduit {
                 + ",`description`='" + p.getDescription()
                 + "',`id_user`=" + p.getUser().getId()
                 + ",`promotion`=" + p.getPromotion()
-                + " WHERE id_produit =" + p.getId_produit() + " ";
+                + ",`image`='" + s + "' WHERE id_produit =" + p.getId_produit() + " ";
         try {
             Statement st = cnx.createStatement();
             st.executeUpdate(request);
@@ -85,7 +87,7 @@ public class ServiceProduit implements Iproduit {
     @Override
     public List<Produit> afficherProduit() {
         List<Produit> Produits = new ArrayList<Produit>();
-        String query = "SELECT * FROM produit p inner join categorie c on p.id_categorie  = c.id_categorie";
+        String query = "SELECT * FROM produit p inner join categorie c on p.id_categorie  = c.id_categorie join user u on p.id_user = u.id_user";
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -98,7 +100,7 @@ public class ServiceProduit implements Iproduit {
                                 rs.getString("c.nom_categorie")),
                         rs.getDouble(5),
                         rs.getString(6),
-                        new User(rs.getInt("id_user")),
+                        new User(rs.getInt("id_user"), rs.getString("email")),
                         rs.getDouble(8)
                 //,rs.getString("email"),rs.getString("password"),rs.getString("role"),rs.getString("nom"),rs.getString("prenom"),rs.getString("adresse"),rs.getString("tel"),rs.getDate("dns"))
                 ));

@@ -19,4 +19,7 @@ public interface Icategorie {
 
     public Categorie retrieveCategorieById(int id);
 
+    public String afficherCategorieParNom();
+
+    public Categorie retrieveCategorieByNom(String s);
 }

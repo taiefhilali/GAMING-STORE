@@ -24,6 +24,8 @@ import models.Administrateur;
 import models.Client;
 import models.User;
 import utils.MaConnexion;
+import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -69,30 +71,33 @@ public class ServiceUser implements Iuser {
         }
         return personnes;
     }
+
+    //
     @Override
     public List<User> afficherParLettre(String lettre) {
-      List<User> u = afficherPersonnes().stream()
-                         .filter(x->x.getPrenom().startsWith(lettre.toUpperCase()))
-                         .collect(Collectors.toList());
-      return u;
-       
+        List<User> u = afficherPersonnes().stream()
+                .filter(x -> x.getPrenom().startsWith(lettre.toUpperCase()))
+                .collect(Collectors.toList());
+        return u;
+
     }
-     @Override
+
+    @Override
     public List<User> afficherParPrenom(String prenom) {
-      List<User> u = afficherPersonnes().stream()
-                        .filter(x->x.getPrenom().toUpperCase().equals(prenom.toUpperCase()))
-                         .collect(Collectors.toList());
-      return u;
-       
+        List<User> u = afficherPersonnes().stream()
+                .filter(x -> x.getPrenom().toUpperCase().equals(prenom.toUpperCase()))
+                .collect(Collectors.toList());
+        return u;
+
     }
+
     @Override
     public List<User> afficherParRole(String role) {
-      List<User> u = afficherPersonnes().stream()
-                        .filter(x->x.getRole().equals(role))
-                         .collect(Collectors.toList());
-      return u;
+        List<User> u = afficherPersonnes().stream()
+                .filter(x -> x.getRole().equals(role))
+                .collect(Collectors.toList());
+        return u;
     }
-    
 
     @Override
     public User getByEmail(String email) {
@@ -107,6 +112,9 @@ public class ServiceUser implements Iuser {
 //                Adresse adresse=new Adresse(adr[0], adr[1], adr[2], adr[3]);
                 ad = new User(rs.getInt("id_user"), rs.getString("email"), rs.getString("password"),
                         rs.getString("role"), rs.getString("nom"), rs.getString("prenom"), rs.getString("adresse"), rs.getString("tel"), rs.getDate("dns"));
+
+                Date d = Date.valueOf(LocalDate.now());
+                System.out.println((d.getYear()) - (rs.getDate("dns").getYear()));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -128,9 +136,9 @@ public class ServiceUser implements Iuser {
                 // System.out.println( rs.getTimestamp("limite").getHours()-time.getHour()  );
                 //compte locked
                 if (rs.getBoolean("locked")) {
-                    
+
                     if (Math.abs(time.getHour() - rs.getTimestamp("limite").getHours()) < 1) {
-                        return "Votre compte est bloqué" ;
+                        return "Votre compte est bloqué";
                     } else {
 
                         if (rs.getString("password").equals(password)) {
