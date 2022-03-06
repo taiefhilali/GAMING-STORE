@@ -4,31 +4,20 @@
  * and open the template in the editor.
  */
 
-import java.io.IOException;
+import interfaces.Ipost;
 import java.net.URL;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import models.Post;
 import models.User;
 import services.Servicepost;
@@ -38,7 +27,7 @@ import services.Servicepost;
  *
  * @author msi
  */
-public class FXMLController implements Initializable {
+public class ADD_PostFXMLController implements Initializable {
 
     @FXML
     private TextField contenuTF;
@@ -46,49 +35,26 @@ public class FXMLController implements Initializable {
     private TextField titreTF;
     @FXML
     private DatePicker datePK;
-//    @FXML
     @FXML
-    private Button btnadd;
- private javafx.stage.Stage stage;
-    private Scene scene;
-    private Parent root;
+    private Button btnAdd;
+    @FXML
+    private TextField userTF;
+Servicepost spost=new Servicepost();
 
     /**
      * Initializes the controller class.
      */
-    
-    Servicepost spost=new Servicepost();
-    
-    @FXML
-    private ComboBox<User> userTF;
-    @FXML
-    private Button btnadd1;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            ObservableList<User> userslist = spost.getusersList();
-            try {
-                
-            } catch (Exception ex) {
-            }
-            userTF.setItems(userslist);
-            
-
-            
-            System.out.println(userslist);
-            // TODO
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        // TODO
     }    
 
     @FXML
-    private void ajouterpost(ActionEvent event) throws SQLException {
+    private void ajouterpost(ActionEvent event) {
          DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd"); 
-        
-        if (contenuTF.getText().length() == 0) {
+        if(ValidateFields()){
+            if(ValidateFields2()){  
+        if ((contenuTF.getText().length() == 0)&&(titreTF.getText().length() == 0)&&(userTF.getText().length() == 0)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText("Erreur de saisie !");
@@ -96,56 +62,21 @@ public class FXMLController implements Initializable {
             alert.show();
 
         } else {
-             Date myDate = Date.valueOf(datePK.getValue().toString());
-            
-        
-      //     spost.getusersList();
-                if(ValidateFields()){
-            if(ValidateFields2()){  
-                
-           spost.ajouterPost(new Post(contenuTF.getText(),titreTF.getText(),myDate,userTF.getValue()));
-Alert alert =new Alert(Alert.AlertType.INFORMATION);//hethika l combo ? lee
-        alert.setTitle("AJOUTER PUBLICATION!");
-        alert.setHeaderText("information!");
-        alert.setContentText("PUBLICATION A ETE AJOUTEE AVEC SUCCES!");
-        alert.showAndWait();
-            
+          
          
             //Post p = new Post();
            // p.setContent(contenuTF.getText());
            // p.setTitle(titreTF.getText());
            // p.setId_user(new user(userTF));
          
-        
+          
+               Date myDate = Date.valueOf(datePK.getValue().toString());
+               
+               spost.ajouterPost(new Post(contenuTF.getText(),titreTF.getText(),myDate,new User(Integer.parseInt(userTF.getText()))));
+
+        }}
         }
-        
-        }}}
-
-    @FXML
-    private void combo(ActionEvent event) throws SQLException {
-        
-         
     }
-
-    @FXML
-    private void ajretourpost(ActionEvent event) {
-        
-        try {
-            root = FXMLLoader.load(getClass().getResource("GestionPostCommentaire.fxml"));
-            stage = (javafx.stage.Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-        }
-        
-        
-        
-        
-        
-        
-    }
-
 
     private static class user extends User {
 
@@ -155,7 +86,7 @@ Alert alert =new Alert(Alert.AlertType.INFORMATION);//hethika l combo ? lee
     
     private boolean ValidateFields() {
           Date myDate = Date.valueOf(datePK.getValue().toString());
-        if(contenuTF.getText().isEmpty() | titreTF.getText().isEmpty() | datePK.getValue().equals(myDate)) {
+        if(contenuTF.getText().isEmpty() | titreTF.getText().isEmpty() | datePK.getValue().equals(myDate) |  userTF.getText().isEmpty()) {
              Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Validate Fields");
         alert.setHeaderText(null);
@@ -179,5 +110,5 @@ Alert alert =new Alert(Alert.AlertType.INFORMATION);//hethika l combo ? lee
         }
         return true;
     }
-    
+
 }
