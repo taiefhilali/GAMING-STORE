@@ -20,9 +20,7 @@ public interface ICommande_elem {
     
     public void supprimerElementCommande(Commande_elem e);
     
-    public void modifierElementCommande(Integer e , int id);
-    
-     public void supprimerElementByID(int id);
+    public void modifierElementCommande(Commande_elem e);
     
      public List<Commande_elem> AfficherCommande(int i);
     
