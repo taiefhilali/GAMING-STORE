@@ -100,7 +100,7 @@ public class ServiceProduit implements Iproduit {
                                 rs.getString("c.nom_categorie")),
                         rs.getDouble(5),
                         rs.getString(6),
-                        new User(rs.getInt("id_user"), rs.getString("email")),
+                        new User(rs.getString("email")),
                         rs.getDouble(8)
                 //,rs.getString("email"),rs.getString("password"),rs.getString("role"),rs.getString("nom"),rs.getString("prenom"),rs.getString("adresse"),rs.getString("tel"),rs.getDate("dns"))
                 ));
@@ -149,21 +149,20 @@ public class ServiceProduit implements Iproduit {
 
     // ================  Métier : calcul de promotion avec input de l'administrateur et non automatiquement ============== //
     @Override
-    public Produit calculerPromotion(Produit p) {
+    public Double calculerPromotion(Produit p) {
         if (p.getPromotion() != 0) {
             p.setPrix(p.getPrix() - (p.getPrix() * (p.getPromotion() / 100)));
             System.out.println(" Le prix final aprés promotion est : " + p.getPrix());
         }
-        return p;
+        return p.getPrix();
     }
 
     @Override
     public List<Produit> chercherProduitDynamiquement(String s, List<Produit> l) {
         List<Produit> strList = l.stream()
                 .map(Produit::concat)
-                .filter(pt -> pt.contains(s)) //starts with (only searches for a person's id)
-                .map(pt -> new Produit(
-                Integer.parseInt(pt.split("-")[0]),
+                .filter(pt -> pt.toLowerCase().contains(s.toLowerCase())) //starts with (only searches for a person's id)
+                .map(pt -> new Produit(Integer.parseInt(pt.split("-")[0]),
                 pt.split("-")[1],
                 pt.split("-")[2],
                 new Categorie(Integer.parseInt(pt.split("-")[3]), pt.split("-")[4]),
@@ -176,4 +175,6 @@ public class ServiceProduit implements Iproduit {
                 .collect(Collectors.toList());
         return strList;
     }
+
+ 
 }

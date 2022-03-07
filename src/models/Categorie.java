@@ -56,4 +56,7 @@ public class Categorie {
         return "Categorie: {" + "id_categorie=" + id_categorie + ", nom_categorie=" + nom_categorie + '}';
     }
 
+    public String afficherParNomCat() {
+        return nom_categorie;
+    }
 }

@@ -22,4 +22,6 @@ public interface Icategorie {
     public String afficherCategorieParNom();
 
     public Categorie retrieveCategorieByNom(String s);
+
+    public int validerCategorie(String s);
 }

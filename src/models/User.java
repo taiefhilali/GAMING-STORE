@@ -40,8 +40,13 @@ public class User {
         this.tel = tel;
         this.dns = dns;
     }
-    //constructeur id
+    // Constructeur email seul
 
+    public User(String email) {
+        this.email = email;
+    }
+
+    //constructeur id
     public User(int id_user) {
         this.id_user = id_user;
     }
@@ -302,7 +307,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User {" + "id_user=" + id_user + ", email=" + email + ", password=" + password + ", role=" + role + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", tel=" + tel + ", dns=" + dns + '}';
+        return "User {" + "id_user=" + id_user + ", email =" + email + ", password=" + password + ", role=" + role + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", tel=" + tel + ", dns=" + dns + '}';
     }
 
 }

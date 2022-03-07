@@ -31,8 +31,6 @@ public class GestionUsersController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    @FXML
-    private Button switchToAddInterface;
 
     @FXML
     private void switchToUsers(ActionEvent event) throws IOException {
@@ -44,7 +42,6 @@ public class GestionUsersController implements Initializable {
     }
 
    
-    @FXML
  public void switchToAddInterface(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("./AddInterface.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -53,7 +50,6 @@ public class GestionUsersController implements Initializable {
         stage.show();
 
     }
-    @FXML
     public void switchToListInterface(ActionEvent event) throws IOException {
 
         root = FXMLLoader.load(getClass().getResource("./ListInterface.fxml"));
@@ -68,6 +64,10 @@ public class GestionUsersController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         // TODO
+    }
+
+    @FXML
+    private void switchToProfil(ActionEvent event) {
     }
 
 }

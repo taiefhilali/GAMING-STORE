@@ -10,8 +10,11 @@ import interfaces.Iproduit;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,14 +26,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import static jdk.nashorn.internal.objects.NativeRegExp.source;
 import models.Categorie;
 import models.Produit;
 import services.ServiceCategorie;
@@ -77,21 +83,35 @@ public class AddCategoryInterfaceController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    // Crud Affichage des catégories
+    // Crud Affichage des catégories.
+    // permet la séléction des items selon le clique de la souris
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        tv_categories.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                if (tv_categories.getSelectionModel().getSelectedItem() != null) {
+                    Categorie selectedCategorie = tv_categories.getSelectionModel().getSelectedItem();
+                    IdCategorieTF.setText(String.valueOf(selectedCategorie.getId_categorie()));
+                    nomCategorieTF.setText(String.valueOf(selectedCategorie.getNom_categorie()));
+                } else {
+                    tv_categories.getSelectionModel().clearSelection();
+                }
+            }
+        });
+
+        // Old AFFICHAGE + without selection here
         List<Categorie> listCat = sc.afficherCategorie();
         col_idCat.setCellValueFactory(new PropertyValueFactory<>("id_categorie"));
         col_nomCategorie.setCellValueFactory(new PropertyValueFactory<>("nom_categorie"));
-//        tv_categories.setItems(listcat);
-        for (Categorie c : listCat) {
+        listCat.forEach((c) -> {
             tv_categories.getItems().add(new Categorie(c.getId_categorie(), c.getNom_categorie()));
-        }
+        });
     }
 
     // Passage vers l'écran d'accueil par un bouton de retour
     @FXML
+
     private void switchTo(ActionEvent event) throws IOException {
 
         root = FXMLLoader.load(getClass().getResource("./SelectionInterface.fxml"));
@@ -101,8 +121,8 @@ public class AddCategoryInterfaceController implements Initializable {
         stage.show();
 
     }
-
     // Création d'une alerte lors du crud
+
     private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -112,50 +132,119 @@ public class AddCategoryInterfaceController implements Initializable {
         alert.show();
     }
 
+    // Crud ajout d'une catégorie
     @FXML
     private void addCategorie(ActionEvent event) throws IOException {
+        Categorie c = new Categorie();
 
-        sc.ajouterCategorie(new Categorie(nomCategorieTF.getText()));
+        // Alerte de confirmation de l'ajout d'une catégorie
+        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert1.setTitle("Confirmation d'ajout");
+        alert1.setHeaderText(null);
+        alert1.setContentText(" Etes-vous sure de vouloir ajouter cette catégorie ? ");
+        Optional<ButtonType> action = alert1.showAndWait();
 
-        root = FXMLLoader.load(getClass().getResource("./AddCategoryInterface.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        showAlert(Alert.AlertType.INFORMATION, ((Node) event.getSource()).getScene().getWindow(),
-                " Succés! ", " Ajout de la catégorie établie avec succés! ");
+        if (action.get() == ButtonType.OK) {
+            if (nomCategorieTF.getText().isEmpty()) {
+                System.out.println("valeur null");
+                showAlert(Alert.AlertType.ERROR, ((Node) event.getSource()).getScene().getWindow(),
+                        " Erreur d'ajout catégorie ! ", " Erreur d'ajout de la catégorie ! \n Veuillez remplir touts les champs! ");
+                // Alerte de confirmation
 
+            } else {
+                if (sc.validerCategorie(nomCategorieTF.getText()) == 0) {
+                    sc.ajouterCategorie(new Categorie(nomCategorieTF.getText()));
+                    root = FXMLLoader.load(getClass().getResource("./AddCategoryInterface.fxml"));
+                    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                    showAlert(Alert.AlertType.INFORMATION, ((Node) event.getSource()).getScene().getWindow(),
+                            " Succés! ", " Ajout de la catégorie établie avec succés! ");
+                } else {
+                    System.out.println("Catégorie existante");
+                    showAlert(Alert.AlertType.ERROR, ((Node) event.getSource()).getScene().getWindow(),
+                            " Erreur d'ajout catégorie ! ", " Erreur d'ajout! \n Catégorie déja existante ! ");
+
+                }
+            }
+        } else {
+            alert1.close();
+        }
     }
 
+// Crud suppression d'une catégorie
     @FXML
     private void deleteCategorie(ActionEvent event) throws IOException {
-        sc.supprimerCategorie(new Categorie(Integer.parseInt(IdCategorieTF.getText())));
+        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert1.setTitle("Confirmation de suppression");
+        alert1.setHeaderText(null);
+        alert1.setContentText(" Etes-vous sure de vouloir supprimer cette catégorie ? ");
+        Optional<ButtonType> action = alert1.showAndWait();
 
-        root = FXMLLoader.load(getClass().getResource("./AddCategoryInterface.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        showAlert(Alert.AlertType.INFORMATION, ((Node) event.getSource()).getScene().getWindow(),
-                " Succés  de suppression! ", " Suppression de la catégorie établie avec succés! ");
+        if (action.get() == ButtonType.OK) {
 
+            // alerte confirmation suppression
+            sc.supprimerCategorie(new Categorie(Integer.parseInt(IdCategorieTF.getText())));
+
+            root = FXMLLoader.load(getClass().getResource("./AddCategoryInterface.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            showAlert(Alert.AlertType.INFORMATION, ((Node) event.getSource()).getScene().getWindow(),
+                    " Succés  de suppression! ", " Suppression de la catégorie établie avec succés! ");
+
+        } else {
+            alert1.close();
+        }
     }
 
     @FXML
     private void updateCategorie(ActionEvent event) throws IOException {
-        sc.modifierCategorie(new Categorie(Integer.parseInt(IdCategorieTF.getText()), nomCategorieTF.getText()));
+        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert1.setTitle("Confirmation de modification");
+        alert1.setHeaderText(null);
+        alert1.setContentText(" Etes-vous sure de vouloir modifier cette catégorie ? ");
+        Optional<ButtonType> action = alert1.showAndWait();
+        if (action.get() == ButtonType.OK) {
+            if (nomCategorieTF.getText().isEmpty()) {
+                System.out.println("valeur null");
+                showAlert(Alert.AlertType.ERROR, ((Node) event.getSource()).getScene().getWindow(),
+                        " Erreur de modification catégorie ! ", " Erreur de modification de la catégorie ! \n Veuillez remplir touts les champs! ");
+                tv_categories.getSelectionModel().clearSelection();
+                // Alerte de confirmation
+            } else {
+                sc.modifierCategorie(new Categorie(Integer.parseInt(IdCategorieTF.getText()), nomCategorieTF.getText()));
+                root = FXMLLoader.load(getClass().getResource("./AddCategoryInterface.fxml"));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                showAlert(Alert.AlertType.INFORMATION, ((Node) event.getSource()).getScene().getWindow(),
+                        " Succés de modification! ", " Modification de la catégorie établie avec succés! ");
+            }
+        } else {
+            alert1.close();
+        }
+    }
 
-        root = FXMLLoader.load(getClass().getResource("./AddCategoryInterface.fxml"));
+    @FXML
+    private void switchTo(MouseEvent event) throws IOException {
+
+        root = FXMLLoader.load(getClass().getResource("./SelectionInterface.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        showAlert(Alert.AlertType.INFORMATION, ((Node) event.getSource()).getScene().getWindow(),
-                " Succés de modification! ", " Modification de la catégorie établie avec succés! ");
     }
 
+    // Clear white space on clicking on the AnchorPane
     @FXML
-    private void switchTo(MouseEvent event) {
+    private void clearWhiteSpace(MouseEvent event
+    ) {
+        IdCategorieTF.setText("");
+        nomCategorieTF.setText("");
     }
 
 }

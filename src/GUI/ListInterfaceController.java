@@ -128,7 +128,6 @@ public class ListInterfaceController implements Initializable {
               
             }
         });
-
         for (User user : users) {
             tableViewId.getItems().add(new User(user.getId(), user.getEmail(), user.getPassword(), user.getRole(), user.getNom(), user.getPrenom(), user.getAdresse(), user.getTel(), user.getDns()));
         }

@@ -22,5 +22,5 @@ public interface Iproduit {
     public void TrierProduitParPrix();
 
 //  Pour calculer la promotion :   
-    public Produit calculerPromotion(Produit p);
+    public Double calculerPromotion(Produit p);
 }

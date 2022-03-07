@@ -22,6 +22,7 @@ import interfaces.Istock;
 import interfaces.Iuser;
 import interfaces.Iproduit;
 import interfaces.Ireclamation;
+import java.io.IOException;
 import java.sql.Connection;
 import models.Administrateur;
 import models.Client;
@@ -36,6 +37,9 @@ import services.ServiceUser;
 import utils.MaConnexion;
 import java.sql.Date;
 import java.time.LocalDate;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import models.Categorie;
 import models.Commande;
 import models.Commande_elem;
@@ -70,9 +74,9 @@ public class Levelup {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Connection cnx = MaConnexion.getInstance().getCnx();
-
+//        Produit p1 = new Produit();
         String str = "2018-03-21";
         Date date = Date.valueOf(str);
 
@@ -99,28 +103,27 @@ public class Levelup {
 
         //  ******************************************* USERS ******************************************* //
         User u = new User();
+        // test ref
 //        //Authentification
-         //   System.out.println(sp.authentification("bayoudh.hazem@gmail.com",u.encrypt("password")));
+        //   System.out.println(sp.authentification("bayoudh.hazem@gmail.com",u.encrypt("password")));
 ////        System.out.println(sp.authentification("nouira.amal@gmail.com",u.encrypt("password")));
 ////        System.out.println(sp.authentification("bayoudh.hazem@gmail.com",u.encrypt("test"))); 
 ////        System.out.println(sp.authentification("iskander.bargaoui@gmail.com",u.encrypt("password")));
-
 //        //getByEmail
         //System.out.println(sp.getByEmail("beldi.mariem@gmail.com"));
 //        //Recherche par role 
-     //  System.out.println(sp.afficherParRole("client"));
+        //  System.out.println(sp.afficherParRole("client"));
 //        //Recherche par lettre nom
-    ///  System.out.println(sp.afficherParLettre("H"));
+        ///  System.out.println(sp.afficherParLettre("H"));
 //        //Rechercher par prenom
-      // System.out.println(sp.afficherParPrenom("Mariem"));
+        // System.out.println(sp.afficherParPrenom("Mariem"));
 //        //System.out.println(u.encrypt("password"));
 //        //Affichage des utilisateurs
 //        //Ajout des utilisateurs
 //        // Client   
         User c7 = new User("essid.cyrine@gmail.com", "mariem", "client", "essid", "cyrine", adr, "26386558", date);
 
-      //  Client client = new Client("femme", (int) sp.ajouterPersonne(c7));
-
+        //  Client client = new Client("femme", (int) sp.ajouterPersonne(c7));
 //             sc.ajouterPersonne(client);
 //        // AFFICHER Client
 //        //  System.out.println(sc.afficherPersonnes());
@@ -177,12 +180,6 @@ public class Levelup {
         //Administrateur
 //        System.out.println(sp.supprimerPersonne(au));
 //        System.out.println(sa.supprimerPersonne(au));
-        
-        
-        
-        
-        
-        
         //  *******************************************  Forum *******************************************   //
         User c = new User(9, "taief.hilali@esprit.com", "mariem", "client", "hilali", "taief", adr, "26386558", date);
         Post post1 = new Post("sujet11", "JEUX VIDEOS", date, c, 30, 12);
@@ -194,46 +191,29 @@ public class Levelup {
         Comment comment2 = new Comment("secondcomment", "commtwo", 10, c, post5);
 
         // ****************AJOUT post********************************//
-        
-        
         //   System.out.println("********************AJOUT post************************!");
-       // System.out.println(spost.ajouterPost(post1));
+        // System.out.println(spost.ajouterPost(post1));
         //System.out.println(spost.ajouterPost(post2));
-        
-        
-        
         //****************Afficherpost*******************************************//
 //        System.out.println("******Afficher post************************");
 //        System.out.println(spost.afficherPost());
-        
-        
         //****************AjoutComment**************************//
-       
         // System.out.println("COMMENT added!");
-          //   System.out.println("********************AJOUT commentaire************************!");
+        //   System.out.println("********************AJOUT commentaire************************!");
         //System.out.println(scomment.ajouterComment(comment2));
-        
-        
-        
-        
         //********************Affichercomment**************************************//
-          //   System.out.println("********************AFFICHER commentaire************************!");
+        //   System.out.println("********************AFFICHER commentaire************************!");
         // System.out.println(scomment.afficherComment());
-        
-        
-        
-        
         //********************** MODIFIERPOST**************************//
         Post post3 = new Post(75, "sujet2", "great news", date, c, 4, 2);
 //        //System.out.println("POST Updated\n");
 //          System.out.println("********************MODIFIER post************************!");
 //        System.out.println(spost.modifierPost(post3));
-        
+
 //        //********************updatecomment******************//
 //
 //        Comment comment3 = new Comment(14, "THIRDcomment", "HAHAAHA", 13, c, post5);
 //        //  Comment comment3= new Comment(24, "THIRDcomment", "HAHAAHA", 13,c,post4);
-
 //        ///***********jointure*************************//
 //        System.out.println(scomment.ajouterComment(comment1));
         //System.out.println("COMMENT Updated\n");
@@ -244,40 +224,24 @@ public class Levelup {
         //*******************deleteComment
 //        // System.out.println("COMMENT Deleted");
 //        //System.out.println(scomment.supprimerComment(comment3));
-        
-        
-        
 //*******TRIE*****************//
         //ArrayList<Post> posts= new ArrayList<>();
         //    posts=spost.AfficherTrie();
-        
-        
-        
         //**************rechercher post par titre******//
 //System.out.println("RECHERCHE SELON <titre>  DES POSTS :"+spost.findBytitle("Sujet2"));
-        
-        
 ////**********************trie selon date********** stream//
 //System.out.println("TRIE SELON <DATE>  DES POSTS :"+spost.sortByDate());
-        
-        
-        
 //        // *** count*********//
- //     scomment.Commentsum();
-        
-        
-        
+        //     scomment.Commentsum();
 //        // ******************SORT POST WITH GREATEST post with  LIKES//
-   //   System.out.println("TRIE SELON <NBLIKE>  DES POSTS :" + spost.sortBynblike());
+        //   System.out.println("TRIE SELON <NBLIKE>  DES POSTS :" + spost.sortBynblike());
 //        
-        
-        
 //        ///****************BEST POST**********//////
 //      
- //System.out.println("LES Meilleures POSTS :" + spost.bestpost(29));
+        //System.out.println("LES Meilleures POSTS :" + spost.bestpost(29));
         //******************************************* LIVRAISON ET RECLAMATION *****************************************  //
         // Ajout livraison 
-       // Client client = new Client("femme",9);
+        // Client client = new Client("femme",9);
 //       // Commande commande1 = new Commande(8, client, 20, date);
 //        Livraison l1 = new Livraison(commande1, c, date, "en cours");
 //        //System.out.println(slivraison.ajouterLivraison(l1));
@@ -306,60 +270,33 @@ public class Levelup {
         User u2 = new User(9);
 //      System.out.println(sr.rechercheReclamationParUser(u2));
 //      System.out.println(sr.triReclamationParUser());
-        
-        
-        
+
         // *******************************************  STOCKS *******************************************   //
-      Stock s = new Stock("jeux", 13, "en repture");
-      Fournisseur fu =new Fournisseur("07227308","Arvea", (int)sp.ajouterPersonne(c7));
-       Facture f = new Facture(date, "90.990dt", fu);
-       
-       
+        Stock s = new Stock("jeux", 13, "en repture");
+        Fournisseur fu = new Fournisseur("07227308", "Arvea", (int) sp.ajouterPersonne(c7));
+        Facture f = new Facture(date, "90.990dt", fu);
+
 //        //***************************Ajout  stock****************************
-       
-      
 //        //ss.ajouterStock(s);
-       
-         //*****************************Ajout facture***************************
-       
+        //*****************************Ajout facture***************************
 //        //sfacture.ajouterFacture(f);
-       
-       
 //        //**************************Affichage stocks**************************
 //
 //        //System.out.println(ss.afficherStock());
-       
-       
         //*******************************Affichage factures****************************
-       
         //System.out.println(sfacture.afficherFacture());
-       
-       
 //        //******************************Modification stock**********************
-       
         //Stock s1 = new Stock(56, "pc", 22, "en stock");
-       //System.out.println(ss.modifierStock(s1));
-       
+        //System.out.println(ss.modifierStock(s1));
         //**************************Modification facture*********************************
-       
 //        Facture f1 = new Facture(27, date, "61.650dt", fu);
 //        //System.out.println(sfacture.modifierFacture(f1));
-       
-       
         //****************************************Suppression stock******************************** 
-       
         //System.out.println(ss.supprimerStock(s1));
-       
-       //*****************************************Suppression  facture**************************************
-       
+        //*****************************************Suppression  facture**************************************
         //System.out.println(sfacture.supprimerFacture(f1));
-       
-       
-       //****************************************prix facture******************************
-       
+        //****************************************prix facture******************************
         //sfacture.prix();
-       
-       
         //  *******************************************  PRODUITS ET CATEGORIES *******************************************   //    
         User u1 = new User(1, "Amalouira@gmail.com", "test", "client", "beldi", "mariem", adr, "26386558", date);
         // Test 2 : aprés jointure
@@ -373,9 +310,8 @@ public class Levelup {
 //        Produit p2 = new Produit(50, "Produit x promotion", "0x0006", c1, 700, " test promo", u1, 80);
 //         Produit p4 = new Produit(50, "Produit x promotion v2 ", "0x0006", c1, 700, " test promo", user1, 40);
 
-                                                    /// TEST AJOUT ET SUPPRESSION //
-        
-                                                // System.out.println(" **** Ajout des Produits **** ");
+        /// TEST AJOUT ET SUPPRESSION //
+        // System.out.println(" **** Ajout des Produits **** ");
         // Produit p1 = new Produit(48, "Razer Kraken Pro v7", "0x005", c1, 900, "Casque que pour les gamers", user1, 20);
 //        sproduit.ajouterProduit(p1);
         //Produit p2 = new Produit("HyperX Cloud II", "0x001", c1, 350, "Casque que pour les gamers", user1, 50);
@@ -388,9 +324,7 @@ public class Levelup {
 ////        sproduit.ajouterProduit(p3);
 ////        sproduit.ajouterProduit(p2);
 ////        sproduit.ajouterProduit(p4);
-                
-                                            // TEST AFFICHAGE DES PRODUITS ET CATEGORIES //
-        
+        // TEST AFFICHAGE DES PRODUITS ET CATEGORIES //
         System.out.println("\n **********Affichage de touts les produits********** \n");
         System.out.println(sproduit.afficherProduit());
         //sproduit.ajouterProduit(p2);
@@ -403,21 +337,18 @@ public class Levelup {
 //        Categorie c2 = new Categorie(5, "Bureaux");
 //        scategorie.ajouterCategorie(c2);
 //        Categorie c1 = new Categorie(1,"Casque");
-        Categorie c2= new Categorie(2,"Souris");
-        Categorie c1= new Categorie(1,"Casque");
+        Categorie c2 = new Categorie(2, "Souris");
+        Categorie c1 = new Categorie(1, "Casque");
 ////        scategorie.ajouterCategorie(c1);
 //        scategorie.ajouterCategorie(c1);
 //        scategorie.ajouterCategorie(c2);
-        
 
-                                                    // NEW AVEC IMAGE
-                                                    
-          Produit p2  = new Produit("Logitech Astro Gaming A40 TR PC", "0x002", c1, 490, "Un casque de luxe avec un driver de son dynamique ouvert de 40 mm.", u1, 0);
+        // NEW AVEC IMAGE
+        Produit p2 = new Produit("Logitech Astro Gaming A40 TR PC", "0x002", c1, 490, "Un casque de luxe avec un driver de son dynamique ouvert de 40 mm.", u1, 0);
 //        sproduit.ajouterProduit(p2);
 //        
-            // TEST METIERS PRODUITS ET CATEGORIESSSSSS //
+        // TEST METIERS PRODUITS ET CATEGORIESSSSSS //
 
-        
         System.out.println("\n *******Affichage de toutes les catégories***** \n  ");
         System.out.println(scategorie.afficherCategorie());
         System.out.println("\n *******Affichage de toutes les catégories triés par leurs IDS: ***** \n  ");
@@ -425,18 +356,16 @@ public class Levelup {
         System.out.println(scategorie.retrieveCategorieById(2));
 //        System.out.println(scategorie.retrieveCategorieById(35));
         System.out.println("\n *******Rercheche avancée dynamique: ***** \n  ");
-        System.out.println(sproduit.chercherProduitDynamiquement("hyperx", sproduit.afficherProduit())); // length > 1
+        System.out.println(sproduit.chercherProduitDynamiquement("", sproduit.afficherProduit())); // length > 1
         System.out.println("\n Trier les produits par prix croissant \n");
         sproduit.TrierProduitParPrix(); // Prix ascendant
 //
         System.out.println(" \n *********** Calcul prix arpés promotion ******** \n");
 
         sproduit.calculerPromotion(p2); // Pas de résultat car la promotio est = 0
-        
-        
+
 //        sproduit.calculerPromotion(p2);
 //        sproduit.afficherProduit();
-
 //        // Ajout de deux produits 
 //        // Produit p = new Produit("HyperX Cloud II", "0x001", 1, 0, " Un casque pour les Gamers pro.", " En Stock ", 365); //en TND
 //        // Produit p1 = new Produit("Razer Krake Pro v7", "0x001", 2, 600, " Un casque pour les Gamers pro.", " En Stock ", 2);
@@ -503,7 +432,7 @@ public class Levelup {
         /**
          * *****Top Products*****
          */
-         //System.err.println(spanier3.TopProduits(2));
+        //System.err.println(spanier3.TopProduits(2));
         //System.err.println(scommande.TrierCommandesParDate());
     }
 

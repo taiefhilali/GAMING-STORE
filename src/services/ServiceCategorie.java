@@ -22,7 +22,7 @@ public class ServiceCategorie implements Icategorie {
     // Variable 1
     Connection cnx = MaConnexion.getInstance().getCnx();
 
-    // Crud ajout   
+    // Crud ajout catégorie
     @Override
     public void ajouterCategorie(Categorie c) {
         String request = "INSERT INTO `categorie`(`nom_categorie`) VALUES ('" + c.getNom_categorie() + "')";
@@ -125,5 +125,21 @@ public class ServiceCategorie implements Icategorie {
             ex.printStackTrace();
         }
         return cat;
+    }
+
+    @Override
+    public int validerCategorie(String s) {
+        Categorie cat = new Categorie();
+        String query = "SELECT * FROM `categorie` WHERE `nom_categorie` = '" + s + "' ";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            if (rs.next()) {
+                return 1;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
     }
 }

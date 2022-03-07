@@ -21,6 +21,8 @@ public class Produit {
     private User user; // = Fid_fournisseur
     private double promotion;
     private String image;
+    
+   
 
     // Constructeur vide
     public Produit() {
@@ -69,8 +71,9 @@ public class Produit {
         this.user = user;
         this.promotion = promotion;
     }
-    // Constructeur sans id et sans image
 
+    /// TEST 
+    // Constructeur sans id et sans image
     public Produit(String nom, String reference, Categorie categorie, double prix, String description, User user, double promotion) {
         this.nom = nom;
         this.reference = reference;
@@ -153,6 +156,7 @@ public class Produit {
     public void setImage(String image) {
         this.image = image;
     }
+    
 
     // To String
     @Override
