@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0" prefWidth="1142.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CommentgridController">
+   <children>
+      <HBox layoutX="316.0" layoutY="85.0" prefHeight="603.0" prefWidth="768.0">
+         <children>
+            <ScrollPane fx:id="scrollpane" prefHeight="640.0" prefWidth="773.0">
+               <content>
+                  <GridPane fx:id="grid1" alignment="TOP_CENTER" prefHeight="170.0" prefWidth="770.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </HBox>
+      <VBox alignment="TOP_CENTER" layoutY="-1.0" prefHeight="702.0" prefWidth="280.0" style="-fx-background-color: #17A589;">
+         <padding>
+            <Insets top="100.0" />
+         </padding>
+      </VBox>
+      <Text fontSmoothingType="LCD" layoutX="473.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMMENTAIRES" textAlignment="CENTER" wrappingWidth="379.69140625">
+         <fill>
+            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#4fae7c" />
+                  <Stop color="#50a1ad" offset="0.0392156862745098" />
+                  <Stop color="#50ad7f" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <font>
+            <Font name="System Bold" size="44.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="65.0" fitWidth="82.0" layoutX="1043.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@IMG/icons8-posts-60.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

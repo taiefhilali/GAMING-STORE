@@ -86,7 +86,7 @@ Servicepost spost=new Servicepost();
     
     private boolean ValidateFields() {
           Date myDate = Date.valueOf(datePK.getValue().toString());
-        if(contenuTF.getText().isEmpty() | titreTF.getText().isEmpty() | datePK.getValue().equals(myDate) |  userTF.getText().isEmpty()) {
+        if(contenuTF.getText().isEmpty() | titreTF.getText().isEmpty() | datePK.getValue()==null |  userTF.getText().isEmpty()) {
              Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Validate Fields");
         alert.setHeaderText(null);
@@ -96,6 +96,8 @@ Servicepost spost=new Servicepost();
         }
         return true;
     }
+    
+    
     private boolean ValidateFields2() {
         Servicepost bs= new Servicepost();
         if(Integer.parseInt(bs.calculer_nbp(contenuTF.getText())) != 0) {

@@ -37,10 +37,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Window;
-import models.Comment;
+
 import javafx.stage.Stage;
 import models.Post;
 import models.User;
+import models.Comment;
 import services.Servicecomment;
 import services.Servicepost;
 import styles.ToggleSwitch;
@@ -156,17 +157,19 @@ public class Show_CommentFXMLController implements Initializable {
             commTF.setText(selectedPost.getContenu());
            
             update.setOnAction(action -> {
-                Servicecomment scomment = new Servicecomment();
-                selectedPost.setContenu(commTF.getText());
-                selectedPost.setLabel(labTF.getText());
-                //post.setId_user(userTF.getText().);
-
-                //post.setDatep(DATEP);
-                scomment.modifierComment(selectedPost);
-                tablecomm.refresh();
-//System.out.println("ppppppppppppp"+selectedPost);
-                showAlert(Alert.AlertType.INFORMATION, ((Node) action.getSource()).getScene().getWindow(),
-                        "succès!", "modification post avec succès");
+                
+                
+//                Servicecomment scomment = new Servicecomment();
+//                selectedPost.setContenu(commTF.getText());
+//                selectedPost.setLabel(labTF.getText());
+//                //post.setId_user(userTF.getText().);
+//
+//                //post.setDatep(DATEP);
+//                scomment.modifierComment(selectedPost);
+//                tablecomm.refresh();
+////System.out.println("ppppppppppppp"+selectedPost);
+//                showAlert(Alert.AlertType.INFORMATION, ((Node) action.getSource()).getScene().getWindow(),
+//                        "succès!", "modification post avec succès");
             });
             supp.setOnAction(g -> {
                 Servicecomment scomment = new Servicecomment();
@@ -219,7 +222,7 @@ public class Show_CommentFXMLController implements Initializable {
     private void top(KeyEvent event) {
            Servicecomment scomment= new Servicecomment();
                   if (event.getCode().equals(KeyCode.SPACE)){
-                      topp.setText(scomment.bestpost(24).toString());}  
+                      topp.setText(scomment.bestpost(21).toString());}  
         
         
     }

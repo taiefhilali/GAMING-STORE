@@ -33,6 +33,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -45,10 +46,12 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import models.Post;
 import models.User;
+import services.ServiceVote;
 import services.Servicepost;
 
 /**
  * FXML Controller class
+ *
  *
  * @author msi
  */
@@ -96,6 +99,10 @@ public class UPDATE_PostFXMLController implements Initializable {
     private Parent root;
     @FXML
     private Button cmnt;
+    @FXML
+    private RadioButton like;
+    @FXML
+    private RadioButton dislike;
 
     private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
@@ -214,12 +221,12 @@ public class UPDATE_PostFXMLController implements Initializable {
 
                 if (Cours.getContent().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true; // Filter matches first name.
-                    //} 
-                    // else if (Cours.getTitle().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
-                    //	return true; // Filter matches first name.
+                    } 
+                     else if (Cours.getTitle().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+                    return true; // Filter matches first name.
 
-                } // else if (String.valueOf(Cours.getDatep()).indexOf(lowerCaseFilter)!=-1)
-                //  return true;
+                }  else if (String.valueOf(Cours.getDatep()).indexOf(lowerCaseFilter)!=-1)
+                  return true;
                 else {
                     return false; // Does not match.
                 }
@@ -252,6 +259,14 @@ public class UPDATE_PostFXMLController implements Initializable {
 
                 //post.setDatep(DATEP);
                 spost.modifierPost(selectedPost);
+                try {
+                    root = FXMLLoader.load(getClass().getResource("postgrid.fxml"));
+                    stage = (javafx.stage.Stage) ((Node) action.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException ex) {
+                }
                 tablepost.refresh();
                 System.out.println("ppppppppppppp" + selectedPost);
                 showAlert(Alert.AlertType.INFORMATION, ((Node) action.getSource()).getScene().getWindow(),
@@ -273,6 +288,40 @@ public class UPDATE_PostFXMLController implements Initializable {
                 showAlert(Alert.AlertType.INFORMATION, ((Node) g.getSource()).getScene().getWindow(),
                         "succès!", "suppression de publication avec succès");
                 tablepost.getItems().removeAll(tablepost.getSelectionModel().getSelectedItem());
+
+            });
+
+            like.setOnAction(lk -> {
+                ServiceVote svote = new ServiceVote();
+                svote.upVote(tablepost.getSelectionModel().getSelectedItem().getId(), tablepost.getSelectionModel().getSelectedItem().getId_user().getId());
+                try {
+                    root = FXMLLoader.load(getClass().getResource("UPDATE_PostFXML.fxml"));
+                    like.isSelected();
+                } catch (IOException ex) {
+                }
+                stage = (Stage) ((Node) lk.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                tablepost.refresh();
+                showAlert(Alert.AlertType.INFORMATION, ((Node) lk.getSource()).getScene().getWindow(),
+                        "upvote pressed!", "Post liked ");
+
+            });
+            dislike.setOnAction(dlk -> {
+                ServiceVote svote = new ServiceVote();
+                svote.downVote(tablepost.getSelectionModel().getSelectedItem().getId(), tablepost.getSelectionModel().getSelectedItem().getId_user().getId());
+                try {
+                    root = FXMLLoader.load(getClass().getResource("UPDATE_PostFXML.fxml"));
+                } catch (IOException ex) {
+                }
+                stage = (Stage) ((Node) dlk.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                tablepost.refresh();
+                showAlert(Alert.AlertType.INFORMATION, ((Node) dlk.getSource()).getScene().getWindow(),
+                        "downvote pressed!", "Post disliked");
 
             });
 
@@ -423,7 +472,7 @@ public class UPDATE_PostFXMLController implements Initializable {
     @FXML
     private void commenter(ActionEvent event) {
         try {
-            root = FXMLLoader.load(getClass().getResource("Show_CommentFXML.fxml"));
+            root = FXMLLoader.load(getClass().getResource("commentgrid.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);

@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -155,7 +156,8 @@ Alert alert =new Alert(Alert.AlertType.INFORMATION);//hethika l combo ? lee
     
     private boolean ValidateFields() {
           Date myDate = Date.valueOf(datePK.getValue().toString());
-        if(contenuTF.getText().isEmpty() | titreTF.getText().isEmpty() | datePK.getValue().equals(myDate)) {
+          Date today= Date.valueOf(LocalDate.MAX);
+        if(contenuTF.getText().isEmpty() | titreTF.getText().isEmpty() | userTF.getValue()==null|datePK.getValue()==null){
              Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Validate Fields");
         alert.setHeaderText(null);

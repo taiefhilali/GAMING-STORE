@@ -27,12 +27,14 @@ public class ForumFXMain extends Application {
     public void start(Stage stage) throws Exception {
         //****UPDATE POST+show******//
   // Parent root = FXMLLoader.load(getClass().getResource("UPDATE_PostFXML.fxml"));
-    // Parent root = FXMLLoader.load(getClass().getResource("FXML.fxml"));
-    //  Parent root = FXMLLoader.load(getClass().getResource("ADD_CommentFXML.fxml"));
+     //Parent root = FXMLLoader.load(getClass().getResource("postgrid.fxml"));
+   // Parent root = FXMLLoader.load(getClass().getResource("ADD_CommentFXML.fxml"));
        //  Parent root = FXMLLoader.load(getClass().getResource("Show_PostFXML.fxml"));
       //Parent root = FXMLLoader.load(getClass().getResource("Piechart.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("Show_CommentFXML.fxml"));
-         Parent root = FXMLLoader.load(getClass().getResource("GestionPostCommentaire.fxml"));
+     //Parent root = FXMLLoader.load(getClass().getResource("Forumacceuil.fxml"));
+   //Parent root = FXMLLoader.load(getClass().getResource("rating.fxml"));
+   Parent root = FXMLLoader.load(getClass().getResource("postgrid.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         

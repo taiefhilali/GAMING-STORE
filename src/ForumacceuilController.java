@@ -15,26 +15,19 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
  *
  * @author msi
  */
-public class GestionPostCommentaireController implements Initializable {
+public class ForumacceuilController implements Initializable {
 
-    @FXML
-    private AnchorPane AnchorPane;
     @FXML
     private Button switchToAddInterface;
 private javafx.stage.Stage stage;
     private Scene scene;
     private Parent root;
-    /**
-     * Initializes the controller class.
-     
-    /**
     /**
      * Initializes the controller class.
      */
@@ -52,8 +45,8 @@ private javafx.stage.Stage stage;
     }
 
     @FXML
-    private void switchToAddInterface(ActionEvent event) {
-        try {  
+    private void switchToAddInterface(ActionEvent event) throws IOException  {
+        try {
             root = FXMLLoader.load(getClass().getResource("FXML.fxml"));
             stage = (javafx.stage.Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
@@ -61,12 +54,12 @@ private javafx.stage.Stage stage;
             stage.show();
         } catch (IOException ex) {
         }
-        
+
     }
 
     @FXML
     private void switchToListInterface(ActionEvent event) {
-           try {
+          try {
             root = FXMLLoader.load(getClass().getResource("UPDATE_PostFXML.fxml"));
             stage = (javafx.stage.Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
@@ -74,4 +67,6 @@ private javafx.stage.Stage stage;
             stage.show();
         } catch (IOException ex) {
         }
-    }}
+    }
+    
+}

@@ -4,6 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -22,7 +23,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="607.0" prefWidth="1389.0" stylesheets="@styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UPDATE_PostFXMLController">
    <children>
-      <AnchorPane id="AnchorPane" fx:id="scenePane" layoutX="9.0" layoutY="7.0" opacity="0.63" prefHeight="593.0" prefWidth="1495.0">
+      <AnchorPane id="AnchorPane" fx:id="scenePane" layoutX="9.0" layoutY="7.0" opacity="0.63" prefHeight="603.0" prefWidth="1373.0">
          <children>
             <VBox layoutX="47.0" layoutY="95.0" prefHeight="443.0" prefWidth="101.0" spacing="180.0">
                <children>
@@ -52,7 +53,7 @@
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Button>
-            <TableView fx:id="tablepost" layoutX="824.0" layoutY="123.0" onMouseClicked="#receiveData" prefHeight="415.0" prefWidth="548.0">
+            <TableView fx:id="tablepost" layoutX="731.0" layoutY="123.0" onMouseClicked="#receiveData" prefHeight="415.0" prefWidth="644.0">
               <columns>
                 <TableColumn minWidth="0.0" prefWidth="0.0" text="C2" />
                   <TableColumn fx:id="TITLE" minWidth="-1.0" prefWidth="137.0" text="TITLE" />
@@ -144,6 +145,8 @@
                </effect>
             </Label>
             <Text layoutX="970.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Occurence" />
+            <RadioButton fx:id="like" layoutX="590.0" layoutY="412.0" mnemonicParsing="false" text="Upvote" />
+            <RadioButton fx:id="dislike" layoutX="590.0" layoutY="490.0" mnemonicParsing="false" text="Downvote" />
          </children>
       </AnchorPane>
    </children>

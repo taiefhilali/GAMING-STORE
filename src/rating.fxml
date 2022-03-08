@@ -9,6 +9,6 @@
    <children>
       <Rating fx:id="rating" layoutX="115.0" layoutY="20.0" prefHeight="32.0" prefWidth="222.0" />
       <Label layoutX="186.0" layoutY="69.0" />
-      <Label fx:id="msg" layoutX="176.0" layoutY="69.0" />
+      <Label fx:id="msg" layoutX="133.0" layoutY="69.0" prefHeight="21.0" prefWidth="140.0" />
    </children>
 </AnchorPane>

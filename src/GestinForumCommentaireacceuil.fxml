@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root id="AnchorPane" prefHeight="400.0" prefWidth="600.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionPostCommentaireController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GestionUsersController">
    <children>
       <AnchorPane layoutX="-14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="990.0" style="-fx-background-color: #fff;">
          <children>
@@ -21,18 +21,6 @@
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/418545-200.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                  </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="0.0" mnemonicParsing="false" onAction="#switchToUsers" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #76D7C4;" stylesheets="@styleg.css" text="Gestion des utilisateurs">
-                     <graphic>
-                        <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icons8_Person_32px.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -91,4 +79,4 @@
          </children>
       </AnchorPane>
    </children>
-</fx:root>
+</AnchorPane>
