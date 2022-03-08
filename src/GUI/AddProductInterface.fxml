@@ -10,140 +10,143 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" onMouseClicked="#clearonWhiteSpace" prefHeight="599.0" prefWidth="1224.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AddProductInterfaceController">
+<AnchorPane id="AnchorPane" onMouseClicked="#clearonWhiteSpace" prefHeight="649.0" prefWidth="1259.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AddProductInterfaceController">
     <stylesheets>
         <URL value="@style.css" />
     </stylesheets>
    <children>
-      <VBox layoutX="13.0" layoutY="142.0" prefHeight="333.0" prefWidth="309.0" spacing="20.0">
+      <Label layoutX="316.0" layoutY="419.0" text="Nom:">
+         <font>
+            <Font name="Cambria" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="315.0" layoutY="468.0" text="Reference :">
+         <font>
+            <Font name="Cambria" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="316.0" layoutY="511.0" text="Catégorie :">
+         <font>
+            <Font name="Cambria" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="317.0" layoutY="556.0" text="Prix :">
+         <font>
+            <Font name="Cambria" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="645.0" layoutY="419.0" text="Description :">
+         <font>
+            <Font name="Cambria" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="644.0" layoutY="468.0" text="Fournisseur :">
+         <font>
+            <Font name="Cambria" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="644.0" layoutY="514.0" text="Promotion :">
+         <font>
+            <Font name="Cambria" size="18.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="anchorFormulaire" layoutX="13.0" layoutY="436.0">
          <children>
-            <Label text="Nom produit :">
-               <font>
-                  <Font name="Cambria" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="10.0" text="Reference :">
-               <font>
-                  <Font name="Cambria" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="27.0" text="Catégorie :">
-               <font>
-                  <Font name="Cambria" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="44.0" text="Prix :">
-               <font>
-                  <Font name="Cambria" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="61.0" text="Description :">
-               <font>
-                  <Font name="Cambria" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="78.0" text="Fournisseur :">
-               <font>
-                  <Font name="Cambria" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="95.0" text="Promotion :">
-               <font>
-                  <Font name="Cambria" size="18.0" />
-               </font>
-            </Label>
-            <AnchorPane fx:id="anchorFormulaire">
-               <children>
-                  <TextField fx:id="id_Produit" prefHeight="25.0" prefWidth="291.0" promptText="ID Produit" visible="false" />
-                  <Label layoutX="1.0" text="Image:">
-                     <font>
-                        <Font name="Cambria" size="18.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="image" layoutX="113.0" layoutY="-1.0" mnemonicParsing="false" onAction="#image" prefHeight="25.0" prefWidth="176.0" style="-fx-background-color: #f7dc6f; -fx-border-color: black;" text="Télécharger Image">
-                     <font>
-                        <Font name="Cambria" size="17.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
+            <TextField fx:id="id_Produit" prefHeight="25.0" prefWidth="291.0" promptText="ID Produit" visible="false" />
          </children>
-      </VBox>
-      <VBox layoutX="126.0" layoutY="144.0" prefHeight="273.0" prefWidth="176.0" spacing="16.0">
-         <children>
-            <TextField fx:id="nomProduitTF" prefHeight="25.0" prefWidth="162.0" />
-            <TextField fx:id="referenceTF" layoutX="10.0" layoutY="10.0" />
-            <ComboBox fx:id="comboBoxCat" prefHeight="25.0" prefWidth="179.0" />
-            <TextField fx:id="prixTF" layoutX="10.0" layoutY="60.0" />
-            <TextField fx:id="descriptionTF" layoutX="10.0" layoutY="85.0" />
-            <ComboBox fx:id="comboFourn" layoutX="10.0" layoutY="92.0" prefHeight="25.0" prefWidth="177.0" />
-            <TextField fx:id="promotionTF" layoutX="10.0" layoutY="135.0" prefHeight="12.0" prefWidth="176.0">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </TextField>
-         </children>
-      </VBox>
-      <TableView fx:id="productsTV" layoutX="327.0" layoutY="184.0" prefHeight="277.0" prefWidth="887.0">
+      </AnchorPane>
+      <VBox layoutX="126.0" layoutY="144.0" prefHeight="273.0" prefWidth="176.0" spacing="16.0" />
+      <TableView fx:id="productsTV" layoutX="316.0" layoutY="121.0" prefHeight="277.0" prefWidth="930.0">
          <columns>
-            <TableColumn fx:id="colNomProd" prefWidth="114.0" text="Nom Produit" />
-            <TableColumn fx:id="colReference" prefWidth="107.0" text="Reference" />
-            <TableColumn fx:id="colCategorie" prefWidth="75.0" text="Categorie" />
-            <TableColumn fx:id="colPrix" prefWidth="61.0" text="Prix" />
+            <TableColumn fx:id="colNomProd" prefWidth="142.0" text="Nom Produit" />
+            <TableColumn fx:id="colReference" prefWidth="79.0" text="Reference" />
+            <TableColumn fx:id="colCategorie" prefWidth="84.0" text="Categorie" />
+            <TableColumn fx:id="colPrix" prefWidth="52.0" text="Prix" />
             <TableColumn fx:id="colDescription" prefWidth="132.0" text="Description" />
-            <TableColumn fx:id="colFournisseur" minWidth="0.0" prefWidth="163.0" text="Fournisseur" />
-            <TableColumn fx:id="colPromotion" prefWidth="137.0" text="Promotion" />
+            <TableColumn fx:id="colFournisseur" minWidth="0.0" prefWidth="151.0" text="Fournisseur" />
+            <TableColumn fx:id="colPromotion" prefWidth="149.0" text="Promotion" />
             <TableColumn fx:id="colIdProd" minWidth="0.0" prefWidth="44.0" text="ID" visible="false" />
-            <TableColumn fx:id="col_Action" minWidth="1.0" prefWidth="97.0" text="CalculProm" />
+            <TableColumn fx:id="col_Action" minWidth="1.0" prefWidth="140.0" text="CalculProm" />
          </columns>
       </TableView>
-      <Button fx:id="btnAjout" contentDisplay="CENTER" layoutX="10.0" layoutY="494.0" mnemonicParsing="false" onAction="#ajouterProduitAction" prefHeight="65.0" prefWidth="291.0" style="-fx-border-color: black; -fx-background-color: #aed6f1;" text="Ajouter">
+      <Button fx:id="btnAjout" contentDisplay="CENTER" layoutX="1003.0" layoutY="412.0" mnemonicParsing="false" onAction="#ajouterProduitAction" prefHeight="48.0" prefWidth="116.0" style="-fx-border-color: black; -fx-background-color: #aed6f1;" text="Ajouter">
          <font>
             <Font name="Cambria" size="22.0" />
          </font></Button>
-      <Button fx:id="btnModif" contentDisplay="CENTER" layoutX="382.0" layoutY="494.0" mnemonicParsing="false" onAction="#modifierProduitAction" prefHeight="65.0" prefWidth="207.0" style="-fx-border-color: black; -fx-background-color: #f7dc6f;" text="Modifier">
+      <Button fx:id="btnModif" contentDisplay="CENTER" layoutX="1137.0" layoutY="412.0" mnemonicParsing="false" onAction="#modifierProduitAction" prefHeight="48.0" prefWidth="116.0" style="-fx-border-color: black; -fx-background-color: #f7dc6f;" text="Modifier">
          <font>
-            <Font size="15.0" />
+            <Font size="22.0" />
          </font></Button>
-      <Button fx:id="btn_retour" alignment="CENTER_RIGHT" layoutX="1016.0" layoutY="481.0" mnemonicParsing="false" onAction="#switchTo" prefHeight="100.0" prefWidth="198.0" style="-fx-background-color: #abebc6  #abebc6; -fx-border-color: black;" text="Retour">
+      <Button fx:id="btn_retour" alignment="CENTER_RIGHT" layoutX="1051.0" layoutY="569.0" mnemonicParsing="false" onAction="#switchTo" prefHeight="75.0" prefWidth="151.0" style="-fx-background-color: #abebc6  #abebc6; -fx-border-color: black;" text="Retour">
          <font>
             <Font name="Cambria" size="20.0" />
          </font></Button>
-      <Button fx:id="btnSuppression" contentDisplay="CENTER" layoutX="708.0" layoutY="494.0" mnemonicParsing="false" onAction="#supprimerProduitAction" prefHeight="65.0" prefWidth="207.0" style="-fx-border-color: black; -fx-background-color: #f7dc6f;" text="Supprimer">
+      <Button fx:id="btnSuppression" contentDisplay="CENTER" layoutX="1003.0" layoutY="479.0" mnemonicParsing="false" onAction="#supprimerProduitAction" prefHeight="65.0" prefWidth="247.0" style="-fx-border-color: black; -fx-background-color: #f7dc6f;" text="Supprimer">
          <font>
             <Font size="15.0" />
          </font></Button>
-      <TextField fx:id="ChercheTF" layoutX="327.0" layoutY="142.0" onAction="#chercherProduitMet" onKeyPressed="#chercherProduits" prefHeight="37.0" prefWidth="887.0" promptText="Chercher un produit...." />
-      <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="1181.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="ChercheTF" layoutX="315.0" layoutY="76.0" onKeyReleased="#chercherProduits" prefHeight="37.0" prefWidth="930.0" promptText="Chercher un produit...." />
+      <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="1203.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/500px-Search_Icon.svg.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="119.0" fitWidth="176.0" layoutX="155.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/game-control.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="504.0" layoutY="23.0" prefHeight="65.0" prefWidth="523.0" text="Gestionnaire des produits" textFill="#5560ff">
+      <Label layoutX="586.0" layoutY="17.0" prefHeight="37.0" prefWidth="373.0" text="Gestionnaire des produits" textFill="#5560ff">
          <font>
-            <Font name="Cambria" size="44.0" />
+            <Font name="Cambria" size="32.0" />
          </font>
       </Label>
-      <ImageView fitHeight="56.0" fitWidth="49.0" layoutX="478.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="31.0" fitWidth="53.0" layoutX="571.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/label.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="83.0" layoutX="1040.0" layoutY="494.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="48.0" fitWidth="60.0" layoutX="1061.0" layoutY="583.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/exchange.png" />
          </image>
       </ImageView>
       <ImageView fx:id="screenshotView" fitHeight="75.0" fitWidth="99.0" layoutX="282.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true" visible="false" />
-      <Button fx:id="btnqr" layoutX="1078.0" layoutY="94.0" mnemonicParsing="false" onMouseClicked="#generateQRCode" text="QR Code" />
-      <Button fx:id="btnexport" layoutX="1014.0" layoutY="94.0" mnemonicParsing="false" onAction="#exportAsExcel" text="Export" />
+      <Button fx:id="btnqr" layoutX="401.0" layoutY="607.0" mnemonicParsing="false" onMouseClicked="#generateQRCode" text="QR Code" />
+      <Button fx:id="btnexport" layoutX="317.0" layoutY="607.0" mnemonicParsing="false" onAction="#exportAsBarcode" text="Barcode" />
+      <Button fx:id="dbButton" layoutX="485.0" layoutY="607.0" mnemonicParsing="false" onMouseClicked="#visitDB" text="Database" />
+      <TextField fx:id="nomProduitTF" layoutX="421.0" layoutY="418.0" prefHeight="25.0" prefWidth="162.0" />
+      <TextField fx:id="referenceTF" layoutX="421.0" layoutY="467.0" prefHeight="25.0" prefWidth="162.0" />
+      <ComboBox fx:id="comboBoxCat" layoutX="421.0" layoutY="513.0" prefHeight="25.0" prefWidth="162.0" />
+      <TextField fx:id="prixTF" layoutX="421.0" layoutY="555.0" prefHeight="25.0" prefWidth="162.0" />
+      <Label layoutX="644.0" layoutY="557.0" text="Image:">
+         <font>
+            <Font name="Cambria" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="descriptionTF" layoutX="780.0" layoutY="418.0" prefHeight="25.0" prefWidth="162.0" />
+      <ComboBox fx:id="comboFourn" layoutX="780.0" layoutY="467.0" prefHeight="25.0" prefWidth="162.0" />
+      <TextField fx:id="promotionTF" layoutX="780.0" layoutY="507.0" prefHeight="31.0" prefWidth="162.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Button fx:id="image" layoutX="780.0" layoutY="551.0" mnemonicParsing="false" onAction="#image" prefHeight="34.0" prefWidth="162.0" style="-fx-background-color: #f7dc6f; -fx-border-color: black;" text="Importer Image">
+         <font>
+            <Font name="Cambria" size="17.0" />
+         </font>
+      </Button>
+      <VBox prefHeight="650.0" prefWidth="291.0" style="-fx-background-color: #17A589;">
+         <children>
+            <HBox alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="116.0" fitWidth="196.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/game-control.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

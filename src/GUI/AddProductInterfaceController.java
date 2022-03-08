@@ -19,6 +19,7 @@ import interfaces.Iproduit;
 import interfaces.Iuser;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Desktop;
 import static java.awt.SystemColor.text;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -102,8 +103,19 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.Barcode128;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.sun.deploy.uitoolkit.impl.fx.HostServicesFactory;
+import com.sun.javafx.application.HostServicesDelegate;
+import java.awt.Desktop;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.Writer;
 import static java.lang.Thread.sleep;
+import javafx.application.HostServices;
 import javax.swing.text.Document;
+import models.jointCategorie;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.krysalis.barcode4j.impl.code39.Code39Bean;
 import org.krysalis.barcode4j.impl.upcean.EAN13Bean;
 import org.krysalis.barcode4j.tools.UnitConv;
@@ -119,6 +131,7 @@ public class AddProductInterfaceController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private final ObservableList<Produit> obsProduit = FXCollections.observableArrayList();
     Iproduit sp = new ServiceProduit();
     Iuser su = new ServiceUser();
     List<Produit> listProd = sp.afficherProduit();
@@ -140,19 +153,19 @@ public class AddProductInterfaceController implements Initializable {
     @FXML
     private TextField promotionTF;
     @FXML
-    private TableColumn<Produit, String> colNomProd;
+    private TableColumn<jointCategorie, String> colNomProd;
     @FXML
-    private TableColumn<Produit, String> colReference;
+    private TableColumn<jointCategorie, String> colReference;
     @FXML
-    private TableColumn<Produit, Categorie> colCategorie;
+    private TableColumn<jointCategorie, String> colCategorie;
     @FXML
-    private TableColumn<Produit, Double> colPrix;
+    private TableColumn<jointCategorie, Double> colPrix;
     @FXML
-    private TableColumn<Produit, String> colDescription;
+    private TableColumn<jointCategorie, String> colDescription;
     @FXML
-    private TableColumn<Produit, String> colFournisseur;
+    private TableColumn<jointCategorie, String> colFournisseur;
     @FXML
-    private TableColumn<Produit, Double> colPromotion;
+    private TableColumn<jointCategorie, Double> colPromotion;
     @FXML
     private Button btnAjout;
     @FXML
@@ -162,19 +175,19 @@ public class AddProductInterfaceController implements Initializable {
     @FXML
     private Button btn_retour;
     @FXML
-    private TableView<Produit> productsTV;
+    private TableView<jointCategorie> productsTV;
     @FXML
     private ComboBox comboBoxCat;
     @FXML
     private ComboBox comboFourn;
     @FXML
-    private TableColumn<Produit, Integer> colIdProd;
+    private TableColumn<jointCategorie, Integer> colIdProd;
     @FXML
     private TextField ChercheTF;
 
     // Le bouton de calcul de promotion metier
     @FXML
-    private TableColumn<Produit, Produit> col_Action = new TableColumn<>("Calculer Promotion");
+    private TableColumn<jointCategorie, jointCategorie> col_Action = new TableColumn<>("Calculer Promotion");
     @FXML
     private TextField id_Produit;
     @FXML
@@ -187,22 +200,29 @@ public class AddProductInterfaceController implements Initializable {
     private Button btnexport;
     @FXML
     private AnchorPane anchorFormulaire;
+    @FXML
+    private Button dbButton;
 
     /**
      * Initializes the controller class.
      */
     // Création d'une alerte lors du crud
-    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+    private boolean showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.initOwner(owner);
-        alert.show();
+        Optional<ButtonType> action = alert.showAndWait();
+        if (action.get() == ButtonType.OK) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb
+    ) {
 
         // Désactivation des boutons
 ////        btnModif.setDisable(true);
@@ -210,28 +230,32 @@ public class AddProductInterfaceController implements Initializable {
 ////        btnqr.setDisable(true);
 //      anchorFormulaire.setOpacity(0);
         List<Produit> prodDataBase = sp.afficherProduit();
+        Produit p2 = new Produit();
 
         // Méthode de séléction d'un élement du TV aprés clique sur le curseur
         productsTV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 if (productsTV.getSelectionModel().getSelectedItem() != null) {
-                    Produit selectedProduit = productsTV.getSelectionModel().getSelectedItem();
+                    jointCategorie selectedProduit = productsTV.getSelectionModel().getSelectedItem();
 //                    System.out.println(selectedProduit);
-                    id_Produit.setText(String.valueOf(selectedProduit.getId_produit()));
-                    nomProduitTF.setText(selectedProduit.getNom());
-                    referenceTF.setText(selectedProduit.getReference());
-                    comboBoxCat.setValue(selectedProduit.getCategorie().getNom_categorie());
-                    String p = String.valueOf(selectedProduit.getPrix());
+                    id_Produit.setText(String.valueOf(selectedProduit.getIdProd()));
+                    nomProduitTF.setText(selectedProduit.getNomProd());
+                    referenceTF.setText(selectedProduit.getRefProd());
+                    comboBoxCat.setValue(selectedProduit.getNomCat());
+                    String p = String.valueOf(selectedProduit.getPrixProd());
                     prixTF.setText(p);
-                    descriptionTF.setText(selectedProduit.getDescription());
-                    comboFourn.setValue(selectedProduit.getUser().getEmail());
+                    descriptionTF.setText(selectedProduit.getDescriptionProd());
+                    comboFourn.setValue(selectedProduit.getEmailUser());
 
+//                    image.setselectedProduit(selectedProduit.getImage()));
 //                    int index = selectedProduit.getUser().toString().indexOf("email");
 //                    int indexlast = selectedProduit.getUser().toString().indexOf(", password");
-                    String a = String.valueOf(selectedProduit.getPromotion());
+                    String a = String.valueOf(selectedProduit.getPromotionProd());
                     promotionTF.setText(a);
 
+//                    selectedProduit.setImage(selectedProduit.getImage());
+//                    (image.getContentDisplay(selectedProduit.getImage());
                 } else {
                     productsTV.getSelectionModel().clearSelection();
 
@@ -256,12 +280,10 @@ public class AddProductInterfaceController implements Initializable {
                     comboFourn.getItems().add(u.getEmail());
                 }
         );
-
         afficherProds("");
-
     }
-
     // Fonction Affichage
+
     public void afficherProds(String input) {
 
 //        listProd = sp.chercherProduitDynamiquement(input, sp.afficherProduit());
@@ -269,39 +291,40 @@ public class AddProductInterfaceController implements Initializable {
 
 // Affichge des attributs produits
         colNomProd.setCellValueFactory(
-                new PropertyValueFactory<>("nom"));
+                new PropertyValueFactory<>("nomProd"));
         colReference.setCellValueFactory(
-                new PropertyValueFactory<>("reference"));
+                new PropertyValueFactory<>("RefProd"));
         colCategorie.setCellValueFactory(
-                new PropertyValueFactory<>("categorie"));
+                new PropertyValueFactory<>("NomCat"));
         colPrix.setCellValueFactory(
-                new PropertyValueFactory<>("prix"));
+                new PropertyValueFactory<>("PrixProd"));
         colDescription.setCellValueFactory(
-                new PropertyValueFactory<>("description"));
+                new PropertyValueFactory<>("descriptionProd"));
         colFournisseur.setCellValueFactory(
-                new PropertyValueFactory<>("user"));
+                new PropertyValueFactory<>("emailUser"));
         colPromotion.setCellValueFactory(
-                new PropertyValueFactory<>("promotion"));
+                new PropertyValueFactory<>("PromotionProd"));
         colIdProd.setCellValueFactory(
-                new PropertyValueFactory<>("id_produit"));
+                new PropertyValueFactory<>("idProd"));
         listProd.forEach(
                 (p) -> {
-                    productsTV.getItems().addAll(new Produit(p.getId_produit(), p.getNom(),
-                            p.getReference(), p.getCategorie(), p.getPrix(),
-                            p.getDescription(), p.getUser(), p.getPromotion())
+                    productsTV.getItems().addAll(
+                            new jointCategorie(p.getNom(),
+                                    p.getReference(), p.getCategorie().getNom_categorie(), p.getPrix(),
+                                    p.getDescription(), p.getUser().getEmail(), p.getPromotion(), p.getId_produit())
                     );
 
                     col_Action.setCellValueFactory(
                             param -> new ReadOnlyObjectWrapper<>(param.getValue())
                     );
-                    col_Action.setCellFactory(param -> new TableCell<Produit, Produit>() {
+                    col_Action.setCellFactory(param -> new TableCell<jointCategorie, jointCategorie>() {
                 private final Button calculProm = new Button("Calculer");
 //                calculProm.setPrefWidth(97);
 
                 @Override
-                protected void updateItem(Produit p, boolean empty) {
-                    super.updateItem(p, empty);
-                    if (p == null) {
+                protected void updateItem(jointCategorie jc, boolean empty) {
+                    super.updateItem(jc, empty);
+                    if (jc == null) {
                         setGraphic(null);
                         return;
                     }
@@ -345,7 +368,7 @@ public class AddProductInterfaceController implements Initializable {
                     || (descriptionTF.getText().isEmpty())
                     || (comboFourn.getValue() == null)
                     || (promotionTF.getText().isEmpty())
-                    || (image.getText().isEmpty())) { // ajout des produits
+                    || (selectedFile == null)) { // ajout des produits
                 System.out.println("valeur null");
                 showAlert(Alert.AlertType.ERROR, ((Node) event.getSource()).getScene().getWindow(),
                         " Erreur d'ajout du produit ! ", " Erreur d'ajout! \n Veuillez remplir touts les champs! ");
@@ -357,9 +380,11 @@ public class AddProductInterfaceController implements Initializable {
                         descriptionTF.getText(),
                         su.getByEmail((String) comboFourn.getValue()),
                         Double.parseDouble(promotionTF.getText()),
-                        selectedFile.getAbsolutePath()));
+                        selectedFile.getAbsolutePath().replace("\\", "/")));
+                sp.calculatePromotiononAdd();
+// this.image.getText();
 
-                // ajout
+                // ajout<<
                 root = FXMLLoader.load(getClass().getResource("./AddProductInterface.fxml"));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
@@ -429,8 +454,7 @@ public class AddProductInterfaceController implements Initializable {
                     || (prixTF.getText().isEmpty())
                     || (descriptionTF.getText().isEmpty())
                     || (comboFourn.getValue() == null)
-                    || (promotionTF.getText().isEmpty())
-                    || (image.getText().isEmpty())) { // ajout des produits
+                    || (promotionTF.getText().isEmpty())) { // ajout des produits
                 System.out.println("valeur null");
                 showAlert(Alert.AlertType.ERROR, ((Node) event.getSource()).getScene().getWindow(),
                         " Erreur de modification ! ", " Erreur de modification! \n Veuillez remplir touts les champs! ");
@@ -441,9 +465,9 @@ public class AddProductInterfaceController implements Initializable {
                         Double.parseDouble(prixTF.getText()),
                         descriptionTF.getText(),
                         su.getByEmail((String) comboFourn.getValue()),
-                        Double.parseDouble(promotionTF.getText()))
-                );
+                        Double.parseDouble(promotionTF.getText())));
 
+                sp.calculatePromotiononAdd();
                 root = FXMLLoader.load(getClass().getResource("./AddProductInterface.fxml"));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
@@ -459,6 +483,7 @@ public class AddProductInterfaceController implements Initializable {
 // Insertion d'une Image
     @FXML
     private void image(ActionEvent event) throws MalformedURLException {
+
         FileChooser fc = new FileChooser();
         fc.setTitle("Veuillez choisir l'image du produit en question ");
         String userDirectoryString = System.getProperty("user.home") + "/Desktop";
@@ -485,16 +510,6 @@ public class AddProductInterfaceController implements Initializable {
         }
     }
 
-//Recherche dynamique
-    @FXML
-    private void chercherProduitMet(ActionEvent event
-    ) {
-    }
-
-    //QR Code Generation API    
-    private void generateQRCode(ActionEvent event) throws IOException, WriterException {
-    }
-
     // Fonction de recherche assosié au bouton de recher rechercheTF
     @FXML
     private void chercherProduits(KeyEvent event) {
@@ -519,23 +534,30 @@ public class AddProductInterfaceController implements Initializable {
 
     }
 
+    //QR Code Generation API   
     @FXML
     private void generateQRCode(MouseEvent event) throws WriterException, IOException, InterruptedException {
 
         Icategorie sc = new ServiceCategorie();
-        String qrCodeText = "Le nom du produit est : "
-                + nomProduitTF.getText() + ". \nSa reference est : "
-                + referenceTF.getText() + ". \nSon prix est : "
+        String qrCodeText = "-Le nom du produit est : "
+                + nomProduitTF.getText()
+                + ".\n============="
+                + ". \n-Sa reference est : "
+                + referenceTF.getText()
+                + ".\n============="
+                + ". \n-Son prix est : "
                 + Double.parseDouble(promotionTF.getText())
-                + ". \nSa description est : " + descriptionTF.getText();
+                + ".\n============="
+                + ".\n-Sa description est : " + descriptionTF.getText();
 
         // Vérification de l'emplacement de l'image
-        String filePath = "C:/Users/zaba2/Desktop/Functional APIs Lundi/Levelup/ProduitQR.png";
-
+        String filePath = "D:/PiPictures/ProduitQR.png";
+        // "C:/Users/zaba2/Desktop/Functional APIs Lundi/Levelup/ProduitQR.png";
         // Change path not to ecrase old file
         int size = 500;
         String fileType = "png";
         File qrFile = new File(filePath);
+        createQRImage(qrFile, qrCodeText, size, fileType);
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         alert1.setTitle("Confirmation d'ajout");
         alert1.setHeaderText(null);
@@ -543,23 +565,26 @@ public class AddProductInterfaceController implements Initializable {
         Optional<ButtonType> action = alert1.showAndWait();
         if (action.get() == ButtonType.OK) {
 
-//            showAlert(Alert.AlertType.INFORMATION, ((Node) event.getSource()).getScene().getWindow(),
-//                    " Succés de création ! ", " Création avec succés du QR Code ! ");
-            createQRImage(qrFile, qrCodeText, size, fileType);
+            if (showAlert(Alert.AlertType.INFORMATION, ((Node) event.getSource()).getScene().getWindow(),
+                    " Succés de création ! ", " Génération avec succés du code QR du produits ! " + "\n " + nomProduitTF.getText())) {
+                File f1 = new File("D:/PiPictures/ProduitQR.png");
+                Desktop d = Desktop.getDesktop();
+                d.open(f1);
+//                root = FXMLLoader.load(getClass().getResource("./InterfaceCodeQR.fxml"));
+//                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//                scene = new Scene(root);
+//                stage.setScene(scene);
 
 //            Thread.sleep(2);
 //C:\Users\zaba2\Desktop\Functional APIs Lundi\Levelup
-            System.out.println(" Création du code QR avec succés ");
+                System.out.println(" Création du code QR avec succés ");
+                createQRImage(qrFile, qrCodeText, size, fileType);
+            }
+
         }
-        root = FXMLLoader.load(getClass().getResource("./InterfaceCodeQR.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.showAndWait();
-
     }
-    // Execution du méthode du codage
 
+    // Execution du méthode du codage
     private static void createQRImage(File qrFile, String qrCodeText, int size, String fileType)
             throws WriterException, IOException {
         // Create the ByteMatrix for the QR-Code that encodes the given String
@@ -592,7 +617,8 @@ public class AddProductInterfaceController implements Initializable {
     // Fonction du bouton Export as Barcode PDF
     // Code a bar
     @FXML
-    private void exportAsExcel(ActionEvent event) throws WriterException, IOException {
+    private void exportAsBarcode(ActionEvent event) throws IOException {
+
         // alerte de confirmation
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         alert1.setTitle("Confirmation de création");
@@ -606,33 +632,30 @@ public class AddProductInterfaceController implements Initializable {
 //            scene = new Scene(root);
 //            stage.setScene(scene);
 //            stage.show();
-            String barCodePath = "C:/Users/zaba2/Desktop/Functional APIs Lundi/Levelup/src/images";
+            String barCodePath = "D:/PiPictures/";
             //careful badalt el \\ b / f all file:  careful f getAbsoluePath might have been changed
-            String fileName = "Barcode";
+            String fileName = nomProduitTF.getText() + " Barcode";
             Code39Bean bean39 = new Code39Bean();
-            final int dpi = 160;
-
+            final int dpi = 180;
             //Configure the barcode generator
             bean39.setModuleWidth(UnitConv.in2mm(2.8f / dpi));
-
             bean39.doQuietZone(false);
-
             //Open output file
             File outputFile = new File(barCodePath + fileName + ".JPG");
-
             FileOutputStream out = new FileOutputStream(outputFile);
-
             //Set up the canvas provider for monochrome PNG output
             BitmapCanvasProvider canvas = new BitmapCanvasProvider(
                     out, "image/x-png", dpi, BufferedImage.TYPE_BYTE_BINARY, false, 0);
-
             //Generate the barcode
-            bean39.generateBarcode(canvas, referenceTF.getText());
-
+            bean39.generateBarcode(canvas, nomProduitTF.getText());
+            File f = new File("D:/PiPictures/" + nomProduitTF.getText() + " Barcode.JPG");
             //Signal end of generation
             canvas.finish();
+            System.out.println(" Création avec succés du Code à Bar ");
+            // Ouverture
+            Desktop d = Desktop.getDesktop();
+            d.open(f);
 
-            System.out.println("Bar Code is generated successfully…");
         }
     }
 
@@ -652,13 +675,42 @@ public class AddProductInterfaceController implements Initializable {
 //        Document doc = new Document();
 //        PdfWriter.getInstance(doc, new FileOutputStream("CodesProduits.pdf"));
 //        doc.setPageSize(PageSize.A4);
-//
-//        // Les images : qr code
-//        Image image = Image.getInstance("D:\\PIDEV\\Levelup\\src\\images\\LOGO.png");
-//        image.setAlignment(image.ALIGN_CENTER);
-//        // Les images : code a bar
-//        Image image2 = Image.getInstance("D:\\PIDEV\\Levelup\\src\\images\\LOGO.png");
-//        image.setAlignment(image.ALIGN_CENTER);
-//
 //    }
-}
+    // Bouton permettant d'exporter sous forme de fichier excel / 
+    @FXML
+    private void visitDB(MouseEvent event) throws IOException {
+//        Writer writer = null;
+//        File file = new File("D:\\PiPictures\\Produit.csv.");
+//        writer = new BufferedWriter(new FileWriter(file));
+//        for (Produit p : listProd) {
+//
+//            String text = p.getNom() + "," + p.getPrix() + "," + p.getCategorie().getNom_categorie() + ","
+//                    + p.getPrix() + "," + p.getPromotion()
+//                    + "," + p.getImage() + "," + p.getUser().getEmail() + "\n";
+//            file.setReadable(true);
+//            file.setWritable(true);
+//            writer.write(text);
+//            System.out.println("successfuly generated excel file");
+//            writer.flush();
+//
+//        }
+//    }
+
+        XSSFWorkbook wb = new XSSFWorkbook();
+        XSSFSheet sheet = wb.createSheet("Details Produit");
+        XSSFRow header = sheet.createRow(0);
+        header.createCell(0).setCellValue("Nom Produit");
+        header.createCell(1).setCellValue(" Référence ");
+        header.createCell(2).setCellValue("Prix");
+        header.createCell(3).setCellValue(" Email Fournisseur ");
+        header.createCell(4).setCellValue("Promotion");
+
+        int index = 1;
+        listProd.forEach(
+                (p) -> {
+                    
+                    
+                }
+                    );
+                }
+    }

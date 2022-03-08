@@ -54,23 +54,12 @@ public class ItemController implements Initializable {
     public void setData(Produit produit, MyListener myListener) throws MalformedURLException {
         this.produit = produit;
         this.myListener = myListener;
-        nameLabel.setText(produit.getNom());
-        priceLable.setText("DT" + String.valueOf(produit.getPrix()));
-//        D:\Esprit\Semestre 2\PI-Dev\Week 3 Image attribute\Levelup\src\images/
-        Image imn = new Image("file:/D:/Esprit/Semestre 2/PI-Dev/Week 3 Image attribute/Levelup/src/images/"
-                + produit.getImage(),
-                false
-        );
-//       
+        this.nameLabel.setText(produit.getNom());
+        this.priceLable.setText("DT" + String.valueOf(produit.getPrix()));
 
-//        File tempFile = new File("/D:/Esprit/Semestre 2/PI-Dev/Week 3 Image attribute/Levelup/src/images/");
-//        Image imn = new Image(tempFile.toURI().toURL().toString());
-//        imgItemProduit.setImage(imn);
-//
-//        File file = new File(produit.getImage());
-//        Image im = new Image(file.toURI().toString());
-//        imgItemProduit.setImage(im);
+        Image imn = new Image(
+                "file:/" + produit.getImage());
+        imgItemProduit.setImage(imn);
+        System.out.println("file:/" + produit.getImage());
     }
 }
-
-

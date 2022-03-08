@@ -23,4 +23,6 @@ public interface Iproduit {
 
 //  Pour calculer la promotion :   
     public Double calculerPromotion(Produit p);
+
+    public void calculatePromotiononAdd();
 }

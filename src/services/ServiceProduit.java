@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import models.Categorie;
 import models.User;
@@ -59,7 +61,8 @@ public class ServiceProduit implements Iproduit {
                 + ",`description`='" + p.getDescription()
                 + "',`id_user`=" + p.getUser().getId()
                 + ",`promotion`=" + p.getPromotion()
-                + ",`image`='" + s + "' WHERE id_produit =" + p.getId_produit() + " ";
+                //                + ",`image`='" + s + 
+                + " WHERE id_produit =" + p.getId_produit() + " ";
         try {
             Statement st = cnx.createStatement();
             st.executeUpdate(request);
@@ -101,7 +104,8 @@ public class ServiceProduit implements Iproduit {
                         rs.getDouble(5),
                         rs.getString(6),
                         new User(rs.getString("email")),
-                        rs.getDouble(8)
+                        rs.getDouble(8),
+                        rs.getString(9)
                 //,rs.getString("email"),rs.getString("password"),rs.getString("role"),rs.getString("nom"),rs.getString("prenom"),rs.getString("adresse"),rs.getString("tel"),rs.getDate("dns"))
                 ));
             }
@@ -168,13 +172,27 @@ public class ServiceProduit implements Iproduit {
                 new Categorie(Integer.parseInt(pt.split("-")[3]), pt.split("-")[4]),
                 Double.parseDouble(pt.split("-")[5]),
                 pt.split("-")[6],
-                new User(Integer.parseInt(pt.split("-")[7])),
-                Double.parseDouble(pt.split("-")[8])
+                new User(pt.split("-")[7]),
+                Double.parseDouble(pt.split("-")[8]),
+                pt.split("-")[9]
         ))
                 //Dans le cas ou je veut limiter le nombre des produits affichés         .limit(5)
                 .collect(Collectors.toList());
         return strList;
     }
 
- 
+    @Override
+    public void calculatePromotiononAdd() {
+
+        String query = "UPDATE `produit` SET `prix_final`=`prix`-(`prix`*(`promotion`/100))";
+        Statement st;
+        try {
+            st = cnx.createStatement();
+            st.executeUpdate(query);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
 }

@@ -159,6 +159,7 @@ public class AddCategoryInterfaceController implements Initializable {
                     scene = new Scene(root);
                     stage.setScene(scene);
                     stage.show();
+                    
                     showAlert(Alert.AlertType.INFORMATION, ((Node) event.getSource()).getScene().getWindow(),
                             " Succés! ", " Ajout de la catégorie établie avec succés! ");
                 } else {
@@ -181,23 +182,29 @@ public class AddCategoryInterfaceController implements Initializable {
         alert1.setHeaderText(null);
         alert1.setContentText(" Etes-vous sure de vouloir supprimer cette catégorie ? ");
         Optional<ButtonType> action = alert1.showAndWait();
-
-        if (action.get() == ButtonType.OK) {
-
-            // alerte confirmation suppression
-            sc.supprimerCategorie(new Categorie(Integer.parseInt(IdCategorieTF.getText())));
-
-            root = FXMLLoader.load(getClass().getResource("./AddCategoryInterface.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            showAlert(Alert.AlertType.INFORMATION, ((Node) event.getSource()).getScene().getWindow(),
-                    " Succés  de suppression! ", " Suppression de la catégorie établie avec succés! ");
-
+        if (IdCategorieTF.getText().isEmpty()) {
+            System.out.println(" Aucun champ n'est selectionné ");
+            showAlert(Alert.AlertType.ERROR, ((Node) event.getSource()).getScene().getWindow(),
+                    " Echec de suppression !  ", " Aucun champ n'a été selectionné! ");
         } else {
-            alert1.close();
+            if (action.get() == ButtonType.OK) {
+
+                // alerte confirmation suppression
+                sc.supprimerCategorie(new Categorie(Integer.parseInt(IdCategorieTF.getText())));
+
+                root = FXMLLoader.load(getClass().getResource("./AddCategoryInterface.fxml"));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                showAlert(Alert.AlertType.INFORMATION, ((Node) event.getSource()).getScene().getWindow(),
+                        " Succés de suppression! ", " Suppression de la catégorie établie avec succés! ");
+
+            } else {
+                alert1.close();
+            }
         }
+
     }
 
     @FXML

@@ -21,8 +21,6 @@ public class Produit {
     private User user; // = Fid_fournisseur
     private double promotion;
     private String image;
-    
-   
 
     // Constructeur vide
     public Produit() {
@@ -156,7 +154,6 @@ public class Produit {
     public void setImage(String image) {
         this.image = image;
     }
-    
 
     // To String
     @Override
@@ -166,6 +163,6 @@ public class Produit {
 
     // La méthode de concaténation pour le 1ér métier
     public String concat() {
-        return id_produit + "-" + nom + "-" + reference + "-" + categorie.getId_categorie() + "-" + categorie.getNom_categorie() + "-" + prix + "-" + description + "-" + user.getId() + "-" + promotion + "-";
+        return id_produit + "-" + nom + "-" + reference + "-" + categorie.getId_categorie() + "-" + categorie.getNom_categorie() + "-" + prix + "-" + description + "-" + user.getEmail()+ "-" + promotion + "-" + image + "-"; // probléme d'espace / path : 7othom f dossier sans espace
     }
 }
