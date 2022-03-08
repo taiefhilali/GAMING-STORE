@@ -5,6 +5,7 @@
  */
 package gui;
 
+import interfaces.Iuser;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -20,10 +21,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import models.Livraison;
 import models.Reclamation;
 import models.User;
@@ -31,7 +34,8 @@ import services.ServiceLivraison;
 import services.ServiceLivreur;
 import services.ServiceReclamation;
 import services.ServiceUser;
-import utils.JavamailUtil;
+import utils.Emailer;
+
 
 /**
  * FXML Controller class
@@ -50,6 +54,8 @@ public class GestionReclmationController implements Initializable {
     private Button Supprimer;
     @FXML
     private Button warn;
+    @FXML
+    private Button SMS;
 
     /**
      * Initializes the controller class.
@@ -114,15 +120,18 @@ miseajour();
     private void warnLiv(ActionEvent event) {
                                Reclamation ReclamationSelected = (Reclamation) tableReclamation.getSelectionModel().getSelectedItem();
         ServiceReclamation sr = new ServiceReclamation();
+    
         sr.warn(ReclamationSelected);
 ServiceLivraison SL= new ServiceLivraison();
         Optional<Livraison> L = SL.afficherLivraison().stream().filter(l->l.getId_livraison()==ReclamationSelected.getLivraison().getId_livraison()).findFirst();
-      System.out.print(L.get().getUser());
+      System.out.print("hey"+L.get().getUser());
       ServiceUser us = new ServiceUser();
+     String email = us.getById(L.get().getUser().getId());
       User UserToSent = us.afficherPersonnes().stream().filter(e->e.getId()==L.get().getUser().getId()).findFirst().get();
-
+       
         try {
-            JavamailUtil.sendMailaide(UserToSent.getEmail(), "WARNING", "SERVICE RECLAMATION",ReclamationSelected.getDescription() );
+            Emailer.sendMail(email, "Warning   "+ReclamationSelected.getDescription());
+          //  JavamailUtil.sendMailaide( email, "WARNING", "SERVICE RECLAMATION",ReclamationSelected.getDescription() );
         } catch (Exception ex) {
             Logger.getLogger(GestionReclmationController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -137,5 +146,20 @@ ServiceLivraison SL= new ServiceLivraison();
         Description.setCellValueFactory(new PropertyValueFactory<>("description"));
 
 tableReclamation.setItems(ListRecData);}
+
+    @FXML
+    private void sms(ActionEvent event) throws IOException 
+         {
+            SMS.getScene().getWindow().hide();
+            Stage location = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("sendSms.fxml"));
+            Scene scene = new Scene(root);
+            location.setScene(scene);
+            location.show();
+            location.setResizable(false);
+        } 
     
-}
+        
+    }
+    
+

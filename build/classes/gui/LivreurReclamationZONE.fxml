@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="gui.LivreurReclamationZONEController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LivreurReclamationZONEController">
    <children>
-      <TextArea fx:id="Liste" layoutX="20.0" layoutY="14.0" prefHeight="200.0" prefWidth="481.0" text="Liste des warning " />
+      <TextArea fx:id="Liste" layoutX="183.0" layoutY="20.0" prefHeight="200.0" prefWidth="373.0" text="Liste des warning " />
+      <VBox alignment="TOP_CENTER" layoutX="-17.0" prefHeight="586.0" prefWidth="195.0" style="-fx-background-color: #17A589;">
+         <padding>
+            <Insets top="100.0" />
+         </padding>
+      </VBox>
    </children>
 </AnchorPane>

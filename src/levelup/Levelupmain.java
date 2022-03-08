@@ -20,26 +20,28 @@ public class Levelupmain extends Application {
     
     @Override
       public void start(Stage stage) throws Exception {
-       /*
+      
                   Parent root = FXMLLoader.load(getClass().getResource("/gui/LivreurReclamationZONE.fxml"));
  Scene scene = new Scene(root);
         
         stage.setScene(scene);
         stage.show();
-          */
+          
           //Livreur 
           
           //admin
-          
+         
+         /*
           Parent root = FXMLLoader.load(getClass().getResource("/gui/livadmin.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
         stage.show();
-          
+        */
         //addmin
-          /*
+          
+         /*
          Parent root = FXMLLoader.load(getClass().getResource("/gui/ClientReclamation.fxml"));
         
         Scene scene = new Scene(root);
@@ -47,7 +49,7 @@ public class Levelupmain extends Application {
         stage.setScene(scene);
         stage.show();
         //CLIENT
-        */
+       */
     }
     /**
      * @param args the command line arguments

@@ -46,6 +46,11 @@ public class User {
          this.id_user = id_user;
     }
 
+    public User(int id_user, String email) {
+        this.id_user = id_user;
+        this.email = email;
+    }
+
     //constructeur sans id 
 
     public User(String email, String password, String role, String nom, String prenom, String adresse, String tel,Date dns) {

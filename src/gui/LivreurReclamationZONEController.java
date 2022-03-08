@@ -36,7 +36,7 @@ static int LivreurConnectedId=3;
         ServiceReclamation SR = new ServiceReclamation();
         List<Reclamation> Rlist = SR.ReclamationParLivreur(LivreurConnectedId);
         for(Reclamation r : Rlist){
-        Liste.setText(Liste.getText() + " You are warned : " + r.getDescription() );
+        Liste.setText(Liste.getText() + " You are warned : " + r.getDescription());
         }
         
  }    }

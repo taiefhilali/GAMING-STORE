@@ -118,7 +118,28 @@ public class ServiceUser implements Iuser {
         return ad;
 
     }
+ public String getById(int email) {
+        String req = "SELECT * from user WHERE  user.id_user= '" + email + "' ";
+        User ad = new User();
+        Statement st = null;
+        try {
+            st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+//                String[] adr= rs.getString("adresse").split("/"); ;
+//                Adresse adresse=new Adresse(adr[0], adr[1], adr[2], adr[3]);
+                ad = new User(rs.getInt("id_user"), rs.getString("email"), rs.getString("password"),
+                        rs.getString("role"), rs.getString("nom"), rs.getString("prenom"), rs.getString("adresse"), rs.getString("tel"), rs.getDate("dns"));
+                
+                Date d =Date.valueOf(LocalDate.now());
+                System.out.println((d.getYear())-(rs.getDate("dns").getYear()));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ad.getEmail();
 
+    }
     @Override
     public String authentification(String email, String password) {
         String req = "SELECT * from user WHERE  user.email= '" + email + "' ";
