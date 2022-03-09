@@ -8,9 +8,14 @@ import interfaces.Icomment;
 import interfaces.Ipost;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +24,14 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -44,13 +55,25 @@ public class PostgridController implements Initializable {
     @FXML
     private GridPane grid1;
     List<Post> posts = new ArrayList();
+    @FXML
+    private AnchorPane scenepane;
+    @FXML
+    private Label times;
+    @FXML
+    private TextField entocc;
+    @FXML
+    private TextField occc;
+    
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         // TODO
+                Timenow();
+
         Ipost pst = new Servicepost();
         posts = pst.afficherPost();
         int col = 0;
@@ -66,7 +89,7 @@ public class PostgridController implements Initializable {
                 itemController.setData(posts.get(i));
 //                System.out.println(post);
 
-                if (col == 1) {
+                if (col == 3) {
                     col = 0;
                     row++;
                 }
@@ -92,7 +115,6 @@ public class PostgridController implements Initializable {
       
     }
 
-    @FXML
     private void stat(ActionEvent event) {
           try {
             root = FXMLLoader.load(getClass().getResource("Piechart.fxml"));
@@ -103,6 +125,65 @@ public class PostgridController implements Initializable {
         } catch (IOException ex) {
         }
 
+    }
+
+    @FXML
+    private void exit(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText("You're about to logout!");
+        alert.setContentText("do you want to logout ?");
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            stage = (javafx.stage.Stage) scenepane.getScene().getWindow();
+            System.out.println("you successfully logged out ");
+            boolean stop = true;
+            stage.close();
+        }
+    }
+
+    private volatile boolean stop = false;
+
+    private void Timenow() {
+        Thread thread = new Thread(() -> {
+
+            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
+            while (!stop) {
+                try {
+                    Thread.sleep(1000);
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+                final String timenow = sdf.format(new Date());
+                Platform.runLater(() -> {
+                    times.setText(timenow);
+                });
+            }
+        }
+        );
+        thread.start();
+
+    }
+
+    @FXML
+    private void entocc(KeyEvent event) {
+         Servicepost spost = new Servicepost();
+        String k = null;
+        if (event.getCode().equals(KeyCode.SPACE)) {
+            k = (entocc.getText());
+            occc.setText(spost.calculer_nbp(k));
+        }
+    }
+
+    @FXML
+    private void add(ActionEvent event) {
+         try {
+            root = FXMLLoader.load(getClass().getResource("FXML.fxml"));
+            stage = (javafx.stage.Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+        }
     }
 
 }

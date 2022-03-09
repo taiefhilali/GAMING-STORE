@@ -19,6 +19,7 @@ public interface Ipost {
     public boolean ajouterPost(Post p);
      //lister
     public List<Post> afficherPost();
+    public List<Post>show();
     //update
     
       public boolean modifierPost(Post p);

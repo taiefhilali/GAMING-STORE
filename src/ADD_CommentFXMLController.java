@@ -77,8 +77,6 @@ public class ADD_CommentFXMLController implements Initializable {
     private Comment comment;
     @FXML
     private Circle C1;
-    @FXML
-    private TextField gg;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -120,7 +118,7 @@ public class ADD_CommentFXMLController implements Initializable {
 
     @FXML
     private void addcmnt(ActionEvent event) {
-          Servicecomment sc=new Servicecomment();
+        Servicecomment sc = new Servicecomment();
         // System.out.println(cntTF.getText().length());
         Rotate(C1);
         if (cntTF.getText().length() == 0) {
@@ -132,18 +130,22 @@ public class ADD_CommentFXMLController implements Initializable {
 
         } else {
             //Post p= new Post(Integer.parseInt(pstTF.ge()));
- 
-            // System.out.println(c.toString());
-               if(ValidateFields()){
-            if(ValidateFields2()){  
-            scomment.ajouterComment(new Comment(cntTF.getText(), labTF.getText(), Integer.parseInt(repTF.getText()), pstTF.getValue()));
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);//
-            alert.setTitle("AJOUTER PUBLICATION!");
-            alert.setHeaderText("information!");
-            alert.setContentText("PUBLICATION A ETE AJOUTEE AVEC SUCCES!");
-            alert.showAndWait();
 
-        }}}
+            // System.out.println(c.toString());
+            if (ValidateFields()) {
+                if (ValidateFields2()) {
+                    if (ValidateFields3(cntTF.getText())) {
+                        scomment.ajouterComment(new Comment(cntTF.getText(), labTF.getText(), Integer.parseInt(repTF.getText()), pstTF.getValue()));
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);//
+                        alert.setTitle("AJOUTER PUBLICATION!");
+                        alert.setHeaderText("information!");
+                        alert.setContentText("PUBLICATION A ETE AJOUTEE AVEC SUCCES!");
+                        alert.showAndWait();
+
+                    }
+                }
+            }
+        }
     }
 
     public void GettextVal(String txtval) {
@@ -153,7 +155,7 @@ public class ADD_CommentFXMLController implements Initializable {
     @FXML
     private void returcmnt(ActionEvent event) {
         try {
-            root = FXMLLoader.load(getClass().getResource("GestionPostCommentaire.fxml"));
+            root = FXMLLoader.load(getClass().getResource("commentgrid.fxml"));
             stage = (javafx.stage.Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -161,7 +163,7 @@ public class ADD_CommentFXMLController implements Initializable {
         } catch (IOException ex) {
         }
         Notifications notificationBuilder = Notifications.create()
-                .title("retour vers Acceuil").text("retour envoyé avec succès").graphic(null).hideAfter(javafx.util.Duration.seconds(5))
+                .title("retour vers commentaires").text("retour envoyé avec succès").graphic(null).hideAfter(javafx.util.Duration.seconds(5))
                 .position(Pos.CENTER_LEFT)
                 .onAction(new EventHandler<ActionEvent>() {
                     public void handle(ActionEvent event) {
@@ -184,7 +186,7 @@ public class ADD_CommentFXMLController implements Initializable {
 //}
     private boolean ValidateFields() {
         //Date myDate = Date.valueOf(datePK.getValue().toString());
-        if (cntTF.getText().isEmpty() | labTF.getText().isEmpty() | pstTF.getValue() == null | repTF.getText().isEmpty() ) {
+        if (cntTF.getText().isEmpty() | labTF.getText().isEmpty() | pstTF.getValue() == null | repTF.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Validate Fields");
             alert.setHeaderText(null);
@@ -209,21 +211,59 @@ public class ADD_CommentFXMLController implements Initializable {
         }
         return true;
     }
- 
-   public void Rotate(Circle c){
-     RotateTransition rt = new RotateTransition(Duration.millis(3000),c);
-     rt.setByAngle(360);
-     rt.setCycleCount(5);
-     rt.setAutoReverse(true);
- 
-     rt.play();
 
-} 
-    
+    public void Rotate(Circle c) {
+        RotateTransition rt = new RotateTransition(Duration.millis(3000), c);
+        rt.setByAngle(360);
+        rt.setCycleCount(5);
+        rt.setAutoReverse(true);
+
+        rt.play();
+
+    }
+
     @FXML
     private void g(KeyEvent event) {
-      
-        
+
     }
-    
+
+    private boolean ValidateFields3(String S) {
+        Servicecomment sc = new services.Servicecomment();
+
+        String word = "shit";
+        
+        String result = "";
+        // Creating the censor which is an asterisks
+        // "*" text of the length of censor word
+        String stars = "";
+        for (int i = 0; i < word.length(); i++) {
+            stars += '*';
+        }
+
+        // Iterating through our list
+        // of extracted words
+        int index = 0;
+        String[] word_list = S.split("\\s+");
+        for (String i : word_list) {
+            if (i.compareTo(word) == 0) // changing the censored word to
+            // created asterisks censor
+            {
+                word_list[index] = stars;
+            }
+            index++;
+        }
+
+        // join the words
+        for (String i : word_list) {
+            result += i + ' ';
+        }
+
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("bad word");
+        alert.setHeaderText(null);
+        alert.setContentText(""+result);
+        alert.showAndWait();
+        return false;
+
+    }
 }

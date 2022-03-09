@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import com.sun.org.apache.bcel.internal.generic.LoadInstruction;
 import interfaces.Icomment;
 import java.net.URL;
 import java.util.ArrayList;
@@ -18,8 +19,16 @@ import models.Comment;
 import services.Servicecomment;
 import interfaces.*;
 import java.io.IOException;
+import java.util.ServiceLoader;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 
 /**
@@ -35,6 +44,11 @@ public class CommentgridController implements Initializable {
     private AnchorPane anchor;
     @FXML
     private ScrollPane scrollpane;
+    @FXML
+    private TextField topp;
+       private javafx.stage.Stage stage,stage1;
+    private Scene scene,scene1;
+    private Parent root,root1;
     
   
     
@@ -95,7 +109,43 @@ public class CommentgridController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }    
+
+    @FXML
+    private void top(KeyEvent event) {
+          Servicecomment scomment= new Servicecomment();
+                  if (event.getCode().equals(KeyCode.SPACE)){
+                      topp.setText(scomment.bestpost(21).toString());}  
     }
+
+    @FXML
+    private void stat(ActionEvent event) {
+         try {
+            root = FXMLLoader.load(getClass().getResource("Piechart.fxml"));
+            stage = (javafx.stage.Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+        }
+    }
+
+    @FXML
+    private void chatbot(ActionEvent event) {
+//       // ServiceLoader.loadInstalled("chatbot.java");
+//            try {
+//              //  root=load
+//            root = FXMLLoader.load(getClass().getResource("chatbot.fxml"));
+//            stage = (javafx.stage.Stage) ((Node) event.getSource()).getScene().getWindow();
+//            scene = new Scene(root);
+//            stage.setScene(scene);
+//            stage.show();
+//        } catch (IOException ex) {
+//        }
+        }
+}
+    
+    
+    
     
     
 

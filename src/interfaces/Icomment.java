@@ -26,8 +26,8 @@ public interface Icomment {
       public boolean modifierComment(Comment c);
   //delete
       public boolean supprimerComment(Comment c);
-public Map<Integer, List<String>> bestpost(int nblike);
-      public ArrayList<Comment> sortBynblike();
-    public void Commentsum();
+public Map<Integer, List<String>> bestpost(int resp);
+//      public ArrayList<Comment> sortBynblike();
+   public int Commentsum();
 }
      

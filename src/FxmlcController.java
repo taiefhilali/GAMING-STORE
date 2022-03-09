@@ -73,10 +73,19 @@ public class FxmlcController implements Initializable {
         label.setText(comment.getLabel());
         contenu.setText(comment.getContenu());
         reqsp.setText(String.valueOf(comment.getResp()));
-
+        System.out.println("mmmm");
         upd.setOnAction(
                 event -> {
-                    try {
+//                    try { 
+
+try {
+//            root = FXMLLoader.load(getClass().getResource("commentgrid.fxml"));
+//            stage = (javafx.stage.Stage) ((Node) event.getSource()).getScene().getWindow();
+//            scene = new Scene(root);
+//            stage.setScene(scene);
+//            stage.show();
+//        } catch (IOException ex) {
+//        }
                         switchToEditPage(event, comment);
                     } catch (IOException ex) {
 
@@ -100,7 +109,6 @@ public class FxmlcController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(UPDATE_PostFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -137,18 +145,8 @@ public class FxmlcController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    @FXML
-    private void update(ActionEvent event) {
-// try { 
-//            root = FXMLLoader.load(getClass().getResource("Show_CommentFXML.fxml"));
-//            stage = (javafx.stage.Stage) ((Node) event.getSource()).getScene().getWindow();
-//            scene = new Scene(root);
-//            stage.setScene(scene);
-//            stage.show();
-//        } catch (IOException ex) {
-//        }
-        
-    }
+ 
+    
 
    
 

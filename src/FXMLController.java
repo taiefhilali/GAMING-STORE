@@ -93,17 +93,23 @@ public class FXMLController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText("Erreur de saisie !");
-            alert.setContentText("Vous navez pas saisie le nom");
+            alert.setContentText("Vous navez pas saisie le contenue");
             alert.show();
 
-        } else {
-             Date myDate = Date.valueOf(datePK.getValue().toString());
+        } else if (titreTF.getText().length() == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Erreur de saisie !");
+            alert.setContentText("Vous navez pas saisie le titre");
+            alert.show();}
+        else{
             
         
       //     spost.getusersList();
                 if(ValidateFields()){
             if(ValidateFields2()){  
-                
+                 Date myDate = Date.valueOf(datePK.getValue().toString());
+            
            spost.ajouterPost(new Post(contenuTF.getText(),titreTF.getText(),myDate,userTF.getValue()));
 Alert alert =new Alert(Alert.AlertType.INFORMATION);//hethika l combo ? lee
         alert.setTitle("AJOUTER PUBLICATION!");
@@ -128,7 +134,6 @@ Alert alert =new Alert(Alert.AlertType.INFORMATION);//hethika l combo ? lee
          
     }
 
-    @FXML
     private void ajretourpost(ActionEvent event) {
         
         try {
@@ -145,6 +150,20 @@ Alert alert =new Alert(Alert.AlertType.INFORMATION);//hethika l combo ? lee
         
         
         
+    }
+
+    @FXML
+    private void ret(ActionEvent event) {
+        
+         try {
+            root = FXMLLoader.load(getClass().getResource("postgrid.fxml"));
+            stage = (javafx.stage.Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(UPDATE_PostFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 

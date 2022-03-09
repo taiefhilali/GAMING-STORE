@@ -51,9 +51,9 @@ public class PostitemController implements Initializable {
     @FXML
     private Button upda;
     @FXML
-    private Button like;
+    private RadioButton like;
     @FXML
-    private Button dislike;
+    private RadioButton dislike;
 
     private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
@@ -89,6 +89,8 @@ public class PostitemController implements Initializable {
         );
          like.setOnAction(lk -> {
                 ServiceVote svote = new ServiceVote();
+                                System.out.println("jjjjjjjjj");
+
                 svote.upVote(post.getId(),post.getId_user().getId());
 //                try {
 //                    root = FXMLLoader.load(getClass().getResource("postgridFXML.fxml"));
@@ -118,6 +120,7 @@ public class PostitemController implements Initializable {
             });
             dislike.setOnAction(dlk -> {
                 ServiceVote svote = new ServiceVote();
+                  System.out.println("jjjjjjjjj");
                 svote.downVote(post.getId(),post.getId_user().getId());
 //                try {
 //                    root = FXMLLoader.load(getClass().getResource("postgridFXML.fxml"));
@@ -232,6 +235,19 @@ Notifications notificationBuilder = Notifications.create()
     @FXML
     private void YAAAS(MouseEvent event) {
        
+    }
+
+    @FXML
+    private void commenyer(ActionEvent event) {
+         try {
+            root = FXMLLoader.load(getClass().getResource("ADD_CommentFXML.fxml"));
+            stage = (javafx.stage.Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+        }
+
     }
 
 }

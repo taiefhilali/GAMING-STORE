@@ -38,6 +38,8 @@ public class ModifpostController implements Initializable {
     private Scene scene;
     private Parent root;
  private Post post;
+    @FXML
+    private Button ret;
     /**
      * Initializes the controller class.
      */
@@ -80,6 +82,20 @@ public class ModifpostController implements Initializable {
         } catch (IOException ex) {
 
         }
+    }
+
+    @FXML
+    private void retuuu(ActionEvent event) {
+          try {
+            root = FXMLLoader.load(getClass().getResource("postgrid.fxml"));
+            stage = (javafx.stage.Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+        }
+        
+        
     }
     
 }

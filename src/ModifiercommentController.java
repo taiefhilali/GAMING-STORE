@@ -94,4 +94,27 @@ public class ModifiercommentController implements Initializable {
 
     }
 
+    private void rett(ActionEvent event) {
+          try {
+            root = FXMLLoader.load(getClass().getResource("commentgrid.fxml"));
+            stage = (javafx.stage.Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+        }
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
+          try {
+            root = FXMLLoader.load(getClass().getResource("commentgrid.fxml"));
+            stage = (javafx.stage.Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+        }
+    }
+
 }

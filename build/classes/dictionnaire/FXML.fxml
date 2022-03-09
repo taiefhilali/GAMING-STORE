@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="439.0" prefWidth="356.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dictionnaire.FXMLController">
+   <children>
+      <Label alignment="CENTER" layoutX="25.0" layoutY="14.0" prefHeight="17.0" prefWidth="281.0" styleClass="title" text="Dictionary ">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="txtDefinition" editable="false" layoutX="15.0" layoutY="136.0" prefHeight="319.0" prefWidth="302.0" styleClass="txtDef" />
+      <TextField fx:id="lblWord" layoutX="33.0" layoutY="87.0" prefHeight="44.0" prefWidth="193.0" styleClass="txt" />
+      <Button layoutX="226.0" layoutY="87.0" mnemonicParsing="false" onAction="" prefHeight="44.0" prefWidth="86.0" styleClass="btn" text="Button">
+         <effect>
+            <Glow level="0.0">
+               <input>
+                  <ColorAdjust />
+               </input>
+            </Glow>
+         </effect>
+      </Button>
+   </children>
+</AnchorPane>
