@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="167.0" prefWidth="684.0" style="-fx-background-color: gray; -fx-background-radius: 30;" stylesheets="@styles/styleg.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FxmlcController">
+   <children>
+      <Label fx:id="label" layoutX="414.0" layoutY="26.0" text="kk">
+         <font>
+            <Font name="Comic Sans MS Bold" size="26.0" />
+         </font>
+      </Label>
+      <Label fx:id="contenu" layoutX="417.0" layoutY="74.0" text="lll">
+         <font>
+            <Font name="Comic Sans MS Bold" size="27.0" />
+         </font>
+      </Label>
+      <Label fx:id="reqsp" layoutX="417.0" layoutY="116.0" text="mm">
+         <font>
+            <Font name="Comic Sans MS Bold" size="26.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="95.0" fitWidth="102.0" layoutX="14.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/icons8-post-64.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="262.0" layoutY="30.0" stylesheets="@styles/style.css" text="POV:" textFill="#5fab82">
+         <font>
+            <Font name="Comic Sans MS Bold" size="21.0" />
+         </font>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <Label layoutX="262.0" layoutY="79.0" prefHeight="29.0" prefWidth="120.0" text="CONTENU:" textFill="#5fab82">
+         <font>
+            <Font name="Comic Sans MS Bold" size="21.0" />
+         </font>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <Label layoutX="262.0" layoutY="119.0" text="Reponses:" textFill="#5fab82">
+         <font>
+            <Font name="Comic Sans MS Bold" size="22.0" />
+         </font>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <Button fx:id="supp" layoutX="14.0" layoutY="107.0" mnemonicParsing="false" onAction="#delete" opacity="0.66" prefHeight="48.0" prefWidth="52.0" stylesheets="@styles/style.css">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Button>
+      <Button fx:id="upd" layoutX="74.0" layoutY="108.0" mnemonicParsing="false" opacity="0.64" prefHeight="48.0" prefWidth="52.0" stylesheets="@styles/style.css">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Button>
+      <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="98.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/edit.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="29.0" fitWidth="23.0" layoutX="40.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/delete.png" />
+         </image>
+      </ImageView>
+   </children>
+   <effect>
+      <InnerShadow />
+   </effect>
+</AnchorPane>

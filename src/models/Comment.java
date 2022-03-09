@@ -18,69 +18,39 @@ public class Comment {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     private int idc; 
-    private User id_user;
     private String contenu; 
     private String label;
     private int resp;
     private Post id_post;
-    int nblike;
-    int nbdislike;
+ 
     
     
 //constructors
+
     public Comment() {
     }
 
-        public Comment(int idc, String contenu, String label, int resp,User id_user,Post id_post,int nblike, int nbdislike) {
-            System.out.println("post_id"+id_post);
-            this.nblike = nblike;
-          this.nbdislike = nbdislike;
+    public Comment( String contenu, String label, int resp, Post id_post) {
+        System.out.println(id_post.getId());
+        this.contenu = contenu;
+        this.label = label;
+        this.resp = resp;
+        this.id_post = id_post;
+    }
+
+    public Comment(int idc, String contenu, String label, int resp, Post id_post) {
         this.idc = idc;
-        this.id_user = id_user;
-        this.contenu = contenu;
-        this.label = label;
-        this.resp = resp;
-        this.id_post=id_post;
-    }
-
-    public Comment(String contenu, String label, int resp,User id_user,Post id_post,int nblike, int nbdislike) {
-        this.contenu = contenu;
-        this.label = label;
-        this.nbdislike = nbdislike;
-          this.nblike = nblike;
-        this.resp = resp;
-        this.id_user = id_user;
-        this.id_post=id_post;
         
+        this.contenu = contenu;
+        this.label = label;
+        this.resp = resp;
+        this.id_post = id_post;
     }
     
-    
+
 //getters&setters
- public int getNblike() {
-        return nblike;
-    }
-
-    public void setNblike(int nblike) {
-        this.nblike = nblike;
-    }
-
-    public int getNbdislike() {
-        return nbdislike;
-    }
-
-    public void setNbdislike(int nbdislike) {
-        this.nbdislike = nbdislike;
-    }
-    public User getId_user() {
-        return id_user;
-    }
-
-    public void setId_user(User id_user) {
-        this.id_user = id_user;
-    }
 
    
-
     public Post getId_post() {
         System.out.println("id_post"+id_post);
         
@@ -133,8 +103,10 @@ public class Comment {
 
     @Override
     public String toString() {
-        return "Comment{" + "idc=" + idc + ", id_user=" + id_user + ", contenu=" + contenu + ", label=" + label + ", resp=" + resp + ", id_post=" + id_post + ", nblike=" + nblike + ", nbdislike=" + nbdislike + '}';
+        return "Comment{" + "idc=" + idc + ", contenu=" + contenu + ", label=" + label + ", resp=" + resp + ", id_post=" + id_post.getTitle() + '}';
     }
+
+   
 
   
 

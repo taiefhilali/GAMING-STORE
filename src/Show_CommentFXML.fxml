@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="1217.0" stylesheets="@styles/styles.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Show_CommentFXMLController">
+   <children>
+      <TextField fx:id="labTF" layoutX="182.0" layoutY="148.0" prefHeight="22.0" prefWidth="97.0" />
+      <TextField fx:id="commTF" layoutX="147.0" layoutY="209.0" prefHeight="143.0" prefWidth="209.0" />
+      <Label layoutX="544.0" layoutY="38.0" prefHeight="71.0" prefWidth="593.0" text="COMMENTAIRE" textAlignment="CENTER" textFill="#3f6556">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="60.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#ffedb8" />
+               </light>
+            </Lighting>
+         </effect>
+      </Label>
+      <Button fx:id="update" layoutX="170.0" layoutY="372.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="162.0" text="Modifier">
+         <font>
+            <Font name="Arial Black" size="16.0" />
+         </font>
+      </Button>
+      <TableView fx:id="tablecomm" layoutX="521.0" layoutY="163.0" prefHeight="318.0" prefWidth="528.0">
+        <columns>
+          <TableColumn fx:id="LABEL" prefWidth="175.0" text="POV" />
+          <TableColumn fx:id="COMMENT" prefWidth="213.0" text="COMMENT" />
+            <TableColumn fx:id="HEARTS" prefWidth="149.0" text="HEARTS" />
+            <TableColumn fx:id="idd" minWidth="0.0" prefWidth="229.0" text="POST" />
+        </columns>
+      </TableView>
+      <Button fx:id="supp" layoutX="170.0" layoutY="450.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="162.0" text="Supprimer">
+         <font>
+            <Font name="Arial Black" size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="retour" layoutX="1303.0" layoutY="14.0" mnemonicParsing="false" onAction="#ret" prefHeight="31.0" prefWidth="74.0" />
+      <ImageView fitHeight="31.0" fitWidth="59.0" layoutX="301.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@IMG/icons8-edit-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="31.0" fitWidth="38.0" layoutX="301.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@IMG/icons8-delete-24.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="44.0" fitWidth="31.0" layoutX="1340.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@IMG/icons8-add-24.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="105.0" layoutY="-1.0" prefHeight="47.0" prefWidth="105.0" />
+      <Label layoutX="56.0" layoutY="153.0" text="POV" />
+      <Label layoutX="48.0" layoutY="251.0" text="COMMENT" />
+      <Label layoutX="1214.0" layoutY="438.0" text="TOP RANK">
+         <font>
+            <Font name="Arial Narrow" size="21.0" />
+         </font>
+      </Label>
+      <TextField fx:id="topp" layoutX="1201.0" layoutY="482.0" onKeyPressed="#top" prefHeight="21.0" prefWidth="130.0" />
+      <ImageView fitHeight="57.0" fitWidth="97.0" layoutX="1230.0" layoutY="372.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@IMG/icons8-fairytale-48.png" />
+         </image>
+      </ImageView>
+      <SplitPane dividerPositions="0.5" layoutX="376.0" layoutY="-5.0" prefHeight="569.0" prefWidth="123.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="567.0" prefWidth="113.0" />
+        </items>
+      </SplitPane>
+      <Button fx:id="supp1" layoutX="735.0" layoutY="504.0" mnemonicParsing="false" onAction="#Stat" prefHeight="47.0" prefWidth="162.0" text="STATISTIQUE">
+         <font>
+            <Font name="Arial Black" size="17.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="77.0" fitWidth="97.0" layoutX="637.0" layoutY="489.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@IMG/icons8-statistics-50.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
