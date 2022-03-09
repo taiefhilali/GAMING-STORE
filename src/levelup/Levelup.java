@@ -322,7 +322,7 @@ public class Levelup {
         //  spanier2.supprimerElementPanier(e);
           //scommande.SupprimerCommande(commande1);
           /*******Top Products******/
-         // System.err.println(spanier3.TopProduits(1));
+         //System.err.println(spanier3.TopProduits());
          //System.err.println(scommande.TrierCommandesParDate());
     }
 
