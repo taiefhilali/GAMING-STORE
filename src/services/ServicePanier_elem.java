@@ -42,6 +42,20 @@ public class ServicePanier_elem implements IPanier_elem{
         
     }
 
+    @Override
+    public void AjouterElementPanierQ(Panier_elem p) {
+        String request ="INSERT INTO `panier_elem`(`id_panier`, `id`, `Quantite`) VALUES ("+p.getPan().getId_panier()+","+p.getProduit().getId()+","+p.getQuantite()+")";
+        try {
+            Statement st = cnx.createStatement();
+            st.executeUpdate(request);
+            System.out.println("Element de Panier Ajouter avec succés");
+        } catch (SQLException ex) {
+            System.out.println("L'ajout est echouer");      
+        }
+        
+    }
+
+    
     //Supprimer element de panier 
     @Override
     public void supprimerElementPanier(Panier_elem p) {
@@ -80,7 +94,7 @@ public class ServicePanier_elem implements IPanier_elem{
 
             while(rs.next()){
              Panier_elems.add(new Panier_elem(rs.getInt("pe.id_elem"),new Panier(rs.getInt("p.id_panier"))
-             ,new Produit(rs.getInt("p1.id_produit"),rs.getString("p1.nom"),rs.getDouble("p1.prix"),rs.getString("p1.description"))));
+             ,new Produit(rs.getInt("p1.id_produit"),rs.getString("p1.nom"),rs.getDouble("p1.prix"),rs.getString("p1.description")),rs.getInt(4)));
             }
 
         } catch (SQLException ex) {
@@ -89,6 +103,8 @@ public class ServicePanier_elem implements IPanier_elem{
         return Panier_elems;
 
     }
+    
+    
     
      @Override
     public Panier_elem getElement(int id,int id_pr) {

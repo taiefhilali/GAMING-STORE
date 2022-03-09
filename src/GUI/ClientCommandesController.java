@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import interfaces.ICommande;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -46,7 +47,7 @@ import services.ServiceCommande;
  */
 public class ClientCommandesController implements Initializable {
     
-    ServiceCommande sp = new ServiceCommande();
+    ICommande sp = new ServiceCommande();
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -65,8 +66,6 @@ public class ClientCommandesController implements Initializable {
     private TableColumn<Commande, Double> PrTot;
     @FXML
     private TableColumn<Commande, Commande> Action;
-    @FXML
-    private Button Retour;
     @FXML
     private DatePicker datePck;
 
@@ -153,7 +152,6 @@ public class ClientCommandesController implements Initializable {
         }
            
 
-    @FXML
     private void Back(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Acceuil.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

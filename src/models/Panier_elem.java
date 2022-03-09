@@ -15,10 +15,18 @@ public class Panier_elem {
     private int id_elem;
     private Panier pan;
     private Produit produit;
+    private int Quantite;
     
     //constructeur
 
     public Panier_elem() {
+    }
+
+    public Panier_elem(int id_elem, Panier pan, Produit produit, int Quantite) {
+        this.id_elem = id_elem;
+        this.pan = pan;
+        this.produit = produit;
+        this.Quantite = Quantite;
     }
 
     public Panier_elem(int id_elem, Panier pan, Produit produit) {
@@ -56,6 +64,14 @@ public class Panier_elem {
 
     public void setProduit(Produit produit) {
         this.produit = produit;
+    }
+
+    public int getQuantite() {
+        return Quantite;
+    }
+
+    public void setQuantite(int Quantite) {
+        this.Quantite = Quantite;
     }
 
 

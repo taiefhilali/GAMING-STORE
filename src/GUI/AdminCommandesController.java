@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import interfaces.ICommande;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ import services.ServiceCommande;
  */
 public class AdminCommandesController implements Initializable {
 
-    ServiceCommande sp = new ServiceCommande();
+    ICommande sp = new ServiceCommande();
     
     @FXML
     private TableView<AdminCommandes> adminCmd;

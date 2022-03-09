@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import interfaces.ICommande_elem;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ private Stage stage;
     private GridPane grid;
 
     
-    ServiceCommande_elem sp2 = new ServiceCommande_elem();
+    ICommande_elem sp2 = new ServiceCommande_elem();
     /**
      * Initializes the controller class.
      */

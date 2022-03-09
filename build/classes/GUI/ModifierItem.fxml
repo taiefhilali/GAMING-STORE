@@ -17,25 +17,17 @@
    <children>
       <AnchorPane id="AnchorPane" prefHeight="184.0" prefWidth="200.0" stylesheets="@style1.css">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30;">
+            <VBox alignment="TOP_CENTER" prefHeight="269.0" prefWidth="246.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30;">
                <children>
                   <HBox alignment="CENTER" prefHeight="48.0" prefWidth="205.0">
                      <children>
                         <Label fx:id="nameLabel" contentDisplay="CENTER" prefHeight="44.0" prefWidth="183.0" text="Product" textAlignment="CENTER">
                            <HBox.margin>
-                              <Insets left="8.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="Cambria Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="priceLable" contentDisplay="CENTER" prefHeight="47.0" prefWidth="135.0" text="50 DT" textAlignment="CENTER">
-                           <font>
-                              <Font name="Cambria Bold" size="14.0" />
-                           </font>
-                           <HBox.margin>
                               <Insets />
                            </HBox.margin>
+                           <font>
+                              <Font name="Comic Sans MS Bold" size="15.0" />
+                           </font>
                         </Label>
                      </children>
                      <VBox.margin>
@@ -53,12 +45,32 @@
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label prefHeight="24.0" prefWidth="74.0" text="Quantité   :">
+                        <Label prefHeight="17.0" prefWidth="84.0" text="Prix  : ">
+                           <font>
+                              <Font name="Comic Sans MS Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="12.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="priceLable" contentDisplay="CENTER" prefHeight="47.0" prefWidth="135.0" text="50 DT" textAlignment="CENTER">
+                           <font>
+                              <Font name="Comic Sans MS Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="24.0" prefWidth="84.0" text="Quantité   :">
                            <HBox.margin>
                               <Insets left="8.0" right="10.0" top="10.0" />
                            </HBox.margin>
                            <font>
-                              <Font name="Cambria Bold" size="13.0" />
+                              <Font name="Comic Sans MS Bold" size="13.0" />
                            </font>
                         </Label>
                         <Spinner fx:id="spinner1" prefHeight="25.0" prefWidth="73.0">
@@ -71,7 +83,7 @@
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Label fx:id="id_produit" text="Label" visible="false" />
-                        <Button fx:id="Supprimer" mnemonicParsing="false" onAction="#Supprimer" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #17A589;" text="Supprimer" textFill="WHITE">
+                        <Button fx:id="Supprimer" mnemonicParsing="false" onAction="#Supprimer" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: #17A589;" text="Supprimer" textFill="WHITE">
                            <HBox.margin>
                               <Insets bottom="13.0" top="9.0" />
                            </HBox.margin>
@@ -81,9 +93,16 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                           <graphic>
+                              <ImageView fitHeight="41.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/111.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                         <Label fx:id="id_elem" text="Label" visible="false" />
-                        <Button fx:id="Supprimer1" mnemonicParsing="false" onAction="#Modifier" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #17A589;" text="Modifier" textFill="WHITE">
+                        <Button fx:id="Supprimer1" mnemonicParsing="false" onAction="#Modifier" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: #17A589;" text="Modifier" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -93,6 +112,13 @@
                            <HBox.margin>
                               <Insets bottom="5.0" right="10.0" />
                            </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="19.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/11.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                      </children>
                   </HBox>

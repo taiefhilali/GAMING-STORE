@@ -5,11 +5,12 @@
  */
 package GUI;
 
+import interfaces.ICommande;
+import interfaces.ICommande_elem;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
@@ -23,8 +24,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
@@ -56,8 +55,6 @@ public class ModifierController implements Initializable {
     @FXML
     private Label TotalP;
     @FXML
-    private Button Retour;
-    @FXML
     private ImageView logoImage;
     @FXML
     private ScrollPane scroll;
@@ -65,8 +62,8 @@ public class ModifierController implements Initializable {
     private GridPane grid;
     
     ModifierItemController mod = new ModifierItemController();
-    ServiceCommande_elem sp = new ServiceCommande_elem();
-    ServiceCommande sp1 = new ServiceCommande();
+    ICommande_elem sp = new ServiceCommande_elem();
+    ICommande sp1 = new ServiceCommande();
     ClientCommandesController  c1 = new ClientCommandesController();
     private Stage stage;
     private Scene scene;
@@ -159,7 +156,6 @@ public class ModifierController implements Initializable {
          Livraison.setText(Liv.toString()+ "  DT");
          TotalP.setText(Tot.toString()+ "  DT");
     }
-    @FXML
     private void Back(ActionEvent event) throws IOException {
         this.title.setText("");
         Parent root = FXMLLoader.load(getClass().getResource("ClientCommandes.fxml"));

@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import interfaces.ICommande;
+import interfaces.ICommande_elem;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -29,7 +31,6 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import models.CommandeElem;
 import models.Commande_elem;
-import models.PanProd;
 import services.ServiceCommande;
 import services.ServiceCommande_elem;
 
@@ -58,12 +59,12 @@ public class ModifierItemController implements Initializable {
     @FXML
     private Button Supprimer1;
     static String title = "";
-    ServiceCommande_elem sp = new ServiceCommande_elem();
+    ICommande_elem sp = new ServiceCommande_elem();
     private Stage stage;
     private Scene scene;
     private Parent root;
      ClientCommandesController  c1 = new ClientCommandesController();
-     ServiceCommande sp1 = new ServiceCommande();
+     ICommande sp1 = new ServiceCommande();
     /**
      * Initializes the controller class.
      */

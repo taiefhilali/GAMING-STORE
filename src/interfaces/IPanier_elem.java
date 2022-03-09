@@ -19,6 +19,7 @@ public interface IPanier_elem {
     
     public void AjouterElementPanier(Panier_elem p);
     
+    public void AjouterElementPanierQ(Panier_elem p);
     
     public void supprimerElementPanier(Panier_elem p);
     

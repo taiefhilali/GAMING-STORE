@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -12,33 +11,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AffichagePanierController">
    <children>
-      <AnchorPane id="AnchorPane" prefHeight="533.0" prefWidth="1162.0">
+      <AnchorPane id="AnchorPane" prefHeight="780.0" prefWidth="1143.0">
          <children>
-            <VBox prefHeight="533.0" prefWidth="251.0" style="-fx-background-color: #17A589;">
-               <children>
-                  <Pane prefHeight="147.0" prefWidth="251.0" style="-fx-background-color: #0E706C;">
-                     <children>
-                        <ImageView fitHeight="127.0" fitWidth="132.0" layoutX="66.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/LOGO.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Button fx:id="Retour" alignment="BASELINE_LEFT" cancelButton="true" graphicTextGap="0.0" mnemonicParsing="false" onAction="#Back" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #76D7C4 #76D7C4;" stylesheets="@styleg.css" text="                   Acceuil" textAlignment="CENTER">
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                  </Button>
-               </children>
-            </VBox>
-            <Pane layoutX="856.0" layoutY="118.0" prefHeight="235.0" prefWidth="297.0" style="-fx-background-color: #17A589;">
+            <Pane layoutX="807.0" layoutY="172.0" prefHeight="235.0" prefWidth="297.0" style="-fx-background-color: #17A589;">
                <children>
                   <Line endX="132.0" layoutX="149.0" layoutY="103.0" startX="-118.0" />
                   <Label layoutX="44.0" layoutY="122.0" text="Total  : ">
@@ -89,14 +69,14 @@
                   </Button>
                </children>
             </Pane>
-            <ImageView fx:id="logoImage" fitHeight="120.0" fitWidth="150.0" layoutX="930.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="logoImage" fitHeight="153.0" fitWidth="173.0" layoutX="862.0" layoutY="464.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/LOGO.png" />
                </image>
             </ImageView>
-            <Label layoutX="686.0" prefHeight="77.0" prefWidth="318.0" text="Mon Panier">
+            <Label layoutX="410.0" prefHeight="77.0" prefWidth="318.0" text="Mon Panier">
                <font>
-                  <Font name="Leelawadee UI Bold" size="24.0" />
+                  <Font name="Comic Sans MS Bold" size="36.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="84.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
@@ -106,9 +86,9 @@
                   </ImageView>
                </graphic>
             </Label>
-            <HBox alignment="CENTER" layoutX="251.0" layoutY="118.0" prefHeight="410.0" prefWidth="590.0">
+            <HBox alignment="CENTER" layoutX="42.0" layoutY="177.0" prefHeight="449.0" prefWidth="716.0">
                <children>
-                  <ScrollPane fx:id="scroll" prefHeight="466.0" prefWidth="564.0" styleClass="transparent" stylesheets="@style1.css">
+                  <ScrollPane fx:id="scroll" prefHeight="410.0" prefWidth="716.0" styleClass="transparent" stylesheets="@style1.css">
                      <content>
                         <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
                           <rowConstraints>
@@ -119,9 +99,9 @@
                   </ScrollPane>
                </children>
             </HBox>
-            <Label layoutX="508.0" layoutY="87.0" prefHeight="18.0" prefWidth="77.0" text="Produits" textFill="#76d7c4">
+            <Label layoutX="362.0" layoutY="136.0" prefHeight="18.0" prefWidth="77.0" text="Produits" textFill="#76d7c4">
                <font>
-                  <Font name="Bauhaus 93" size="18.0" />
+                  <Font name="Comic Sans MS Bold" size="19.0" />
                </font>
             </Label>
          </children>

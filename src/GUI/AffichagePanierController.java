@@ -19,6 +19,9 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import interfaces.ICommande;
+import interfaces.ICommande_elem;
+import interfaces.IPanier_elem;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -84,13 +87,13 @@ public class AffichagePanierController implements Initializable {
     private Scene scene;
     private Parent root;
    static List<Commande_elem> p3 = new ArrayList<Commande_elem>();
-      ServiceCommande sp1 = new ServiceCommande();
+      ICommande sp1 = new ServiceCommande();
     AcceuilController ac = new AcceuilController();
-    ServicePanier_elem sp = new ServicePanier_elem();
+    IPanier_elem sp = new ServicePanier_elem();
     static Commande cmd = new Commande();
     static List<Panier_elem> Li = new ArrayList<>();
     static List<Integer> Li1 = new ArrayList<>();
-     ServiceCommande_elem sp2 = new ServiceCommande_elem();
+     ICommande_elem sp2 = new ServiceCommande_elem();
      
      
     private PanProd produit;

@@ -18,21 +18,13 @@
          <children>
             <HBox alignment="CENTER" prefHeight="48.0" prefWidth="205.0">
                <children>
-                  <Label fx:id="nameLabel" contentDisplay="CENTER" prefHeight="44.0" prefWidth="183.0" text="Product" textAlignment="CENTER">
+                  <Label fx:id="nameLabel" contentDisplay="CENTER" prefHeight="18.0" prefWidth="198.0" text="Product" textAlignment="CENTER">
                      <HBox.margin>
-                        <Insets left="8.0" />
+                        <Insets left="4.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="Cambria Bold" size="14.0" />
+                        <Font name="Comic Sans MS Bold" size="14.0" />
                      </font>
-                  </Label>
-                  <Label fx:id="priceLable" contentDisplay="CENTER" prefHeight="47.0" prefWidth="135.0" text="50 DT" textAlignment="CENTER">
-                     <font>
-                        <Font name="Cambria Bold" size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
                   </Label>
                </children>
                <VBox.margin>
@@ -50,37 +42,64 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label prefHeight="24.0" prefWidth="74.0" text="Quantité   :">
+                  <Label prefHeight="18.0" prefWidth="171.0" text="Quantité   :">
                      <HBox.margin>
-                        <Insets left="8.0" right="10.0" top="10.0" />
+                        <Insets left="5.0" right="10.0" top="10.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="Cambria Bold" size="13.0" />
+                        <Font name="Comic Sans MS Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="quant" prefHeight="17.0" prefWidth="41.0" text="1">
+                  <Label fx:id="quant" prefHeight="17.0" prefWidth="31.0" text="1">
                      <HBox.margin>
                         <Insets top="10.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="Comic Sans MS Bold" size="12.0" />
                      </font>
                   </Label>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="71.0" text="Prix :">
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Comic Sans MS Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="priceLable" contentDisplay="CENTER" prefHeight="27.0" prefWidth="80.0" text="50 DT" textAlignment="CENTER">
+                           <font>
+                              <Font name="Comic Sans MS Bold" size="11.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label fx:id="id_produit" text="Label" visible="false" />
-                  <Button fx:id="Supprimer" mnemonicParsing="false" onAction="#Supprimer" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #17A589;" text="Supprimer" textFill="WHITE">
+                  <Button fx:id="Supprimer" mnemonicParsing="false" onAction="#Supprimer" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #17A589;" text="Supprimer" textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="9.0" top="9.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="Comic Sans MS Bold" size="12.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/111.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                   <Label fx:id="id_elem" text="Label" visible="false" />
                </children>

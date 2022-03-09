@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import interfaces.IPanier_elem;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class PanierItemController implements Initializable {
      private Stage stage;
     private Scene scene;
     private Parent root;
-    ServicePanier_elem sp = new ServicePanier_elem();
+    IPanier_elem sp = new ServicePanier_elem();
     
     private PanProd produit;
     @FXML
