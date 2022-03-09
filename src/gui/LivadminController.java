@@ -259,9 +259,7 @@ public class LivadminController implements Initializable {
         } else if (idlivreurform.getValue() == null) {
              showAlert(Alert.AlertType.ERROR, ((Node) event.getSource()).getScene().getWindow(),
                     "Error!", "mail livreur  vide ");
-        } else if (etatLivraison.getValue() == null) {
-             showAlert(Alert.AlertType.ERROR, ((Node) event.getSource()).getScene().getWindow(),
-                    "Error!", "etat livraison  vide ");
+       
         }
         else{
         if (action.compareTo("ajouter") == 0) {
