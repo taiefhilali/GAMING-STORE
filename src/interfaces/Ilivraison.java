@@ -13,16 +13,14 @@ import models.Livraison;
  * @author User
  */
 public interface Ilivraison {
-    public interface ILivraison {
-    
-   //ajouter
+      
     public boolean ajouterLivraison(Livraison l);
     
     //lister
-    public List<Livraison> afficherLivraison(Livraison l);
+    public List<Livraison> afficherLivraison();
     
     public boolean modifierLivraison(Livraison l);
     
-    public boolean supprimerPersonne(Livraison l);
-    }
+    public boolean supprimerLivraison(Livraison l);
+    
 }

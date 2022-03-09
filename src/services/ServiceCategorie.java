@@ -1,4 +1,4 @@
-package service;
+package services;
 
 import interfaces.Icategorie;
 import java.sql.Connection;
@@ -67,11 +67,28 @@ public class ServiceCategorie implements Icategorie {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                Categories.add(new Categorie(rs.getInt("id"), rs.getString(2)));
+                Categories.add(new Categorie(rs.getInt("id_categorie"), rs.getString(2)));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return Categories;
+    }
+
+    @Override
+    public Categorie retrieveCategorieById(int id) {
+        Categorie cat = new Categorie(); 
+        String query = "SELECT * FROM `categorie` WHERE `id_categorie` = " + id + " ";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                cat.setId_categorie(rs.getInt(1));
+                cat.setNom_categorie(rs.getString(2));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return cat;
     }
 }

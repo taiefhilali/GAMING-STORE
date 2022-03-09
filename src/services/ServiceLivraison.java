@@ -13,8 +13,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import models.Commande;
 import models.Livraison;
+import models.Livreur;
 import models.Reclamation;
+import models.User;
 import utils.MaConnexion;
 
 /**
@@ -27,7 +30,7 @@ public class ServiceLivraison implements Ilivraison{
     Connection cnx = MaConnexion.getInstance().getCnx();
 
     public boolean ajouterLivraison(Livraison l) {
-        String request = "INSERT INTO `livraison`( `id_commande`, `id_livreur`, `date`, `etat_livraison`) VALUES ("+l.getId_commande()+","+l.getId_livreur()+",'"+l.getDate()+"','"+l.getEtat_livraison()+"')";
+        String request = "INSERT INTO `livraison`( `id_commande`, `id_user`, `date`, `etat_livraison`) VALUES ("+l.getCommande().getId_commande()+","+l.getUser().getId()+",'"+l.getDate()+"','"+l.getEtat_livraison()+"')";
         try {
             Statement st = cnx.createStatement();
             if (st.executeUpdate(request) == 1)
@@ -42,7 +45,7 @@ public class ServiceLivraison implements Ilivraison{
     public List<Livraison> afficherLivraison() {
         List<Livraison> livraison = new ArrayList<Livraison>();
 
-        String req="SELECT * FROM livraison";
+        String req="SELECT * FROM `livraison`";
         Statement st = null;
         try {
             st = cnx.createStatement();
@@ -50,7 +53,7 @@ public class ServiceLivraison implements Ilivraison{
 
             //SOB HEDHA FI HEDHA
             while(rs.next()){
-                livraison.add(new Livraison(rs.getInt("id_livraison"),rs.getInt("id_commande"),rs.getInt("id_livreur"),rs.getDate("date"),rs.getString("etat_livraison")));
+                livraison.add(new Livraison(rs.getInt("id_livraison"),new Commande(rs.getInt("id_commande")),new User (rs.getInt("id_user")),rs.getDate("date"),rs.getString("etat_livraison")));
             }
 
         } catch (SQLException e) {
@@ -62,7 +65,7 @@ public class ServiceLivraison implements Ilivraison{
     }
     
     public boolean modifierLivraison(Livraison l) {
-        String req = "UPDATE `livraison` SET `id_commande`='"+l.getId_commande()+"',`id_livreur`= "+l.getId_livreur()+",`date`='"+l.getDate()+"',`etat_livraison`='"+l.getEtat_livraison()+"' WHERE `id_livraison` = "+l.getId_livraison()+" ";
+        String req = "UPDATE `livraison` SET `id_commande`='"+l.getCommande().getId_commande()+"',`id_user`= "+l.getUser().getId()+",`date`='"+l.getDate()+"',`etat_livraison`='"+l.getEtat_livraison()+"' WHERE `id_livraison` = "+l.getId_livraison()+" ";
         try {
             Statement st = cnx.createStatement();
             if (st.executeUpdate(req) == 1)
@@ -88,9 +91,7 @@ public class ServiceLivraison implements Ilivraison{
         }
     }
 
-    public boolean ajouterReclamation(Reclamation r) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 
     
 }

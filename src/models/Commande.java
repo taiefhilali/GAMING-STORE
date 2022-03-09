@@ -15,7 +15,7 @@ public class Commande {
     
     //var
    private int id_commande;
-   private int id_client;
+   private Client client;
    private float prix_livraison;
    private Date date_commande;
    
@@ -24,13 +24,24 @@ public class Commande {
     public Commande() {
     }
 
-    public Commande(int id_commande, int id_client, float prix_livraison, Date date_commande) {
+    public Commande(int id_commande, Client client, float prix_livraison, Date date_commande) {
         this.id_commande = id_commande;
-        this.id_client = id_client;
+        this.client = client;
         this.prix_livraison = prix_livraison;
         this.date_commande = date_commande;
     }
 
+    public Commande(int id_commande, float prix_livraison, Date date_commande) {
+        this.id_commande = id_commande;
+        this.prix_livraison = prix_livraison;
+        this.date_commande = date_commande;
+    }
+
+    public Commande(int id_commande) {
+        this.id_commande = id_commande;
+    }
+    
+    
     //Getters and setters
     public int getId_commande() {
         return id_commande;
@@ -40,13 +51,15 @@ public class Commande {
         this.id_commande = id_commande;
     }
 
-    public int getId_client() {
-        return id_client;
+    public Client getClient() {
+        return client;
     }
 
-    public void setId_client(int id_client) {
-        this.id_client = id_client;
+    public void setClient(Client client) {
+        this.client = client;
     }
+
+ 
 
     public float getPrix_livraison() {
         return prix_livraison;
@@ -66,7 +79,7 @@ public class Commande {
 
     @Override
     public String toString() {
-        return "Commande{" + "id_commande=" + id_commande + ", id_client=" + id_client + ", prix_livraison=" + prix_livraison + ", date_commande=" + date_commande + '}';
+        return "Commande{" + "id_commande=" + id_commande + ", client={ " + client +" }"+ ", prix_livraison=" + prix_livraison + ", date_commande=" + date_commande +'\n'+ '}';
     }
    
     

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="780.0" prefWidth="1143.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SmsFXMLController">
+   <children>
+      <TextArea fx:id="txtmess" layoutX="404.0" layoutY="390.0" prefHeight="125.0" prefWidth="482.0" />
+      <Label layoutX="301.0" layoutY="180.0" text="ApiKey">
+         <font>
+            <Font name="Comic Sans MS Bold" size="16.0" />
+         </font></Label>
+      <Label layoutX="300.0" layoutY="246.0" text="Sender">
+         <font>
+            <Font name="Comic Sans MS Bold" size="16.0" />
+         </font></Label>
+      <TextField fx:id="txtapi" layoutX="407.0" layoutY="179.0" prefHeight="25.0" prefWidth="313.0" />
+      <TextField fx:id="txtsender" layoutX="404.0" layoutY="245.0" prefHeight="25.0" prefWidth="313.0" />
+      <Label layoutX="303.0" layoutY="320.0" text="Numéro">
+         <font>
+            <Font name="Comic Sans MS Bold" size="16.0" />
+         </font></Label>
+      <Label layoutX="300.0" layoutY="390.0" text="Message">
+         <font>
+            <Font name="Comic Sans MS Bold" size="16.0" />
+         </font></Label>
+      <TextField fx:id="txtnumber" layoutX="404.0" layoutY="306.0" prefHeight="25.0" prefWidth="313.0" />
+      <Button layoutX="168.0" layoutY="586.0" mnemonicParsing="false" onAction="#send" prefHeight="34.0" prefWidth="108.0" text="Envoyer" />
+      <Button layoutX="535.0" layoutY="582.0" mnemonicParsing="false" onAction="#capture" prefHeight="34.0" prefWidth="108.0" text="Capture" />
+      <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="174.0" layoutY="593.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8-send-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="541.0" layoutY="590.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8-capture-32.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="481.0" layoutY="39.0" prefHeight="51.0" prefWidth="246.0" text="Envoyer SMS">
+         <font>
+            <Font name="Comic Sans MS Bold" size="36.0" />
+         </font>
+      </Label>
+      <Button layoutX="878.0" layoutY="582.0" mnemonicParsing="false" onAction="#retour" prefHeight="34.0" prefWidth="108.0" text="Retour" />
+      <ImageView fitHeight="27.0" fitWidth="37.0" layoutX="884.0" layoutY="587.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Nouveau%20dossier/icons8-return-24.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="ss" fitHeight="271.0" fitWidth="362.0" layoutX="741.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

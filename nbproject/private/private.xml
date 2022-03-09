@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user/Desktop/Levelup/src/models/Facture.java</file>
-            <file>file:/C:/Users/user/Desktop/Levelup/src/levelup/Levelup.java</file>
-            <file>file:/C:/Users/user/Desktop/Levelup/src/services/ServiceFacture.java</file>
-            <file>file:/C:/Users/user/Desktop/Levelup/src/interfaces/Ifacture.java</file>
+            <file>file:/C:/Users/user/Desktop/Levelup2/Levelup/src/GUI/FXMain.java</file>
+            <file>file:/C:/Users/user/Desktop/Levelup2/Levelup/src/GUI/SmsFXMLController.java</file>
+            <file>file:/C:/Users/user/Desktop/Levelup2/Levelup/src/GUI/FacFXMLController.java</file>
+            <file>file:/C:/Users/user/Desktop/Levelup2/Levelup/src/GUI/DocFXMLController.java</file>
+            <file>file:/C:/Users/user/Desktop/Levelup2/Levelup/src/GUI/DocFXML.fxml</file>
         </group>
     </open-files>
 </project-private>

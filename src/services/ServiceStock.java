@@ -12,8 +12,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import models.Facture;
 
 import models.Stock;
+import models.User;
 import utils.MaConnexion;
 
 /**
@@ -69,8 +73,8 @@ public class ServiceStock implements Istock {
     }
 
     @Override
-    public boolean supprimerStock(Stock s) {
-   String req = "DELETE FROM `stock` WHERE `id` = "+s.getId()+" ";
+    public boolean supprimerStock(int s) {
+   String req = "DELETE FROM `stock` WHERE `id` = "+s+" ";
          try {
              Statement st = cnx.createStatement();
              if (st.executeUpdate(req) == 1)
@@ -80,6 +84,30 @@ public class ServiceStock implements Istock {
              ex.printStackTrace();
             return false;
          }
+    }
+     public ObservableList<Stock> getCoursList() throws SQLException {
+        ObservableList<Stock> Courslist = FXCollections.observableArrayList();
+
+        List<Stock> listb = new ArrayList<>();
+        Statement st = cnx.createStatement();
+        String query = "SELECT * FROM stock ";
+
+        ResultSet rs;
+        rs = st.executeQuery(query);
+        Stock fact;
+        while (rs.next()) {
+            fact = (new Stock(rs.getInt("id"), rs.getString(2),
+                    rs.getInt("quantite"),
+                 
+                    // new User(rs.getString("email"))
+                    rs.getString(4)
+    
+            ));
+         
+            Courslist.add(fact);
+
+        }
+        return Courslist;
     }
     
     

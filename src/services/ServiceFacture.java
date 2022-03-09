@@ -13,8 +13,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import models.Facture;
+import models.Post;
+import models.User;
 
 import utils.MaConnexion;
 
@@ -41,13 +45,17 @@ public class ServiceFacture implements Ifacture {
     @Override
     public List<Facture> afficherFacture() {
         List<models.Facture> factures =new ArrayList<models.Facture>();
-     String query = "SELECT * FROM facture";
+     String query = "SELECT * FROM facture f  inner JOIN user u  where f.id_user=u.id_user";
       Statement st = null;
          try {
              st=cnx.createStatement();
               ResultSet rs= st.executeQuery(query);
              while (rs.next()){
-          //   factures.add(new models.Facture(rs.getInt("id_facture"), rs.getDate(2), rs.getString(3)));
+            factures.add(new Facture(rs.getInt("id_facture"),
+                    rs.getDate("date"),
+                    rs.getString("prix_total"),
+              new User(rs.getInt("id_user"),rs.getString("email"))
+            ));
          }
          } catch (SQLException ex) {
                ex.printStackTrace();
@@ -72,9 +80,9 @@ public class ServiceFacture implements Ifacture {
     }
 
     @Override
-    public boolean supprimerFacture(Facture f) {
+    public boolean supprimerFacture(int f) {
          try {
-             String req = "DELETE FROM `facture` WHERE `id_facture` = "+f.getId_facture()+" ";
+             String req = "DELETE FROM `facture` WHERE `id_facture` = "+f+" ";
              Statement st = cnx.createStatement();
              if (st.executeUpdate(req) == 1)
                  return true;
@@ -102,11 +110,36 @@ public class ServiceFacture implements Ifacture {
         }
         tva=netc*0.2;
         ttc=netc+tva;
-        System.out.println("le Montant est "+HT+"MAD");
-         System.out.println("la remise est 1% "+r+"MAD");
-          System.out.println("net commercial est "+netc+"MAD");
-           System.out.println("TVA est "+tva+"MAD");
-            System.out.println("TTC est "+ttc+"MAD");
+        System.out.println("le Montant est "+HT+"DT");
+         System.out.println("la remise est 1% "+r+"DT");
+          System.out.println("net commercial est "+netc+"DT");
+           System.out.println("TVA est "+tva+"DT");
+            System.out.println("TTC est "+ttc+"DT");
     }
+    public ObservableList<Facture> getCoursList() throws SQLException {
+        ObservableList<Facture> Courslist = FXCollections.observableArrayList();
+
+        List<Facture> listb = new ArrayList<>();
+        Statement st = cnx.createStatement();
+        String query = "SELECT * FROM facture f inner JOIN user u  where f.id_user=u.id_user";
+
+        ResultSet rs;
+        rs = st.executeQuery(query);
+        Facture fact;
+        while (rs.next()) {
+            fact = (new Facture(rs.getInt("id_facture"), rs.getDate(2),
+                    rs.getString(3),
+                 
+                    // new User(rs.getString("email"))
+                    new User(rs.getInt("id_user"))
+    
+            ));
+         
+            Courslist.add(fact);
+
+        }
+        return Courslist;
+    }
+
      
 }
