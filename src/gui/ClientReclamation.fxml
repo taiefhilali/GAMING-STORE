@@ -41,5 +41,10 @@
             <Insets top="100.0" />
          </padding>
       </VBox>
+      <ImageView fitHeight="56.0" fitWidth="61.0" layoutX="168.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/icons8-complaints-48.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

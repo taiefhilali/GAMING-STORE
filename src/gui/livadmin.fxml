@@ -72,5 +72,10 @@
             <Insets top="100.0" />
          </padding>
       </VBox>
+      <ImageView fitHeight="74.0" fitWidth="73.0" layoutX="167.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/275363207_4843346099084766_3627257200093599445_n.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -11,15 +11,15 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GestionReclmationController">
    <children>
-      <TableView fx:id="tableReclamation" layoutX="201.0" layoutY="78.0" prefHeight="311.0" prefWidth="367.0">
+      <TableView fx:id="tableReclamation" layoutX="201.0" layoutY="118.0" prefHeight="311.0" prefWidth="367.0">
         <columns>
           <TableColumn fx:id="Description" prefWidth="199.0" text="Description" />
         </columns>
       </TableView>
-      <Button fx:id="Retour" layoutX="207.0" layoutY="40.0" mnemonicParsing="false" onAction="#Retour" text="Retour" />
-      <Button fx:id="Supprimer" layoutX="273.0" layoutY="41.0" mnemonicParsing="false" onAction="#Supprimer" text="Supprimer" />
-      <Button fx:id="warn" layoutX="356.0" layoutY="40.0" mnemonicParsing="false" onAction="#warnLiv" text="Warn" textFill="RED" />
-      <Button fx:id="SMS" layoutX="413.0" layoutY="41.0" mnemonicParsing="false" onAction="#sms" text="sms" />
+      <Button fx:id="Retour" layoutX="207.0" layoutY="81.0" mnemonicParsing="false" onAction="#Retour" text="Retour" />
+      <Button fx:id="Supprimer" layoutX="273.0" layoutY="80.0" mnemonicParsing="false" onAction="#Supprimer" text="Supprimer" />
+      <Button fx:id="warn" layoutX="356.0" layoutY="80.0" mnemonicParsing="false" onAction="#warnLiv" text="Warn" textFill="RED" />
+      <Button fx:id="SMS" layoutX="413.0" layoutY="81.0" mnemonicParsing="false" onAction="#sms" text="sms" />
       <VBox alignment="TOP_CENTER" layoutX="-7.0" prefHeight="596.0" prefWidth="171.0" style="-fx-background-color: #17A589;">
          <children>
             <Button alignment="BASELINE_LEFT" cancelButton="true" graphicTextGap="0.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #76D7C4 #76D7C4;" stylesheets="@../../../../Downloads/level/styleg.css" text="Admin">
@@ -39,5 +39,25 @@
             <Insets top="100.0" />
          </padding>
       </VBox>
+      <ImageView fitHeight="42.0" fitWidth="45.0" layoutX="356.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/external-warning-auction-house-flaticons-flat-flat-icons%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="42.0" fitWidth="45.0" layoutX="289.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/icons8-delete-48.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="42.0" fitWidth="52.0" layoutX="209.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/icons8-back-48.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="411.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/icons8-sms-53.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
