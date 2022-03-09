@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import models.Client;
 import models.Commande;
+import models.Livraison;
+import models.Stock;
 import utils.MaConnexion;
 
 /**
@@ -26,6 +28,26 @@ public class ServiceCommande implements ICommande{
 
       //var
     Connection cnx = MaConnexion.getInstance().getCnx();
+    
+     @Override
+    public Stock afficherStock(int id) {
+          Stock stocks =new Stock();
+     String query = "SELECT * FROM stock where id = "+id+"";
+      Statement st = null;
+         try {
+             st=cnx.createStatement();
+             ResultSet rs= st.executeQuery(query);
+             while (rs.next()){
+           stocks.setId(rs.getInt(1)); 
+           stocks.setNom(rs.getString(2));
+           stocks.setEtat(rs.getString(4));
+           stocks.setQuantite(rs.getInt(3));
+             }
+         } catch (SQLException ex) {
+             ex.printStackTrace();
+         }
+             return stocks;
+    }
     
     //Ajouter Commande
     @Override
@@ -147,6 +169,24 @@ public class ServiceCommande implements ICommande{
             e.printStackTrace();
         }
         return commande;
+    }
+       //Afficher les commandes par id_client
+    @Override
+    public List<Livraison> AfficherCommandeIdLiv(int id) {
+        List<Livraison> commandes = new ArrayList<Livraison>();
+         String req="SELECT * FROM livraison where id_commande ="+id+"";        
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            while(rs.next()){
+                commandes.add(new Livraison(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getDate(4),rs.getString(5)));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return commandes;
     }
     
     /************Tri par date*********/

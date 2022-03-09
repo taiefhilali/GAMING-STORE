@@ -9,6 +9,8 @@ import java.sql.Date;
 import java.util.List;
 import models.Commande;
 import models.Commande_elem;
+import models.Livraison;
+import models.Stock;
 
 /**
  *
@@ -17,6 +19,10 @@ import models.Commande_elem;
 public interface ICommande {
     
     public void ajouterCommande(Commande c);
+    
+    public Stock afficherStock(int id);
+    
+    public List<Livraison> AfficherCommandeIdLiv(int id) ;
     
     public void SupprimerCommande(Commande c);
     

@@ -37,6 +37,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import models.Commande;
+import models.Livraison;
 import services.ServiceCommande;
 
 
@@ -112,7 +113,11 @@ public class ClientCommandesController implements Initializable {
                     setGraphic(null);
                     return;
                 }
+                List<Livraison> li = new ArrayList<Livraison>();
+          li = sp.AfficherCommandeIdLiv(cmd.getId_commande());
+          if(li.size() == 0){
          setGraphic(new HBox(EditButton,deleteButton));
+          }
          deleteButton.setStyle("-fx-background-color: #FF5317;");
          EditButton.setStyle("-fx-background-color: #21E350;");
          

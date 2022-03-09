@@ -24,6 +24,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Window;
 import models.AdminCommandes;
 import models.Commande;
+import models.Livraison;
 import services.ServiceCommande;
 
 /**
@@ -77,11 +78,14 @@ public class AdminCommandesController implements Initializable {
         PrTotal.setCellValueFactory(new PropertyValueFactory<>("prix_Total"));
         
         for(Commande p2 : p1){
+             List<Livraison> li = new ArrayList<Livraison>();
+          li = sp.AfficherCommandeIdLiv(p2.getId_commande());
+          if(li.size() == 0){
             adminCmd.getItems().add(new AdminCommandes(p2.getId_commande(),p2.getClient().getNom()
             ,p2.getClient().getPrenom(),p2.getDate_commande(),p2.getPrix_livraison()
             ,p2.getPrix_produits(),p2.getPrix_total()));
         }
-        
+        }
         Action.setCellValueFactory(
                 param -> new ReadOnlyObjectWrapper<>(param.getValue())
         );
@@ -105,6 +109,8 @@ public class AdminCommandesController implements Initializable {
          
         }}
        ); 
-    }    
+    }
+        }
     
-}
+    
+
