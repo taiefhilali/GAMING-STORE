@@ -107,15 +107,17 @@ import com.sun.deploy.uitoolkit.impl.fx.HostServicesFactory;
 import com.sun.javafx.application.HostServicesDelegate;
 import java.awt.Desktop;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.Writer;
 import static java.lang.Thread.sleep;
 import javafx.application.HostServices;
+import javafx.stage.DirectoryChooser;
 import javax.swing.text.Document;
 import models.jointCategorie;
-import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import org.krysalis.barcode4j.impl.code39.Code39Bean;
 import org.krysalis.barcode4j.impl.upcean.EAN13Bean;
 import org.krysalis.barcode4j.tools.UnitConv;
@@ -328,12 +330,11 @@ public class AddProductInterfaceController implements Initializable {
                         setGraphic(null);
                         return;
                     }
-                    calculProm.setPrefSize(97, 1);
+                    calculProm.setPrefSize(140, 1);
                     calculProm.setStyle("-fx-background-color: #FFD700;"); // Couleur dorée du nv bouton
                     setGraphic(new HBox(calculProm));
                     calculProm.setOnAction(
                             event -> {
-
                                 showAlert(Alert.AlertType.INFORMATION, ((Node) event.getSource()).getScene().getWindow(),
                                         "Calcul de la Promotion ", " Le prix final aprés le calcul de la promotion est : " + (sp.calculerPromotion(p))
                                 );
@@ -373,7 +374,7 @@ public class AddProductInterfaceController implements Initializable {
                 showAlert(Alert.AlertType.ERROR, ((Node) event.getSource()).getScene().getWindow(),
                         " Erreur d'ajout du produit ! ", " Erreur d'ajout! \n Veuillez remplir touts les champs! ");
             } else {
-                sp.ajouterProduit(new Produit(nomProduitTF.getText(),
+               String s = sp.ajouterProduit(new Produit(nomProduitTF.getText(),
                         referenceTF.getText(),
                         sc.retrieveCategorieByNom((String) comboBoxCat.getValue()),
                         Double.parseDouble(prixTF.getText()),
@@ -391,7 +392,7 @@ public class AddProductInterfaceController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
                 showAlert(Alert.AlertType.INFORMATION, ((Node) event.getSource()).getScene().getWindow(),
-                        " Succés d'ajout ! ", " Ajout du produit établie avec succés! ");
+                        " Ajouter Produit ! ", s);
             }
 
         } else {
@@ -617,7 +618,7 @@ public class AddProductInterfaceController implements Initializable {
     // Fonction du bouton Export as Barcode PDF
     // Code a bar
     @FXML
-    private void exportAsBarcode(ActionEvent event) throws IOException {
+    private void exportAsBarcode(ActionEvent event) throws IOException, WriterException {
 
         // alerte de confirmation
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
@@ -655,7 +656,6 @@ public class AddProductInterfaceController implements Initializable {
             // Ouverture
             Desktop d = Desktop.getDesktop();
             d.open(f);
-
         }
     }
 
@@ -670,47 +670,44 @@ public class AddProductInterfaceController implements Initializable {
 
     }
 
-    // fonction génératrice de pdf
-//    public void PDFCreation() throws IOException, DocumentException {
-//        Document doc = new Document();
-//        PdfWriter.getInstance(doc, new FileOutputStream("CodesProduits.pdf"));
-//        doc.setPageSize(PageSize.A4);
-//    }
     // Bouton permettant d'exporter sous forme de fichier excel / 
     @FXML
     private void visitDB(MouseEvent event) throws IOException {
-//        Writer writer = null;
-//        File file = new File("D:\\PiPictures\\Produit.csv.");
-//        writer = new BufferedWriter(new FileWriter(file));
-//        for (Produit p : listProd) {
-//
-//            String text = p.getNom() + "," + p.getPrix() + "," + p.getCategorie().getNom_categorie() + ","
-//                    + p.getPrix() + "," + p.getPromotion()
-//                    + "," + p.getImage() + "," + p.getUser().getEmail() + "\n";
-//            file.setReadable(true);
-//            file.setWritable(true);
-//            writer.write(text);
-//            System.out.println("successfuly generated excel file");
-//            writer.flush();
-//
-//        }
-//    }
 
-        XSSFWorkbook wb = new XSSFWorkbook();
-        XSSFSheet sheet = wb.createSheet("Details Produit");
-        XSSFRow header = sheet.createRow(0);
-        header.createCell(0).setCellValue("Nom Produit");
-        header.createCell(1).setCellValue(" Référence ");
-        header.createCell(2).setCellValue("Prix");
-        header.createCell(3).setCellValue(" Email Fournisseur ");
-        header.createCell(4).setCellValue("Promotion");
+//        DirectoryChooser chooser = new DirectoryChooser();
+//        chooser.setTitle("EXCEL documents path");
+//        File defaultDirectory = new File(System.getProperty("user.home") + "/Desktop");
+//        chooser.setInitialDirectory(defaultDirectory);
+//        File selectedDirectory = chooser.showDialog(new Stage());
+//        XSSFWorkbook wb = new XSSFWorkbook(new FileInputStream("D:\\PiPictures"));
+//        XSSFSheet sheet = wb.getSheet("Feuil1");
+        Writer writer = null;
+        File file = new File("D:\\PiPictures\\Produit.csv.");
+        writer = new BufferedWriter(new FileWriter(file));
+        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert1.setTitle("Confirmation de création ");
+        alert1.setHeaderText(null);
+        alert1.setContentText(" Etes-vous sure de vouloir créer le fichier Excel ? ");
+        Optional<ButtonType> action = alert1.showAndWait();
 
-        int index = 1;
-        listProd.forEach(
-                (p) -> {
-                    
-                    
-                }
-                    );
-                }
+        if (action.get() == ButtonType.OK) {
+            for (Produit p : listProd) {
+                String text = p.getNom() + "," + p.getPrix() + "," + p.getCategorie().getNom_categorie() + ","
+                        + p.getPrix() + "," + p.getPromotion()
+                        + "," + p.getUser().getEmail() + "\n";
+                file.setReadable(true);
+                file.setWritable(true);
+                writer.write(text);
+
+                System.out.println("Génération du fichier avec succés !");
+                writer.flush();
+
+            }
+            showAlert(Alert.AlertType.INFORMATION, ((Node) event.getSource()).getScene().getWindow(),
+                    "Fichier Excel", " Le fichier excel a été génére avec succés!");
+            File f = new File("D:/PiPictures/Produit.csv");
+            Desktop d = Desktop.getDesktop();
+            d.open(f);
+        }
     }
+}

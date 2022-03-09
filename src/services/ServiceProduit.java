@@ -27,8 +27,8 @@ public class ServiceProduit implements Iproduit {
     @Override
     // Crud d'ajouter d'un produit selon un produit saisie {{ WITHOUT USER ID ]] 
 
-    public void ajouterProduit(Produit p) {
-
+    public String ajouterProduit(Produit p) {
+        String s = "";
         String request = "INSERT INTO `produit`(`nom`, `reference`, `id_categorie`, `prix`, `description`,`id_user`,`promotion`,`image`) "
                 + "VALUES ('" + p.getNom() + "','"
                 + p.getReference() + "','"
@@ -44,10 +44,14 @@ public class ServiceProduit implements Iproduit {
             //Execution da la fonction statement
             //execute update pour l'éxecution même au cours du modification i lfait maj
             st.executeUpdate(request);
-            System.out.println(" ** L'ajout du produit est établie avec succés! **  ");
+            System.out.println("  ");
+            s=" ** L'ajout du produit est établie avec succés! **";
+            return s;
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            s = "Echec d'ajout! Veuillez saisir une réference unique";
+            return s;
         }
+
     }
 
     // Crud: Modification d'un produit existant selon son objet p et non l'id
@@ -162,6 +166,31 @@ public class ServiceProduit implements Iproduit {
     }
 
     @Override
+    public Produit retrieveProductById(int id) {
+        Produit p = new Produit();
+        ServiceCategorie sc = new ServiceCategorie();
+        String query = "SELECT * FROM `produit` WHERE `id_produit` = " + id + " ";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                p.setId_produit(rs.getInt(1));
+                p.setNom(rs.getString(2));
+                p.setReference(rs.getString(3));
+                p.setCategorie(sc.retrieveCategorieById(rs.getInt(4)));
+                p.setPrix(rs.getInt(5));
+                p.setDescription(rs.getString(6));
+                p.setUser(new User(rs.getString(7)));
+                p.setPrix(rs.getInt(8));
+                p.setImage(rs.getString(9));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return p;
+    }
+
+    @Override
     public List<Produit> chercherProduitDynamiquement(String s, List<Produit> l) {
         List<Produit> strList = l.stream()
                 .map(Produit::concat)
@@ -183,7 +212,6 @@ public class ServiceProduit implements Iproduit {
 
     @Override
     public void calculatePromotiononAdd() {
-
         String query = "UPDATE `produit` SET `prix_final`=`prix`-(`prix`*(`promotion`/100))";
         Statement st;
         try {
@@ -192,7 +220,24 @@ public class ServiceProduit implements Iproduit {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
 
+    @Override
+    public double returnPrixfinal(int id) {
+        double prixf = 0;
+        ServiceProduit sp = new ServiceProduit();
+        String query = "SELECT `prix_final` FROM `produit` WHERE `id_produit` = " + id + " ";
+        Statement st;
+        try {
+            st = cnx.createStatement();
+            st.executeQuery(query);
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                prixf = rs.getDouble(1);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return prixf;
+    }
 }

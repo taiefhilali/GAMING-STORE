@@ -24,7 +24,7 @@ public class FX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("Magasin.fxml")); // Magasin.fxml + SelectionInterface.fxml
+        Parent root = FXMLLoader.load(getClass().getResource("SelectionInterface.fxml")); // Magasin.fxml + SelectionInterface.fxml
 
         Scene scene = new Scene(root);
         stage.setTitle(" Gestion des Produits et Catégories "); //

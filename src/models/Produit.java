@@ -51,6 +51,16 @@ public class Produit {
         this.image = image;
     }
 
+    public Produit(int id_produit, String nom, String reference, double prix, String description) {
+        this.id_produit = id_produit;
+        this.nom = nom;
+        this.reference = reference;
+        this.prix = prix;
+        this.description = description;
+    }
+
+    
+    
     public Produit(int id, String nom, double prix, String description) {
         this.id_produit = id;
         this.nom = nom;
