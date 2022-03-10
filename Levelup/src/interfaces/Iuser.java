@@ -25,8 +25,9 @@ public interface Iuser {
     public List<User> afficherParPrenom(String prenom);
     public User getByEmail(String email);
     public String authentification(String e, String p);
-    
+    public int CalculerUser(String role );
     public boolean modifierPersonne(User p);
-    
+    public int CalculerActive(Boolean role );
     public boolean supprimerPersonne(User p);
+     public String getById(int email);
 }

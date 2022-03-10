@@ -57,11 +57,24 @@ public class ServiceCommande_elem implements ICommande_elem{
             ex.printStackTrace();
         }
     }
+    
+    @Override
+    public void supprimerElementByID(int id) {
+            String req = "DELETE FROM `detail_commande` WHERE id_elemC = "+id+" ";
+
+        try {
+            Statement st = cnx.createStatement();
+           st.executeUpdate(req); 
+           System.out.println("Element de Commande Supprimé avec succés");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     //Modifier element de panier
     @Override
-    public void modifierElementCommande(Commande_elem e) {
-        String req = "UPDATE `detail_commande` SET `id_elemC`="+e.getId_elemC()+",`id`="+e.getProduit().getId_produit()+",`id_commande`="+e.getCmd().getId_commande()+",`Quantite`="+e.getQuantite()+" WHERE id_commande ="+e.getCmd().getId_commande()+" And id ="+e.getProduit().getId_produit()+"";
+    public void modifierElementCommande(Integer e , int id) {
+        String req = "UPDATE `detail_commande` SET `Quantite`="+ e +" WHERE id_elemC ="+id+"";
         try {
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
@@ -85,7 +98,7 @@ public class ServiceCommande_elem implements ICommande_elem{
             ResultSet rs = st.executeQuery(req);
 
             while(rs.next()){
-                commandes_elem.add(new Commande_elem(rs.getInt("dc.id_elemC"),new Produit(rs.getInt("p.id_produit"),rs.getString("p.nom"),rs.getDouble("p.prix"),rs.getString("p.description"))
+                commandes_elem.add(new Commande_elem(rs.getInt("dc.id_elemC"),new Produit(rs.getInt("p.id_produit"),rs.getString("p.nom"),rs.getDouble("p.prix_final"),rs.getString("p.description"),rs.getString("p.image"))
                         ,new Commande(rs.getInt("c.id_commande"),rs.getFloat("c.prix_livraison"),rs.getDate("c.date_commande")),rs.getInt("dc.Quantite")));
             }
 
@@ -98,17 +111,26 @@ public class ServiceCommande_elem implements ICommande_elem{
     
     /****Afficher Top Produits ****/
     @Override
-    public List<TopProduits> TopProduits (int n){
+    public List<TopProduits> TopProduits (){
+        int n =3;
         List<TopProduits> produits = new ArrayList<TopProduits>();
-        
+       
+
         String req = "select id,count(id) from detail_commande group by id order by count(id) desc";
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             int i=0;
             while(rs.next() && i<n ){
-                produits.add(new TopProduits(rs.getInt(1),rs.getInt(2)));
+                String req1 = "select * from produit where id_produit ="+rs.getInt(1)+"";
+                Statement st1 = cnx.createStatement();
+                ResultSet rs1 = st1.executeQuery(req1);
+                while(rs1.next()){
+                produits.add(new TopProduits(rs.getInt(1),rs.getInt(2),
+                    new Produit(rs1.getInt("id_produit"),rs1.getString("nom"),rs1.getDouble("prix"),rs1.getString("description"))
+));
                 i++;
+                }
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -116,7 +138,6 @@ public class ServiceCommande_elem implements ICommande_elem{
         
         return produits;
     }
-    
     
     
 }

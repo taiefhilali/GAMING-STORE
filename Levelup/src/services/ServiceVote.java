@@ -14,13 +14,24 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import utils.MaConnexion;
+import interfaces.Ivote;
+import java.util.ArrayList;
+import java.util.List;
+import models.Post;
+import models.User;
+import models.Vote;
 
 /**
  *
  * @author msi
  */
-public class ServiceVote implements Ivote {
+public class ServiceVote extends Ivote {
+    public List<Vote> afficherVote() {
+       
+      countVote();
 
+     return afficherVote();
+    }
     Connection cnx = MaConnexion.getInstance().getCnx();
 
     public void upVote(int idPost, int idUser) {

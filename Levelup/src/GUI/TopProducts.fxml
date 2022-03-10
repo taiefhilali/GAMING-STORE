@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="780.0" prefWidth="1143.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.TopProductsController">
+   <children>
+      <HBox layoutX="132.0" layoutY="113.0" prefHeight="551.0" prefWidth="983.0" style="-fx-border-color: #89D5D6;">
+         <children>
+            <Pane prefHeight="408.0" prefWidth="222.0" style="-fx-border-color: 1DCBCE; -fx-background-color: ADD0D1;">
+               <children>
+                  <ImageView fitHeight="120.0" fitWidth="157.0" layoutX="51.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/premium-product-black-glyph-icon-2230321.png" />
+                     </image>
+                  </ImageView>
+                  <Circle fx:id="circle1" fill="#1f93ff00" layoutX="111.0" layoutY="264.0" radius="64.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="4.0" style="-fx-stroke-dash-array: 50;" />
+                  <Circle fx:id="circle2" fill="#1f93ff00" layoutX="111.0" layoutY="264.0" radius="80.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="4.0" style="-fx-stroke-dash-array: 30;" />
+                  <Circle fx:id="circle3" fill="#1f93ff00" layoutX="111.0" layoutY="264.0" radius="96.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="4.0" style="-fx-stroke-dash-array: 20;" />
+               </children>
+            </Pane>
+            <ScrollPane fx:id="scroll" prefHeight="549.0" prefWidth="649.0" style="-fx-border-color: 1DCBCE;" styleClass="transparent" stylesheets="@../styles/style1.css">
+               <content>
+                  <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </HBox>
+      <Label layoutX="130.0" layoutY="36.0" text="Nos 3 Meilleurs Produits : ">
+         <font>
+            <Font name="Comic Sans MS Bold" size="36.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

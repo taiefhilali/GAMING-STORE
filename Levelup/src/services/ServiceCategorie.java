@@ -16,10 +16,13 @@ import utils.MaConnexion;
  */
 public class ServiceCategorie implements Icategorie {
 
+    // var
+    String nomcat;
+
     // Variable 1
     Connection cnx = MaConnexion.getInstance().getCnx();
 
-    // Crud ajout   
+    // Crud ajout catégorie
     @Override
     public void ajouterCategorie(Categorie c) {
         String request = "INSERT INTO `categorie`(`nom_categorie`) VALUES ('" + c.getNom_categorie() + "')";
@@ -76,8 +79,23 @@ public class ServiceCategorie implements Icategorie {
     }
 
     @Override
+    public String afficherCategorieParNom() {
+        String query = "SELECT * FROM categorie";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                nomcat = rs.getString("nom_categorie");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return nomcat;
+    }
+
+    @Override
     public Categorie retrieveCategorieById(int id) {
-        Categorie cat = new Categorie(); 
+        Categorie cat = new Categorie();
         String query = "SELECT * FROM `categorie` WHERE `id_categorie` = " + id + " ";
         try {
             Statement st = cnx.createStatement();
@@ -90,5 +108,38 @@ public class ServiceCategorie implements Icategorie {
             ex.printStackTrace();
         }
         return cat;
+    }
+
+    @Override
+    public Categorie retrieveCategorieByNom(String s) {
+        Categorie cat = new Categorie();
+        String query = "SELECT * FROM `categorie` WHERE `nom_categorie` = '" + s + "' ";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                cat.setId_categorie(rs.getInt(1));
+                cat.setNom_categorie(rs.getString(2));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return cat;
+    }
+
+    @Override
+    public int validerCategorie(String s) {
+        Categorie cat = new Categorie();
+        String query = "SELECT * FROM `categorie` WHERE `nom_categorie` = '" + s + "' ";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            if (rs.next()) {
+                return 1;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
     }
 }

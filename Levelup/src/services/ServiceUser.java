@@ -5,8 +5,9 @@
  */
 package services;
 
+import GUI.MD5;
 import interfaces.Iuser;
-import java.awt.image.DataBufferFloat;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -26,6 +27,8 @@ import models.User;
 import utils.MaConnexion;
 import java.sql.Date;
 import java.time.LocalDate;
+import models.Categorie;
+import models.Produit;
 /**
  *
  * @author 21694
@@ -53,7 +56,25 @@ public class ServiceUser implements Iuser {
         }
     }
 
-    @Override
+//    @Override
+//    public List<User> afficherPersonnes() {
+//        List<User> personnes = new ArrayList<User>();
+//        String req = "SELECT * from user";
+//        Statement st = null;
+//        try {
+//            st = cnx.createStatement();
+//            ResultSet rs = st.executeQuery(req);
+//            while (rs.next()) {
+//                personnes.add(new User(rs.getInt("id_user"), rs.getString("email"), rs.getString("password"),
+//                        rs.getString("role"), rs.getString("nom"), rs.getString("prenom"), rs.getString("adresse"), rs.getString("tel"), rs.getDate("dns")));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return personnes;
+//    }
+    
+        @Override
     public List<User> afficherPersonnes() {
         List<User> personnes = new ArrayList<User>();
         String req = "SELECT * from user";
@@ -63,7 +84,8 @@ public class ServiceUser implements Iuser {
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
                 personnes.add(new User(rs.getInt("id_user"), rs.getString("email"), rs.getString("password"),
-                        rs.getString("role"), rs.getString("nom"), rs.getString("prenom"), rs.getString("adresse"), rs.getString("tel"), rs.getDate("dns")));
+                        rs.getString("role"), rs.getString("nom"), rs.getString("prenom"), rs.getString("adresse"), rs.getString("tel"), rs.getDate("dns")
+                        ,rs.getString("image")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -94,10 +116,10 @@ public class ServiceUser implements Iuser {
       return u;
     }
     
-
+    
     @Override
-    public User getByEmail(String email) {
-        String req = "SELECT * from user WHERE  user.email= '" + email + "' ";
+    public String getById(int email) {
+        String req = "SELECT * from user WHERE  user.id_user= '" + email + "' ";
         User ad = new User();
         Statement st = null;
         try {
@@ -115,6 +137,25 @@ public class ServiceUser implements Iuser {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return ad.getEmail();
+    }
+
+    
+    @Override
+    public User getByEmail(String email) {
+        String req = "SELECT * from user WHERE  user.email= '" + email + "' ";
+        User ad = new User();
+        Statement st = null;
+        try {
+            st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                ad = new User(rs.getInt("id_user"), rs.getString("email"), rs.getString("password"),
+                        rs.getString("role"), rs.getString("nom"), rs.getString("prenom"), rs.getString("adresse"), rs.getString("tel"), rs.getDate("dns"),rs.getString("image"));
+                      }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return ad;
 
     }
@@ -129,26 +170,28 @@ public class ServiceUser implements Iuser {
             //email correcte
             LocalDateTime time = LocalDateTime.now();
             if (rs.next()) {
-                // System.out.println( rs.getTimestamp("limite").getHours()-time.getHour()  );
+                
+                //System.out.println( rs.getTimestamp("limite").getHours()-time.getHour()  );
                 //compte locked
-                if (rs.getBoolean("locked")) {
-                    
+                if (rs.getBoolean("locked")) {                    
                     if (Math.abs(time.getHour() - rs.getTimestamp("limite").getHours()) < 1) {
                         return "Votre compte est bloqué" ;
                     } else {
 
                         if (rs.getString("password").equals(password)) {
                             st.executeUpdate("UPDATE `user` SET `tentative`=0, `locked`=false WHERE `email`= '" + email + "' ;");
-                            return "mot de passe correcte";
+                            return rs.getString("role");
                         } else {
                             st.executeUpdate("UPDATE `user` SET `tentative`=`tentative`+1 , `locked`=false WHERE `email`= '" + email + "' ;");
-                            return "mot de passe incorrecte";
+                            return "Mot de passe incorrecte";
                         }
                     }
-                } else {
+                } 
+                
+                else {
 
-                    if (rs.getString("password").equals(password)) {
-                        return "mot de passe correcte";
+                    if (MD5.matches(rs.getString("password"), password)) {
+                        return rs.getString("role");
                     } else {
                         //modification de l'attribut tentative
                         if (rs.getInt("tentative") == 2) {
@@ -156,7 +199,7 @@ public class ServiceUser implements Iuser {
                             return "Vous avez depassez le nombre de tentatives , votre compte est bloqué";
                         } else {
                             st.executeUpdate("UPDATE `user` SET `tentative`=`tentative`+1  WHERE `email`= '" + email + "' ;");
-                            return "mot de passe incorrecte";
+                            return "Mot de passe incorrecte";
                         }
                     }
                 }
@@ -173,7 +216,7 @@ public class ServiceUser implements Iuser {
     @Override
     public boolean modifierPersonne(User p) {
 
-        String req = "UPDATE `user` SET `email`= '" + p.getEmail() + "' , `password`='" + p.getPassword() + "' ,`role`='" + p.getRole() + "', `nom`='" + p.getNom() + "', `prenom`='" + p.getPrenom() + "',`adresse`='" + p.getAdresse() + "',`tel`='" + p.getTel() + "',`dns`='" + p.getDns() + "' WHERE `id_user` = " + p.getId() + " ";
+        String req = "UPDATE `user` SET `email`= '" + p.getEmail() + "' , `password`='" + p.getPassword() + "' ,`role`='" + p.getRole() + "', `nom`='" + p.getNom() + "', `prenom`='" + p.getPrenom() + "',`adresse`='" + p.getAdresse() + "',`tel`='" + p.getTel() + "',`dns`='" + p.getDns() + "',`image`='" + p.getImage()+ "' WHERE `id_user` = " + p.getId() + " ";
 
         try {
             Statement st = cnx.createStatement();
@@ -203,4 +246,59 @@ public class ServiceUser implements Iuser {
         }
 
     }
+    
+    public int CalculerUser(String role ){
+         String req = "SELECT count(*) as nbr from user WHERE  user.role= '" + role + "' ";
+         int i=0;
+           Statement st = null;
+            try {
+            st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+             while (rs.next()) {
+               i=rs.getInt("nbr");
+        }
+           
+           
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return i ;
+        
+    }
+    public int CalculerActive(Boolean role ){
+         String req = "SELECT count(*) as nbr from user WHERE  user.locked= " + role +"";
+         int i=0;
+           Statement st = null;
+            try {
+            st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+             while (rs.next()) {
+               i=rs.getInt("nbr");
+        }
+           
+           
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return i ;
+        
+    }
+//     public List<User> chercherProduitDynamiquement(String s, List<User> p) {
+//        List<Produit> strList = l.stream()
+//                .map(Produit::concat)
+//                .filter(pt -> pt.contains(s)) //starts with (only searches for a person's id)
+//                .map(pt -> new Produit(
+//                Integer.parseInt(pt.split("-")[0]),
+//                pt.split("-")[1],
+//                pt.split("-")[2],
+//                new Categorie(Integer.parseInt(pt.split("-")[3]), pt.split("-")[4]),
+//                Double.parseDouble(pt.split("-")[5]),
+//                pt.split("-")[6],
+//                new User(Integer.parseInt(pt.split("-")[7])),
+//                Double.parseDouble(pt.split("-")[8])
+//        ))
+//                //Dans le cas ou je veut limiter le nombre des produits affichés         .limit(5)
+//                .collect(Collectors.toList());
+//        return strList;
+//    }
 }

@@ -13,25 +13,29 @@ public class Vote {
     int idv;
     Post id;
     Post id_user;
-    int Upvote;
-    int Downvote;
+    int vote_type;
+  
 
-    public Vote(int idv, Post id, Post id_user, int Upvote, int Downvote) {
+    public Vote(int idv, Post id, Post id_user, int vote_type) {
         this.idv = idv;
         this.id = id;
         this.id_user = id_user;
-        this.Upvote = Upvote;
-        this.Downvote = Downvote;
+        this.vote_type = vote_type;
+        
     }
 
-    public Vote(Post id, Post id_user, int Upvote, int Downvote) {
+    public Vote(Post id, Post id_user, int vote_type) {
         this.id = id;
         this.id_user = id_user;
-        this.Upvote = Upvote;
-        this.Downvote = Downvote;
+        this.vote_type = vote_type;
+       
     }
 
     public Vote() {
+    }
+
+    public Vote(int vote_type) {
+        this.vote_type = vote_type;
     }
 
     public int getIdv() {
@@ -58,26 +62,21 @@ public class Vote {
         this.id_user = id_user;
     }
 
-    public int getUpvote() {
-        return Upvote;
+    public int getVote_type() {
+        return vote_type;
     }
 
-    public void setUpvote(int Upvote) {
-        this.Upvote = Upvote;
-    }
-
-    public int getDownvote() {
-        return Downvote;
-    }
-
-    public void setDownvote(int Downvote) {
-        this.Downvote = Downvote;
+    public void setVote_type(int vote_type) {
+        this.vote_type = vote_type;
     }
 
     @Override
     public String toString() {
-        return "Vote{" + "idv=" + idv + ", id=" + id + ", id_user=" + id_user + ", Upvote=" + Upvote + ", Downvote=" + Downvote + '}';
+        return "Vote{" + "idv=" + idv + ", id=" + id + ", id_user=" + id_user + ", vote_type=" + vote_type + '}';
     }
+
+   
+   
     
     
     

@@ -28,7 +28,7 @@ public class ServiceReclamation implements Ireclamation{
     Connection cnx = MaConnexion.getInstance().getCnx();
 
     public boolean ajouterReclamation(Reclamation r) {
-        String request = "INSERT INTO `Reclamation`(`id_user`, `id_livraison`, `description`) VALUES ('"+r.getUser().getId()+"','"+r.getLivraison().getId_livraison()+"','"+r.getDescription()+"')";
+        String request = "INSERT INTO `Reclamation`(`id_user`, `id_livraison`, `description`) VALUES ("+r.getUser().getId_user()+","+r.getLivraison().getId_livraison()+",'"+r.getDescription()+"')";
         try {
             Statement st = cnx.createStatement();
             if (st.executeUpdate(request) == 1 )
@@ -51,7 +51,7 @@ public class ServiceReclamation implements Ireclamation{
 
             //SOB HEDHA FI HEDHA
             while(rs.next()){
-                reclamation.add(new Reclamation(rs.getInt("id_reclamation"),new User(rs.getInt("id_user")),new Livraison (rs.getInt("id_livraison")),rs.getString("Description")));
+                reclamation.add(new Reclamation(rs.getInt("id_reclamation"),new User(rs.getInt("id_user")),new Livraison (rs.getInt("id_livraison")),rs.getString("Description"),rs.getBoolean("WARN")));
             }
 
         } catch (SQLException e) {
@@ -137,5 +137,40 @@ public class ServiceReclamation implements Ireclamation{
         
     }
 
+    public boolean warn(Reclamation r) {
+
+       String req = "UPDATE `reclamation` SET `warn`=1  WHERE `id_reclamation` = "+r.getId_reclamation()+" ";
+        try {
+            Statement st = cnx.createStatement();
+            if (st.executeUpdate(req) == 1)
+                return true;
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+     public List<Reclamation> ReclamationParLivreur(int idLivreur) {
+        List<Reclamation> reclamation = new ArrayList<Reclamation>();
+
+        String req="SELECT * FROM reclamation r , livraison l where (l.id_livraison = r.id_livraison) and r.WARN=1 and l.id_user="+idLivreur;
+        Statement st = null;
+        try {
+            st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            //SOB HEDHA FI HEDHA
+            while(rs.next()){
+                reclamation.add(new Reclamation(rs.getInt("id_reclamation"),new User(rs.getInt("id_user")),new Livraison (rs.getInt("id_livraison")),rs.getString("Description"),rs.getBoolean("WARN")));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return reclamation;
+    }
+    
     
 }

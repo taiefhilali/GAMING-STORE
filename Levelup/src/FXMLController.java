@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,6 +33,7 @@ import javafx.scene.input.MouseEvent;
 import models.Post;
 import models.User;
 import services.Servicepost;
+import utils.Session;
 
 /**
  * FXML Controller class
@@ -92,19 +94,27 @@ public class FXMLController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText("Erreur de saisie !");
-            alert.setContentText("Vous navez pas saisie le nom");
+            alert.setContentText("Vous navez pas saisie le contenue");
             alert.show();
 
-        } else {
-             Date myDate = Date.valueOf(datePK.getValue().toString());
+        } else if (titreTF.getText().length() == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Erreur de saisie !");
+            alert.setContentText("Vous navez pas saisie le titre");
+            alert.show();
+        }
+        else{
             
         
       //     spost.getusersList();
                 if(ValidateFields()){
             if(ValidateFields2()){  
-                
-           spost.ajouterPost(new Post(contenuTF.getText(),titreTF.getText(),myDate,userTF.getValue()));
-Alert alert =new Alert(Alert.AlertType.INFORMATION);//hethika l combo ? lee
+                 Date myDate = Date.valueOf(datePK.getValue().toString());
+            
+           spost.ajouterPost(new Post(contenuTF.getText(),titreTF.getText(),myDate,new User(Session.getId(), Session.getEmail(), Session.getPassword(), Session.getRole(),
+                   Session.getNom(), Session.getPrenom(), Session.getAdresse(), Session.getTel(), myDate, Session.getImage())));
+        Alert alert =new Alert(Alert.AlertType.INFORMATION);//hethika l combo ? lee
         alert.setTitle("AJOUTER PUBLICATION!");
         alert.setHeaderText("information!");
         alert.setContentText("PUBLICATION A ETE AJOUTEE AVEC SUCCES!");
@@ -127,7 +137,6 @@ Alert alert =new Alert(Alert.AlertType.INFORMATION);//hethika l combo ? lee
          
     }
 
-    @FXML
     private void ajretourpost(ActionEvent event) {
         
         try {
@@ -146,6 +155,20 @@ Alert alert =new Alert(Alert.AlertType.INFORMATION);//hethika l combo ? lee
         
     }
 
+    @FXML
+    private void ret(ActionEvent event) {
+        
+         try {
+            root = FXMLLoader.load(getClass().getResource("postgrid.fxml"));
+            stage = (javafx.stage.Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            
+        }
+    }
+
 
     private static class user extends User {
 
@@ -155,7 +178,8 @@ Alert alert =new Alert(Alert.AlertType.INFORMATION);//hethika l combo ? lee
     
     private boolean ValidateFields() {
           Date myDate = Date.valueOf(datePK.getValue().toString());
-        if(contenuTF.getText().isEmpty() | titreTF.getText().isEmpty() | datePK.getValue().equals(myDate)) {
+          Date today= Date.valueOf(LocalDate.MAX);
+        if(contenuTF.getText().isEmpty() | titreTF.getText().isEmpty() | userTF.getValue()==null|datePK.getValue()==null){
              Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Validate Fields");
         alert.setHeaderText(null);

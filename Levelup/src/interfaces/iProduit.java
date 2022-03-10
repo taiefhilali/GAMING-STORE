@@ -2,6 +2,7 @@ package interfaces;
 
 import java.util.List;
 import models.Produit;
+import models.jointCategorie;
 
 /**
  *
@@ -9,7 +10,7 @@ import models.Produit;
  */
 public interface Iproduit {
 
-    public void ajouterProduit(Produit p);
+    public String ajouterProduit(Produit p);
 
     public void modifierProduit(Produit p);
 
@@ -22,5 +23,12 @@ public interface Iproduit {
     public void TrierProduitParPrix();
 
 //  Pour calculer la promotion :   
-    public Produit calculerPromotion(Produit p);
+    public Double calculerPromotion(jointCategorie jc);
+
+    public void calculatePromotiononAdd();
+
+    public Produit retrieveProductById(int id);
+
+    public double returnPrixfinal(int id);
+
 }

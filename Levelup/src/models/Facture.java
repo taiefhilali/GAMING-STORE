@@ -17,6 +17,10 @@ public class Facture {
    private String prix_total;
    private User user ;
 
+    public Facture(String prix_total) {
+        this.prix_total = prix_total;
+    }
+
     public Facture() {
     }
 
@@ -68,7 +72,7 @@ public class Facture {
 
     @Override
     public String toString() {
-        return "Facture{" + "id_facture=" + id_facture + ", date=" + date + ", prix_total=" + prix_total + ", user=" + user + '}';
+        return "Facture{" + "id_facture=" + id_facture + ", date=" + date + ", prix_total=" + prix_total + ", user=" + user.getEmail() + '}';
     }
 
    

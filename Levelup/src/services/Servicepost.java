@@ -17,7 +17,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,6 +49,30 @@ public class Servicepost implements Ipost {
             ex.printStackTrace();
             return false;
         }
+    }
+ public List<Post> sh() {
+        List<Post> posts = new ArrayList<Post>();
+
+        String req = "SELECT * FROM post p inner JOIN user u  where p.id_user=u.id_user ";
+
+        Statement st = null;
+        try {
+            st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            //SOB HEDHA FI HEDHA
+            while (rs.next()) {
+                posts.add(new Post(rs.getString(2), rs.getString(3)
+                        
+                      
+                ) );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return posts;
     }
 
     @Override
@@ -331,7 +357,7 @@ public class Servicepost implements Ipost {
 
         return l;
     }
-
+ 
     //-----------------------
 ////------------------------------- Liste 2 --------------------------------------------------------------------//
 //    public List <Post> liste2()
@@ -416,10 +442,20 @@ public class Servicepost implements Ipost {
                 return l;
             }
         } catch (SQLException ex) {
-            System.out.println("ffffffffffffff");
         }
 
         return l;
+    }
+public List<Post> chercherPost(List<Post> initialList, String input) {
+        
+         List<Post> prodList;
+          prodList = initialList.stream()
+                  .map( Post::concat )
+                  .filter(pt -> pt.toLowerCase().contains(input.toLowerCase()))
+                  .map(pt -> new Post(pt.split(".@.")[0],pt.split(".@.")[1]))
+                  .collect( Collectors.toList());
+        
+        return prodList;
     }
 
 }

@@ -13,6 +13,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import models.Facture;
 import models.Post;
@@ -52,7 +54,8 @@ public class ServiceFacture implements Ifacture {
             factures.add(new Facture(rs.getInt("id_facture"),
                     rs.getDate("date"),
                     rs.getString("prix_total"),
-              new User(rs.getInt("id_user"))));
+              new User(rs.getInt("id_user"),rs.getString("email"))
+            ));
          }
          } catch (SQLException ex) {
                ex.printStackTrace();
@@ -77,9 +80,9 @@ public class ServiceFacture implements Ifacture {
     }
 
     @Override
-    public boolean supprimerFacture(Facture f) {
+    public boolean supprimerFacture(int f) {
          try {
-             String req = "DELETE FROM `facture` WHERE `id_facture` = "+f.getId_facture()+" ";
+             String req = "DELETE FROM `facture` WHERE `id_facture` = "+f+" ";
              Statement st = cnx.createStatement();
              if (st.executeUpdate(req) == 1)
                  return true;
@@ -113,5 +116,30 @@ public class ServiceFacture implements Ifacture {
            System.out.println("TVA est "+tva+"DT");
             System.out.println("TTC est "+ttc+"DT");
     }
+    public ObservableList<Facture> getCoursList() throws SQLException {
+        ObservableList<Facture> Courslist = FXCollections.observableArrayList();
+
+        List<Facture> listb = new ArrayList<>();
+        Statement st = cnx.createStatement();
+        String query = "SELECT * FROM facture f inner JOIN user u  where f.id_user=u.id_user";
+
+        ResultSet rs;
+        rs = st.executeQuery(query);
+        Facture fact;
+        while (rs.next()) {
+            fact = (new Facture(rs.getInt("id_facture"), rs.getDate(2),
+                    rs.getString(3),
+                 
+                    // new User(rs.getString("email"))
+                    new User(rs.getInt("id_user"))
+    
+            ));
+         
+            Courslist.add(fact);
+
+        }
+        return Courslist;
+    }
+
      
 }

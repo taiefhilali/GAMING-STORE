@@ -23,6 +23,11 @@ public class Post {
     public Post() {
     }
 
+    public Post(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
     public Post(int id, String title, String content, Date datep, User id_user) {
         this.id = id;
         this.id_user = id_user;
@@ -48,6 +53,13 @@ public class Post {
 
     public Post(int id) {
         this.id = id;
+    }
+
+    public Post(int id, String title, String content, Date datep) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.datep = datep;
     }
 
    
@@ -103,6 +115,10 @@ public class Post {
 
 
 
+
+public String concat(){
+        return  title + ".@." +content+ ".@." ;
+    }
    
    
 }

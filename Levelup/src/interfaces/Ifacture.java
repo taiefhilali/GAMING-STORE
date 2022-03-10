@@ -21,6 +21,6 @@ public interface Ifacture {
     public List<Facture> afficherFacture();
      public boolean modifierFacture(Facture f);
     
-    public boolean supprimerFacture(Facture f);
+    public boolean supprimerFacture(int f);
     public void prix ();
 }

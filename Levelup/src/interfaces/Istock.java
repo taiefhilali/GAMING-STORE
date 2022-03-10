@@ -20,7 +20,7 @@ public interface Istock {
     public List<Stock> afficherStock();
      public boolean modifierStock(Stock s);
     
-    public boolean supprimerStock(Stock s);
+    public boolean supprimerStock(int s);
     
     
 }

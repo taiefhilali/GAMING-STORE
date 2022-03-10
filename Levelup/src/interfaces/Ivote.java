@@ -7,11 +7,20 @@ package interfaces;
 
 import java.util.List;
 import models.Post;
+import models.Vote;
 
 /**
  *
  * @author msi
  */
 public class Ivote {
+
+    public List<Vote> afficherVote() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public List<Vote> countVote() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
    
 }

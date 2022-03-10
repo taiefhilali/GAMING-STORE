@@ -30,7 +30,7 @@ public class ServiceLivraison implements Ilivraison{
     Connection cnx = MaConnexion.getInstance().getCnx();
 
     public boolean ajouterLivraison(Livraison l) {
-        String request = "INSERT INTO `livraison`( `id_commande`, `id_user`, `date`, `etat_livraison`) VALUES ("+l.getCommande().getId_commande()+","+l.getUser().getId()+",'"+l.getDate()+"','"+l.getEtat_livraison()+"')";
+        String request = "INSERT INTO `livraison`( `id_commande`, `id_user`, `date`, `etat_livraison`) VALUES ("+l.getCommande().getId_commande()+","+l.getUser().getId()+",'"+l.getDate().toString()+"','"+l.getEtat_livraison()+"')";
         try {
             Statement st = cnx.createStatement();
             if (st.executeUpdate(request) == 1)
@@ -53,7 +53,7 @@ public class ServiceLivraison implements Ilivraison{
 
             //SOB HEDHA FI HEDHA
             while(rs.next()){
-                livraison.add(new Livraison(rs.getInt("id_livraison"),new Commande(rs.getInt("id_commande")),new User (rs.getInt("id_user")),rs.getDate("date"),rs.getString("etat_livraison")));
+                livraison.add(new Livraison(rs.getInt("id_livraison"),new Commande(rs.getInt("id_commande")),new User (rs.getInt("id_user")),rs.getString("date"),rs.getString("etat_livraison")));
             }
 
         } catch (SQLException e) {
@@ -90,7 +90,44 @@ public class ServiceLivraison implements Ilivraison{
             return false;
         }
     }
+ public boolean annulerAffectation(Livraison l){
+     String req="UPDATE `livraison` SET `id_user`=NULL WHERE id_livraison='"+l.getId_livraison()+"'";
+     try {
+            Statement st = cnx.createStatement();
+            if (st.executeUpdate(req) == 1)
+                return true;
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+ }
 
+    public boolean Affectation(Livraison l, Livreur livreurSelected) {
+     String req="UPDATE `livraison` SET `id_user`="+livreurSelected.getId()+" WHERE id_livraison= "+l.getId_livraison()+" ";
+
+    
+    try {
+            Statement st = cnx.createStatement();
+            if (st.executeUpdate(req) == 1)
+                return true;
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public List<Livraison> rechercheLivraisonparEtat_Livraison(String etat_livraison) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Livraison> triLivraisonparEtat_Livraison() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+ 
 
 
     
