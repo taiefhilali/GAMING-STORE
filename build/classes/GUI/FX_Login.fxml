@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="708.0" prefWidth="1143.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FX_LoginController">
+        <children>
+        <AnchorPane prefHeight="708.0" prefWidth="566.0" style="-fx-background-color: #17A589;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <BorderPane fx:id="borderPane" layoutX="66.0" layoutY="59.0" prefHeight="400.0" prefWidth="250.0">
+               <center>
+                  <MediaView fx:id="mediaView" fitHeight="600.0" fitWidth="440.0" onMouseClicked="#clicked" onMouseMoved="#exited" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+        <Pane layoutX="613.0" layoutY="80.0" prefHeight="600.0" prefWidth="473.0" AnchorPane.bottomAnchor="28.0" AnchorPane.topAnchor="80.0">
+            <children>
+                <Separator layoutX="79.0" layoutY="454.0" prefHeight="4.0" prefWidth="354.0" />
+                <Label alignment="CENTER" layoutX="238.0" layoutY="443.0" prefHeight="23.0" prefWidth="31.0" style="-fx-background-color: #fff;" text="OU" textFill="#5b5a5a">
+                    <font>
+                        <Font name="Segoe UI" size="12.0" />
+                    </font>
+                </Label>
+                <Button fx:id="btnSignup" layoutX="114.0" layoutY="485.0" mnemonicParsing="false" onAction="#inscription" prefHeight="57.0" prefWidth="287.0" stylesheets="@../styles/style.css" text="S'inscrire">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="16.0" />
+               </font>
+            </Button>
+                <Button fx:id="btnSignin" layoutX="269.0" layoutY="382.0" mnemonicParsing="false" onAction="#login" onMouseClicked="#handleButtonAction" prefHeight="48.0" prefWidth="149.0" stylesheets="@../styles/style.css" text="Se connecter">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="15.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="215.0" fitWidth="193.0" layoutX="142.0" layoutY="-38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/219986.png" />
+               </image>
+            </ImageView>
+                <Label fx:id="lblErrors" alignment="CENTER" layoutX="106.0" layoutY="345.0" prefHeight="23.0" prefWidth="275.0" textFill="#ff6354">
+                    <font>
+                        <Font name="Segoe UI" size="10.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+        <Label alignment="CENTER" layoutX="394.0" layoutY="466.0" prefHeight="23.0" prefWidth="93.0" textFill="#5b5a5a" AnchorPane.bottomAnchor="14.0">
+            <font>
+                <Font name="Segoe UI" size="12.0" />
+            </font>
+        </Label>
+          <TextField fx:id="txtUsername" layoutX="667.0" layoutY="293.0" prefHeight="57.0" prefWidth="372.0" promptText="email" stylesheets="@../styles/style.css" />
+          <PasswordField fx:id="txtPassword" layoutX="668.0" layoutY="359.0" prefHeight="57.0" prefWidth="372.0" promptText="mot de passe" stylesheets="@../styles/style.css" />
+      <Button fx:id="btnSignin1" layoutX="712.0" layoutY="471.0" mnemonicParsing="false" onAction="#forgotPsw" onMouseClicked="#handleButtonAction" prefHeight="34.0" prefWidth="137.0" style="-fx-background-color: Transparent;" text="Forgot Password" textFill="#5383ff">
+         <font>
+            <Font name="Comic Sans MS" size="14.0" />
+         </font>
+      </Button>
+      
+    </children>
+</AnchorPane>
