@@ -70,7 +70,7 @@ public class ResetPasswordController implements Initializable {
                 Connection con = MaConnexion.getInstance().getCnx();
                 String sql = "UPDATE `user` SET password=? WHERE email = ? ";
                 ps = con.prepareStatement(sql);
-                ps.setString(1, u.encrypt(cpasstxt.getText()));
+                ps.setString(1, MD5.crypt(cpasstxt.getText()));
                 ps.setString(2, user);
                 ps.executeUpdate();
                 showAlert(Alert.AlertType.INFORMATION, ((Node) event.getSource()).getScene().getWindow(),

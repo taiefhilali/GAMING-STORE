@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,7 +17,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import utils.Session;
 
 /**
  * FXML Controller class
@@ -33,19 +42,10 @@ public class GestionUsersController implements Initializable {
     private Parent root;
     @FXML
     private Button switchToAddInterface;
-
-    @FXML
-    private void switchToUsers(ActionEvent event) throws IOException {
-            root = FXMLLoader.load(getClass().getResource("./GestionUsers.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
    
+
     @FXML
- public void switchToAddInterface(ActionEvent event) throws IOException {
+    public void switchToAddInterface(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("./AddInterface.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -53,10 +53,11 @@ public class GestionUsersController implements Initializable {
         stage.show();
 
     }
+
     @FXML
     public void switchToListInterface(ActionEvent event) throws IOException {
 
-        root = FXMLLoader.load(getClass().getResource("./ListInterface.fxml"));
+        root = FXMLLoader.load(getClass().getResource("./List.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -67,10 +68,8 @@ public class GestionUsersController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        // TODO
     }
 
-    @FXML
     private void switchToProfil(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("./Compte.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -78,5 +77,33 @@ public class GestionUsersController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+       private void switchToPassword(ActionEvent event) throws IOException {
+            root = FXMLLoader.load(getClass().getResource("./PasswordUpdate.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+      private void decoonecter(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("./FX_Login.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+       
+         Session.setId(0);
+        Session.setPrenom(null);
+        Session.setNom(null);
+        Session.setEmail(null);
+        Session.setAdresse(null);
+        Session.setPassword(null);
+        Session.setRole(null);
+        Session.setTel(null);
+        Session.setDns(null);
+        Session.setImage(null);
+    }
+
 
 }

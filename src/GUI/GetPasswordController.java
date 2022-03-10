@@ -5,12 +5,15 @@
  */
 package GUI;
 
+import interfaces.Iuser;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import services.ServiceUser;
 
 /**
  * FXML Controller class
@@ -67,20 +71,37 @@ public class GetPasswordController implements Initializable {
 
     @FXML
     private void send(ActionEvent event) {
+        Iuser su = new ServiceUser();
+        
         Random rand = new Random();
         randomCode = rand.nextInt(999999);
-       // String host = "smtp.gmail.com";
-       // String user = "docpidev@gmail.com";
-      //  String pass = "pidev123456";
-        String to = emailtxt.getText();
-        String subject = "Reseting Code";
-        String message = "Votre Code est \n" + randomCode;
+        String regx = "^[A-Za-z0-9+_.-]+@(.+)$";
+        Pattern pattern = Pattern.compile("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher((CharSequence) emailtxt.getText());
+        String regex = "[0-9]+";
 
-        try {
-            Emailer.sendMail(to, message);
-        } catch (Exception ex) {
-            Logger.getLogger(GetPasswordController.class.getName()).log(Level.SEVERE, null, ex);
+        if (emailtxt.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, ((Node) event.getSource()).getScene().getWindow(),
+                    "Error!", "E-mail est requis");
+        } 
+        else if (su.getByEmail(emailtxt.getText()).getId() == 0) {
+            showAlert(Alert.AlertType.ERROR, ((Node) event.getSource()).getScene().getWindow(),
+                    "Form Error!", "Adresse e-mail n'existe pas");
+        }else if (!matcher.matches()) {
+            showAlert(Alert.AlertType.ERROR, ((Node) event.getSource()).getScene().getWindow(),
+                    "Error!", "Adresse E-mail non valide");
+        } else {
+            String to = emailtxt.getText();
+            String subject = "Reseting Code";
+            String message = "Votre Code est \n" + randomCode;
+
+            try {
+                Emailer.sendMail(to, message);
+            } catch (Exception ex) {
+                Logger.getLogger(GetPasswordController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+
     }
 
     @FXML
@@ -107,11 +128,13 @@ public class GetPasswordController implements Initializable {
 
     @FXML
     private void retour(ActionEvent event) throws IOException {
+        
         root = FXMLLoader.load(getClass().getResource("./FX_Login.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        
     }
 
 }

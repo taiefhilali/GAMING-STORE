@@ -16,14 +16,37 @@ public class Commande {
     //var
    private int id_commande;
    private Client client;
-   private float prix_livraison;
+   private double prix_livraison;
+   private double prix_produits;
+   private double prix_total;
    private Date date_commande;
    
     
    //Constructeur
     public Commande() {
+    }  
+    public Commande(int id_commande) {
+        this.id_commande = id_commande;
     }
 
+    public Commande(int id_commande, Client client, double prix_livraison, double prix_produits, double prix_total, Date date_commande) {
+        this.id_commande = id_commande;
+        this.client = client;
+        this.prix_livraison = prix_livraison;
+        this.prix_produits = prix_produits;
+        this.prix_total = prix_total;
+        this.date_commande = date_commande;
+    }
+
+    public Commande(int id_commande, double prix_livraison, double prix_produits, double prix_total, Date date_commande) {
+        this.id_commande = id_commande;
+        this.prix_livraison = prix_livraison;
+        this.prix_produits = prix_produits;
+        this.prix_total = prix_total;
+        this.date_commande = date_commande;
+    }
+    
+    
     public Commande(int id_commande, Client client, float prix_livraison, Date date_commande) {
         this.id_commande = id_commande;
         this.client = client;
@@ -36,11 +59,6 @@ public class Commande {
         this.prix_livraison = prix_livraison;
         this.date_commande = date_commande;
     }
-
-    public Commande(int id_commande) {
-        this.id_commande = id_commande;
-    }
-    
     
     //Getters and setters
     public int getId_commande() {
@@ -59,13 +77,29 @@ public class Commande {
         this.client = client;
     }
 
+    public double getPrix_produits() {
+        return prix_produits;
+    }
+
+    public void setPrix_produits(double prix_produits) {
+        this.prix_produits = prix_produits;
+    }
+
+    public double getPrix_total() {
+        return prix_total;
+    }
+
+    public void setPrix_total(double prix_total) {
+        this.prix_total = prix_total;
+    }
+
  
 
-    public float getPrix_livraison() {
+    public double getPrix_livraison() {
         return prix_livraison;
     }
 
-    public void setPrix_livraison(float prix_livraison) {
+    public void setPrix_livraison(double prix_livraison) {
         this.prix_livraison = prix_livraison;
     }
 
@@ -79,7 +113,7 @@ public class Commande {
 
     @Override
     public String toString() {
-        return "Commande{" + "id_commande=" + id_commande + ", client={ " + client +" }"+ ", prix_livraison=" + prix_livraison + ", date_commande=" + date_commande +'\n'+ '}';
+        return "Commande{" + "id_commande=" + id_commande +", Prix_Produits =" + prix_produits +", Prix_total =" + prix_total + ", client={ " + client +" }"+ ", prix_livraison=" + prix_livraison + ", date_commande=" + date_commande +'\n'+ '}';
     }
    
     

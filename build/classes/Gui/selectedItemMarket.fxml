@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="780.0" prefWidth="1143.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SelectedItemMarketController">
+    <stylesheets>
+        <URL value="@styleProduit.css" />
+    </stylesheets>
+   <children>
+      <ImageView fx:id="itemIMG" fitHeight="418.0" fitWidth="486.0" layoutX="40.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" styleClass="fruit-item" />
+      <Label fx:id="prodName" alignment="TOP_LEFT" layoutX="87.0" layoutY="501.0" prefHeight="137.0" prefWidth="457.0" text="Nom Produit" textAlignment="CENTER">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font></Label>
+      <Label fx:id="prodRef" alignment="TOP_LEFT" layoutX="605.0" layoutY="111.0" prefHeight="58.0" prefWidth="306.0" text="Réference" wrapText="true">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font></Label>
+      <Label fx:id="prodPrix" alignment="TOP_LEFT" layoutX="605.0" layoutY="234.0" prefHeight="58.0" prefWidth="274.0" text="Prix" wrapText="true">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font></Label>
+      <Label fx:id="prodPromo" alignment="TOP_LEFT" layoutX="605.0" layoutY="177.0" prefHeight="58.0" prefWidth="274.0" text="Promotion" wrapText="true">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font></Label>
+      <Label fx:id="prodDescription" alignment="TOP_LEFT" layoutX="605.0" layoutY="295.0" prefHeight="214.0" prefWidth="316.0" text="Details:" textAlignment="JUSTIFY" wrapText="true">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font></Label>
+      <Spinner fx:id="SpinnerProd" layoutX="628.0" layoutY="547.0" prefHeight="32.0" prefWidth="172.0" stylesheets="@../styles/style.css" />
+      <Button fx:id="btnRetour" layoutX="951.0" layoutY="663.0" mnemonicParsing="false" onAction="#switchBackToMarket" prefHeight="48.0" prefWidth="147.0" style="-fx-background-color: #f7dc6f;" text="Magasin">
+         <font>
+            <Font name="Comic Sans MS" size="16.0" />
+         </font></Button>
+      <Label layoutX="677.0" layoutY="509.0" text="Quantité">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="butt" layoutX="629.0" layoutY="601.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="48.0" prefWidth="172.0" stylesheets="@../styles/style.css" text="Ajouter au panier">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font>
+      </Button>
+      <Label fx:id="presenceStockLabel" layoutX="832.0" layoutY="529.0" prefHeight="69.0" prefWidth="95.0" text="Stock">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="id_prod" layoutX="269.0" layoutY="749.0" text="1" visible="false" />
+      <Button layoutX="980.0" layoutY="29.0" mnemonicParsing="false" onAction="#Retour" prefHeight="48.0" prefWidth="119.0" stylesheets="@../styles/style.css" text="Retour">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

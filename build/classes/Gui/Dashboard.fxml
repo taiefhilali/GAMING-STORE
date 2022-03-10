@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="780.0" prefWidth="1143.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.DashboardController">
+   <children>
+      <HBox alignment="CENTER" layoutX="76.0" layoutY="169.0" prefHeight="114.0" prefWidth="199.0" stylesheets="@../styles/styleUser.css">
+         <children>
+            <VBox alignment="CENTER" prefHeight="115.0" prefWidth="206.0">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="83.0" text="Clients " textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="numClient" prefHeight="30.0" prefWidth="29.0" text="30" textFill="WHITE">
+                     <font>
+                        <Font name="Cambria" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+         <styleClass>
+            <String fx:value="client" />
+            <String fx:value="shadow" />
+         </styleClass>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="343.0" layoutY="169.0" prefHeight="114.0" prefWidth="199.0" stylesheets="@../styles/styleUser.css">
+         <children>
+            <VBox alignment="CENTER" prefHeight="136.0" prefWidth="216.0">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="135.0" text="Fournisseur" textFill="#fff7f7">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="numFournisseur" prefHeight="30.0" prefWidth="29.0" text="30" textFill="#fffafa">
+                     <font>
+                        <Font name="Cambria" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+         <styleClass>
+            <String fx:value="fournisseur" />
+            <String fx:value="shadow" />
+         </styleClass>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="623.0" layoutY="169.0" prefHeight="114.0" prefWidth="199.0" stylesheets="@../styles/styleUser.css">
+         <children>
+            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="156.0">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="85.0" text="Livreur" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="numLivreur" prefHeight="30.0" prefWidth="30.0" text="30" textFill="WHITE">
+                     <font>
+                        <Font name="Cambria" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+         <styleClass>
+            <String fx:value="livreur" />
+            <String fx:value="shadow" />
+         </styleClass>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="899.0" layoutY="169.0" prefHeight="114.0" prefWidth="199.0" stylesheets="@../styles/styleUser.css">
+         <children>
+            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="213.0">
+               <children>
+                  <Label prefHeight="32.0" prefWidth="166.0" text="Administrateur" textFill="#fffefe">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="numAdmin" prefHeight="30.0" prefWidth="28.0" text="30" textFill="WHITE">
+                     <font>
+                        <Font name="Cambria" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+         <styleClass>
+            <String fx:value="administrateur" />
+            <String fx:value="shadow" />
+         </styleClass>
+      </HBox>
+      <PieChart fx:id="clientSexe" layoutX="76.0" layoutY="344.0" prefHeight="372.0" prefWidth="526.0" stylesheets="@../styles/styleUser.css">
+         <styleClass>
+            <String fx:value="shadow" />
+            <String fx:value="free-delivery-card" />
+            <String fx:value="shadow" />
+         </styleClass>
+      </PieChart>
+      <Label layoutX="75.0" layoutY="54.0" text="Dashboard">
+         <font>
+            <Font name="Comic Sans MS Bold" size="36.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="719.0" layoutY="362.0">
+         <children>
+            <Label layoutY="-12.0" prefHeight="372.0" prefWidth="361.0" stylesheets="@../styles/styleUser.css">
+               <styleClass>
+                  <String fx:value="acticve" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </Label>
+            <Label layoutX="61.0" layoutY="130.0" text="Les utilisateurs actifs" textFill="WHITE">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="316.0" text="Les utilisateurs non actifs " textFill="WHITE">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="24.0" />
+               </font>
+            </Label>
+            <Separator layoutX="51.0" layoutY="175.0" prefHeight="15.0" prefWidth="273.0" />
+            <ImageView fitHeight="70.0" fitWidth="62.0" layoutX="156.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/addUser.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="70.0" fitWidth="62.0" layoutX="157.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/useruclose.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="nonactive" layoutX="163.0" layoutY="182.0" prefHeight="50.0" prefWidth="47.0" text="30" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="actif" layoutX="163.0" prefHeight="50.0" prefWidth="47.0" text="30" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label fx:id="clock" layoutX="343.0" layoutY="65.0" prefHeight="29.0" prefWidth="173.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

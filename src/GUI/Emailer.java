@@ -55,7 +55,7 @@ public class Emailer {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
-            message.setSubject("Reset Password LevelUp");
+            message.setSubject("LevelUp");
             String htmlCode = content;
             message.setContent(htmlCode, "text/html");
             return message;

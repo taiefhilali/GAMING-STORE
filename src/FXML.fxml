@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1143.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLController">
+   <children>
+      <VBox layoutX="280.0" layoutY="253.0" prefHeight="266.0" prefWidth="101.0" spacing="70.0">
+         <children>
+            <Label text="Titre">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label prefHeight="21.0" prefWidth="84.0" text="Contenue">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label text="email">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label text="Date">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="436.0" layoutY="245.0" prefHeight="323.0" prefWidth="362.0" spacing="40.0">
+         <children>
+            <TextField fx:id="contenuTF" prefHeight="55.0" prefWidth="362.0" promptText="Titre" stylesheets="@styles/style.css">
+               <font>
+                  <Font name="Comic Sans MS" size="17.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="titreTF" prefHeight="47.0" prefWidth="362.0" promptText="contenue" stylesheets="@styles/style.css">
+               <font>
+                  <Font name="Comic Sans MS" size="16.0" />
+               </font>
+            </TextField>
+            <ComboBox fx:id="userTF" onAction="#combo" prefHeight="48.0" prefWidth="360.0" stylesheets="@styles/style.css" />
+            <DatePicker fx:id="datePK" prefHeight="62.0" prefWidth="360.0" promptText="Date du publication" stylesheets="@styles/style.css" />
+         </children>
+      </VBox>
+      <Button fx:id="btnadd1" layoutX="238.0" layoutY="651.0" mnemonicParsing="false" onAction="#ret" prefHeight="43.0" prefWidth="150.0" stylesheets="@styles/style.css" text="Retour" textFill="#fff7f7">
+         <font>
+            <Font name="Comic Sans MS" size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnadd" layoutX="791.0" layoutY="651.0" mnemonicParsing="false" onAction="#ajouterpost" prefHeight="43.0" prefWidth="150.0" stylesheets="@styles/style.css" text="Ajouter" textFill="#fff7f7">
+         <font>
+            <Font name="Comic Sans MS" size="17.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="905.0" layoutY="661.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/add.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="24.0" layoutX="349.0" layoutY="661.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/icons8-return-50.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="979.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/icons8-comment-60.png" />
+         </image>
+      </ImageView>
+      <Text fontSmoothingType="LCD" layoutX="373.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PUBLICATIONS" textAlignment="CENTER" wrappingWidth="379.69140625">
+         <font>
+            <Font name="Comic Sans MS Bold" size="36.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

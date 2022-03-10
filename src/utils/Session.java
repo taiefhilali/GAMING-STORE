@@ -5,6 +5,7 @@
  */
 package utils;
 
+import java.sql.Blob;
 import java.sql.Date;
 
 /**
@@ -21,9 +22,18 @@ public class Session {
     static String adresse;
     static String tel;
     static Date dns;
+    static String image;
 
     public static int getId() {
         return id;
+    }
+
+    public static String getImage() {
+        return image;
+    }
+
+    public static void setImage(String image) {
+        Session.image = image;
     }
 
     public static void setId(int id) {

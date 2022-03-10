@@ -5,23 +5,19 @@
             <url>src/GUI/InscriptionController.java</url>
             <bookmark id="1">
                 <name/>
-                <line>86</line>
+                <line>119</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/beldi/Desktop/Nouveau%20dossier/Levelup/src/GUI/FX_LoginController.java</file>
-            <file>file:/C:/Users/beldi/Desktop/Nouveau%20dossier/Levelup/src/GUI/EditInterfaceController.java</file>
-            <file>file:/C:/Users/beldi/Desktop/Nouveau%20dossier/Levelup/src/GUI/ListInterfaceController.java</file>
-            <file>file:/C:/Users/beldi/Desktop/Nouveau%20dossier/Levelup/src/GUI/Emailer.java</file>
-            <file>file:/C:/Users/beldi/Desktop/Nouveau%20dossier/Levelup/src/services/ServiceUser.java</file>
-            <file>file:/C:/Users/beldi/Desktop/Nouveau%20dossier/Levelup/src/GUI/CompteController.java</file>
-            <file>file:/C:/Users/beldi/Desktop/Nouveau%20dossier/Levelup/src/GUI/GestionUsersController.java</file>
-            <file>file:/C:/Users/beldi/Desktop/Nouveau%20dossier/Levelup/src/GUI/FX.java</file>
-            <file>file:/C:/Users/beldi/Desktop/Nouveau%20dossier/Levelup/src/levelup/Levelup.java</file>
-            <file>file:/C:/Users/beldi/Desktop/Nouveau%20dossier/Levelup/src/utils/Session.java</file>
+            <file>file:/C:/Users/beldi/Desktop/Levelup/src/GUI/SendSmsController.java</file>
+            <file>file:/C:/Users/beldi/Desktop/Levelup/src/GUI/PanierItemController.java</file>
+            <file>file:/C:/Users/beldi/Desktop/Levelup/src/GUI/AddInterfaceController.java</file>
+            <file>file:/C:/Users/beldi/Desktop/Levelup/src/GUI/EditInterfaceController.java</file>
+            <file>file:/C:/Users/beldi/Desktop/Levelup/src/GUI/GetPasswordController.java</file>
+            <file>file:/C:/Users/beldi/Desktop/Levelup/src/GUI/GestionUsersController.java</file>
         </group>
     </open-files>
 </project-private>

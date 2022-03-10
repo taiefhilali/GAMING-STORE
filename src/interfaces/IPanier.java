@@ -13,10 +13,11 @@ import models.Panier;
  */
 public interface IPanier {
     
+    public Panier getElement(int id) ;
+    
     public void ajouterPanier(Panier p);
     
     
     public void supprimerPanier(Panier p);
     
 }
-

@@ -6,61 +6,65 @@
 package models;
 
 import java.sql.Date;
+import javafx.scene.control.TextField;
 
 /**
  *
  * @author msi
  */
 public class Post {
-    int id ; 
+
+    int id;
     User id_user;
-    int nblike;
-    int nbdislike;
-    String title; 
-    String content; 
+    String title;
+    String content;
     Date datep;
 
     public Post() {
     }
 
-    public Post(int id, String title, String content, Date datep,User id_user,int nblike, int nbdislike) {
+    public Post(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
+    public Post(int id, String title, String content, Date datep, User id_user) {
         this.id = id;
-         this.nblike = nblike;
-          this.nbdislike = nbdislike;
         this.id_user = id_user;
         this.title = title;
         this.content = content;
         this.datep = datep;
     }
 
-    public Post(String title, String content, Date datep,User id_user,int nblike, int nbdislike) {
+    public Post(String title, String content, Date datep, User id_user) {
         this.id_user = id_user;
-         this.nbdislike = nbdislike;
-          this.nblike = nblike;
         this.title = title;
         this.content = content;
         this.datep = datep;
     }
 
-    public Post(String gaming, String accesoires_et_jeux_videos, java.util.Date date) {
-        //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-   }
-
-    public int getNblike() {
-        return nblike;
+    public Post(String text, String text0, User user, Date myDate) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setNblike(int nblike) {
-        this.nblike = nblike;
+    public Post(String title) {
+        this.title = title;
     }
 
-    public int getNbdislike() {
-        return nbdislike;
+    public Post(int id) {
+        this.id = id;
     }
 
-    public void setNbdislike(int nbdislike) {
-        this.nbdislike = nbdislike;
+    public Post(int id, String title, String content, Date datep) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.datep = datep;
     }
+
+   
+
+   
 
     public User getId_user() {
         return id_user;
@@ -69,8 +73,6 @@ public class Post {
     public void setId_user(User id_user) {
         this.id_user = id_user;
     }
-
-   
 
     public int getId() {
         return id;
@@ -108,12 +110,15 @@ public class Post {
 
     @Override
     public String toString() {
-        return "Post{" + "id=" + id + ", id_user=" + id_user + ", nblike=" + nblike + ", nbdislike=" + nbdislike + ", title=" + title + ", content=" + content + ", datep=" + datep + '}';
+        return "Post{" + "id=" + id + ", id_user=" + id_user + ", title=" + title + ", content=" + content + ", datep=" + datep + '}';
     }
 
-  
-    
-  
-    
-    
+
+
+
+public String concat(){
+        return  title + ".@." +content+ ".@." ;
+    }
+   
+   
 }

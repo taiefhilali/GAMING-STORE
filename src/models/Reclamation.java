@@ -20,7 +20,7 @@ public class Reclamation {
     private User user;
     private Livraison livraison;
     private String description;
-
+    private boolean warn;
         public Reclamation() {
         }
 
@@ -36,6 +36,16 @@ public class Reclamation {
         this.livraison = livraison;
         this.description = description;
     }
+
+    public Reclamation(int id_reclamation, User user, Livraison livraison, String description, boolean warn) {
+        this.id_reclamation = id_reclamation;
+        this.user = user;
+        this.livraison = livraison;
+        this.description = description;
+        this.warn = warn;
+    }
+
+  
 
     public int getId_reclamation() {
         return id_reclamation;
@@ -67,6 +77,14 @@ public class Reclamation {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isWarn() {
+        return warn;
+    }
+
+    public void setWarn(boolean warn) {
+        this.warn = warn;
     }
 
     @Override

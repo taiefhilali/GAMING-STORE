@@ -1,0 +1,20 @@
+
+.button
+{
+-fx-background-color : #EBE8F9;
+-fx-text-fill:  Black;
+-fx-alignment: CENTER;
+
+}
+.button:hover{
+-fx-background-color : #BDBBC3;
+
+}
+.button:pressed
+{
+-fx-background-color : #EBE8F9;
+}
+
+.borderPane_Style {
+-fx-background-color: linear-gradient(to right bottom, #002151, #00215c, #052066, #141d70, #241878);
+}

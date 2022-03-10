@@ -13,6 +13,8 @@ public class TopProduits {
     
     private int id;
     private int nbrachat;
+    private Produit p;
+
 
     public TopProduits() {
     }
@@ -21,6 +23,14 @@ public class TopProduits {
         this.id = id;
         this.nbrachat = nbrachat;
     }
+
+    public TopProduits(int id, int nbrachat,Produit p) {
+        this.id = id;
+        this.nbrachat = nbrachat;
+        this.p = p;
+        
+    }
+
 
     public int getId() {
         return id;
@@ -38,9 +48,19 @@ public class TopProduits {
         this.nbrachat = nbrachat;
     }
 
+    public Produit getP() {
+        return p;
+    }
+
+    public void setP(Produit p) {
+        this.p = p;
+    }
+
     @Override
     public String toString() {
-        return "Produit{" + "id_produit=" + id + ", nbrachat=" + nbrachat + '}';
+        return "TopProduits{" + "id=" + id + ", nbrachat=" + nbrachat + ", p=" + p + '}';
     }
+
+  
     
 }

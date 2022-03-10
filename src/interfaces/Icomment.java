@@ -5,25 +5,32 @@
  */
 package interfaces;
 
-
-
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import models.Comment;
+import models.Post;
 
 /**
  *
  * @author msi
  */
 public interface Icomment {
-       //ajouter
+    //ajouter
+
     public boolean ajouterComment(Comment c);
+
     //lister
     public List<Comment> afficherComment();
-    //update
-      public boolean modifierComment(Comment c);
-  //delete
-      public boolean supprimerComment(Comment c);
 
-    public void Commentsum();
+    //update
+    public boolean modifierComment(Comment c);
+    //delete
+
+    public boolean supprimerComment(Comment c);
+
+    public Map<Integer, List<String>> bestpost(int resp);
+//      public ArrayList<Comment> sortBynblike();
+
+    public int Commentsum();
 }
-     

@@ -19,6 +19,7 @@ public interface Ipost {
     public boolean ajouterPost(Post p);
      //lister
     public List<Post> afficherPost();
+    public List<Post>show();
     //update
     
       public boolean modifierPost(Post p);
@@ -27,9 +28,8 @@ public interface Ipost {
       
 
     public ArrayList<Post> AfficherTrie();
-public Map<Integer, List<String>> bestpost(int nblike);
-    public ArrayList<Post> findBytitle(String title);
-   public ArrayList<Post> sortBynblike();
+ public ArrayList<Post> findBytitle(String title);
+
     public ArrayList<Post> sortByDate();
           
 }
